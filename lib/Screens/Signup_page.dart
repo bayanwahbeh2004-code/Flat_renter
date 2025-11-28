@@ -1,0 +1,102 @@
+import 'package:baytech/Constants.dart';
+import 'package:baytech/Screens/Login_Page.dart';
+import 'package:baytech/components/SemiCircle.dart';
+import 'package:baytech/components/costum_button.dart';
+import 'package:baytech/components/costum_text_Field.dart';
+import 'package:flutter/material.dart';
+
+class SignupPage extends StatelessWidget {
+  static String id = "Sign up page";
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: ListView(
+        children: [
+          SizedBox(height: 70),
+          Image.asset(Klogo, height: 200, width: 200),
+          SizedBox(height: 20),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 50.0),
+                child: Text(
+                  "Sign up",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 32,
+                    fontFamily: "Platypi",
+                  ),
+                ),
+              ),
+            ],
+          ),
+          SizedBox(height: 20),
+          Stack(
+            children: [
+              SizedBox(
+                height: 540,
+                width: 400,
+                child: Semicircle(
+                  width: 400,
+                  height: 200,
+                  radius_for_the_circle: 190,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 38.0),
+                child: Column(
+                  children: [
+                    SizedBox(height: 70),
+                    CostumTextFeild(
+                      hintText: "Phone number",
+                      onchanged: (data) {},
+                    ),
+                    SizedBox(height: 25),
+                    CostumTextFeild(
+                      hintText: "Password",
+                      obscure: true,
+                      onchanged: (data) {},
+                    ),
+                    SizedBox(height: 25),
+                    CostumTextFeild(
+                      hintText: "Confirm password",
+                      obscure: true,
+                      onchanged: (data) {},
+                    ),
+                    SizedBox(height: 25),
+                    CostumButton(
+                      text: "Next",
+                      onTap: () {},
+                      buttonColor: Colors.black,
+                      textColor: Colors.white,
+                      height: 50,
+                      width: 225,
+                    ),
+                    SizedBox(height: 25),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text("Alredy have an account? "),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.popAndPushNamed(context, LoginPage.id);
+                          },
+                          child: Text(
+                            "log in",
+                            style: TextStyle(color: KPurple, fontSize: 18),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
