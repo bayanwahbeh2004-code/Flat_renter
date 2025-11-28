@@ -1,5 +1,6 @@
 import 'package:baytech/Screens/Login_Page.dart';
 import 'package:baytech/Screens/Signup_page.dart';
+import 'package:baytech/Screens/Waiting_Admin.dart';
 import 'package:baytech/Screens/Welcome_Page.dart';
 import 'package:baytech/Theme/theme.dart';
 import 'package:flutter/material.dart';
@@ -16,11 +17,12 @@ class Baytech extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: lightMode,
-      home: WelcomePage(),
+      initialRoute: WelcomePage.id,
       routes: {
         WelcomePage.id: (context) => WelcomePage(),
         LoginPage.id: (context) => LoginPage(),
         SignupPage.id: (context) => SignupPage(),
+        WaitingAdmin.id: (context) => WaitingAdmin(),
       },
     );
   }

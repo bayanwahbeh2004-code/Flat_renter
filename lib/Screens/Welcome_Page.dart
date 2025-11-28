@@ -1,5 +1,6 @@
 import 'package:baytech/Constants.dart';
 import 'package:baytech/Screens/Login_Page.dart';
+import 'package:baytech/Screens/Signup_page.dart';
 import 'package:baytech/components/SemiCircle.dart';
 import 'package:baytech/components/costum_button.dart';
 import 'package:flutter/material.dart';
@@ -65,7 +66,9 @@ class WelcomePage extends StatelessWidget {
                     SizedBox(height: 20),
                     CostumButton(
                       text: "Sign up",
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.popAndPushNamed(context, SignupPage.id);
+                      },
                       buttonColor: Colors.white,
                       textColor: Colors.black,
                       height: 50,
