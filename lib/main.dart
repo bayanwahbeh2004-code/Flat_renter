@@ -1,4 +1,5 @@
 import 'package:baytech/Screens/Login_Page.dart';
+import 'package:baytech/Screens/Personal_Info_Page.dart';
 import 'package:baytech/Screens/Signup_page.dart';
 import 'package:baytech/Screens/Waiting_Admin.dart';
 import 'package:baytech/Screens/Welcome_Page.dart';
@@ -10,19 +11,19 @@ void main() {
 }
 
 class Baytech extends StatelessWidget {
-  const Baytech({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: lightMode,
+      // home: PersonalInfoPage(),
       initialRoute: WelcomePage.id,
       routes: {
         WelcomePage.id: (context) => WelcomePage(),
         LoginPage.id: (context) => LoginPage(),
         SignupPage.id: (context) => SignupPage(),
         WaitingAdmin.id: (context) => WaitingAdmin(),
+        PersonalInfoPage.id: (context) => PersonalInfoPage(),
       },
     );
   }

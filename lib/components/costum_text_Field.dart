@@ -22,9 +22,12 @@ class CostumTextFeild extends StatelessWidget {
         return null;
       },
       decoration: InputDecoration(
-        contentPadding: const EdgeInsets.only(bottom: 15, left: 28, top: 15),
+        contentPadding: EdgeInsets.only(bottom: 18, left: 15, top: 18),
         labelText: hintText,
-        labelStyle: TextStyle(color: const Color.fromARGB(255, 106, 105, 105)),
+        labelStyle: TextStyle(
+          color: const Color.fromARGB(255, 106, 105, 105),
+          fontSize: 14,
+        ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(32),
         ),

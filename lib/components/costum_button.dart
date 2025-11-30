@@ -6,7 +6,6 @@ class CostumButton extends StatelessWidget {
   Color buttonColor, textColor;
   double height, width;
   CostumButton({
-    super.key,
     required this.text,
     required this.onTap,
     required this.textColor,

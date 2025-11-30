@@ -1,0 +1,166 @@
+import 'package:baytech/Constants.dart';
+import 'package:baytech/Models/Account.dart';
+import 'package:baytech/Screens/Login_Page.dart';
+import 'package:baytech/components/SemiCircle.dart';
+import 'package:baytech/components/costum_button.dart';
+import 'package:baytech/components/costum_text_Field.dart';
+import 'package:baytech/components/upload_image.dart';
+import 'package:flutter/material.dart';
+
+class PersonalInfoPage extends StatelessWidget {
+  static String id = "Personal information page";
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  String? firstName, secondName;
+  DateTime? Birthdate;
+  @override
+  Widget build(BuildContext context) {
+    //Account account = ModalRoute.of(context)!.settings.arguments as Account;
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: Form(
+        key: formKey,
+        child: ListView(
+          children: [
+            SizedBox(height: 40),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 25.0),
+                  child: Text(
+                    "Personal information",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 28,
+                      fontFamily: "Platypi",
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 60),
+            Stack(
+              children: [
+                SizedBox(
+                  height: 700,
+                  width: 400,
+                  child: Semicircle(
+                    width: 400,
+                    height: 200,
+                    radius_for_the_circle: 225,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 28.0),
+                  child: Column(
+                    children: [
+                      SizedBox(height: 70),
+                      CostumTextFeild(
+                        hintText: "Enter your first name",
+                        onchanged: (data) {
+                          firstName = data;
+                        },
+                      ),
+                      SizedBox(height: 25),
+                      CostumTextFeild(
+                        hintText: "Enter your second name",
+                        obscure: true,
+                        onchanged: (data) {
+                          secondName = data;
+                        },
+                      ),
+                      SizedBox(height: 25),
+                      Column(
+                        children: [
+                          Row(
+                            children: [
+                              SizedBox(width: 15),
+                              Text("Identity card"),
+                              SizedBox(width: 100),
+                              Text("profile picture"),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              UploadImage(height: 180, width: 150, type: "id"),
+                              SizedBox(width: 40),
+                              UploadImage(
+                                height: 180,
+                                width: 150,
+                                type: "profile",
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 10),
+                      CostumButton(
+                        text: "Birth date",
+                        onTap: () async {
+                          Birthdate = await showDatePicker(
+                            context: context,
+                            firstDate: DateTime(1950),
+                            lastDate: DateTime(2026),
+                            builder: (BuildContext context, Widget? child) {
+                              return Theme(
+                                data: Theme.of(context).copyWith(
+                                  colorScheme: ColorScheme.light(
+                                    primary: KPurple,
+                                  ),
+                                  textButtonTheme: TextButtonThemeData(
+                                    style: TextButton.styleFrom(
+                                      foregroundColor: KPurple,
+                                    ),
+                                  ),
+                                ),
+                                child: child!,
+                              );
+                            },
+                          );
+                        },
+                        textColor: Colors.black,
+                        buttonColor: Colors.white,
+                        height: 50,
+                        width: 225,
+                      ),
+                      SizedBox(height: 10),
+                      CostumButton(
+                        text: "Sign up",
+                        onTap: () {
+                          if (formKey.currentState!.validate()) {
+                            // password confirming and format check{
+                            // navigate}
+                          }
+                        },
+                        buttonColor: Colors.black,
+                        textColor: Colors.white,
+                        height: 50,
+                        width: 225,
+                      ),
+                      SizedBox(height: 30),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text("Alredy have an account? "),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.popAndPushNamed(context, LoginPage.id);
+                            },
+                            child: Text(
+                              "log in",
+                              style: TextStyle(color: KPurple, fontSize: 18),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
