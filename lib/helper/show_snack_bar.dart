@@ -8,8 +8,8 @@ void showSnackBar(BuildContext context, String message) {
       duration: Duration(seconds: 1),
       content: Text(message, style: TextStyle(color: Colors.white)),
       shape: ShapeBorder.lerp(
-        RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         1,
       ),
     ),
