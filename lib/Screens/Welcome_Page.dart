@@ -15,16 +15,16 @@ class WelcomePage extends StatelessWidget {
       backgroundColor: Colors.black,
       body: ListView(
         children: [
-          SizedBox(height: 160),
+          SizedBox(height: 100),
           Image.asset(Klogo, height: 250, width: 250),
           SizedBox(height: 60),
           Stack(
             children: [
               SizedBox(
-                height: 373,
+                height: 500,
                 width: 400,
                 child: Semicircle(
-                  width: 400,
+                  width: 500,
                   height: 200,
                   radius_for_the_circle: 400,
                 ),

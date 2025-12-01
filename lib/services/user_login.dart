@@ -1,9 +1,6 @@
 import 'dart:convert';
-
 import 'package:baytech/Constants.dart';
 import 'package:baytech/Models/Account.dart';
-import 'package:baytech/Models/Register_request.dart';
-import 'package:baytech/Screens/Login_Page.dart';
 import 'package:baytech/helper/api.dart';
 import 'package:baytech/helper/show_snack_bar.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +18,8 @@ Future<void> UserLogin({
     );
     var meesage = jsonDecode(response.body);
     showSnackBar(context, meesage["message"]);
-    Navigator.popAndPushNamed(context, LoginPage.id);
+    //to  home page
+    //Navigator.popAndPushNamed(context, HomePage.id);
   } catch (e) {
     showSnackBar(context, "something went wrong");
   }

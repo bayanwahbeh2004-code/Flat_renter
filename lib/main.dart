@@ -16,7 +16,6 @@ class Baytech extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: lightMode,
-      // home: PersonalInfoPage(),
       initialRoute: WelcomePage.id,
       routes: {
         WelcomePage.id: (context) => WelcomePage(),

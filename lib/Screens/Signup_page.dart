@@ -112,11 +112,6 @@ class _SignupPageState extends State<SignupPage> {
                               setState(() {
                                 isLoading = false;
                               });
-                              Navigator.pushNamed(
-                                context,
-                                WaitingAdmin.id,
-                                arguments: data,
-                              );
                             }
                           },
                           buttonColor: Colors.black,

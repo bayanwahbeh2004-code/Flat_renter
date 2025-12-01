@@ -69,7 +69,6 @@ class PersonalInfoPage extends StatelessWidget {
                       SizedBox(height: 25),
                       CostumTextFeild(
                         hintText: "Enter your second name",
-                        obscure: true,
                         onchanged: (data) {
                           secondName = data;
                         },
