@@ -9,6 +9,7 @@ import 'package:baytech/components/SemiCircle.dart';
 import 'package:baytech/components/costum_button.dart';
 import 'package:baytech/components/costum_text_Field.dart';
 import 'package:baytech/components/upload_image.dart';
+import 'package:baytech/helper/show_snack_bar.dart';
 import 'package:flutter/material.dart';
 
 class PersonalInfoPage extends StatelessWidget {
@@ -149,6 +150,21 @@ class PersonalInfoPage extends StatelessWidget {
                                 birthday: birthdate.toString(),
                                 indentityCard: identityCard!,
                               ),
+                            );
+                          } else if (identityCard == null) {
+                            showSnackBar(
+                              context: context,
+                              message: "Please upload your identy card",
+                            );
+                          } else if (birthdate == null) {
+                            showSnackBar(
+                              context: context,
+                              message: "Please select your birth date",
+                            );
+                          } else {
+                            showSnackBar(
+                              context: context,
+                              message: "Please somthing went wrong",
                             );
                           }
                         },

@@ -1,7 +1,7 @@
 import 'package:baytech/Constants.dart';
 import 'package:flutter/material.dart';
 
-void showSnackBar(BuildContext context, String message) {
+void showSnackBar({required BuildContext context, required String message}) {
   ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
       backgroundColor: KPurple,

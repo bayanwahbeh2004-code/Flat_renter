@@ -14,6 +14,7 @@ class Baytech extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: "Baytech",
       debugShowCheckedModeBanner: false,
       theme: lightMode,
       initialRoute: WelcomePage.id,

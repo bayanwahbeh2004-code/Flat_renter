@@ -2,7 +2,6 @@ import 'package:baytech/Constants.dart';
 import 'package:baytech/Models/Account.dart';
 import 'package:baytech/Models/Register_request.dart';
 import 'package:baytech/Screens/Login_Page.dart';
-import 'package:baytech/Screens/Waiting_Admin.dart';
 import 'package:baytech/components/SemiCircle.dart';
 import 'package:baytech/components/costum_button.dart';
 import 'package:baytech/components/costum_text_Field.dart';

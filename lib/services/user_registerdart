@@ -5,7 +5,7 @@ import 'package:baytech/helper/api.dart';
 import 'package:baytech/helper/show_snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
-
+import 'package:baytech/Screens/Waiting_Admin.dart';
 Future<void> UserRegister({
   required RegisterRequest data,
   required BuildContext context,
@@ -27,13 +27,13 @@ Future<void> UserRegister({
       },
     );
     var meesage = jsonDecode(response.body);
-    showSnackBar(context, meesage["message"]);
-  Navigator.pushNamed(
+    showSnackBar(context: context, message: meesage["message"]);
+    Navigator.popAndPushNamed(
                                 context,
                                 WaitingAdmin.id,
                                 arguments: data,
                               );
   } catch (e) {
-    showSnackBar(context, "something went wrong");
+    showSnackBar(context: context, message:"something went wrong");
   }
 }
