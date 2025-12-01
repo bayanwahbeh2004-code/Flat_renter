@@ -1,6 +1,6 @@
 import 'package:baytech/Constants.dart';
 import 'package:baytech/Models/Account.dart';
-import 'package:baytech/Screens/Signup_page.dart';
+import 'package:baytech/Screens/Personal_Info_Page.dart';
 import 'package:baytech/components/SemiCircle.dart';
 import 'package:baytech/components/costum_button.dart';
 import 'package:baytech/components/costum_text_Field.dart';
@@ -109,7 +109,7 @@ class _LoginState extends State<LoginPage> {
                               onTap: () {
                                 Navigator.popAndPushNamed(
                                   context,
-                                  SignupPage.id,
+                                  PersonalInfoPage.id,
                                 );
                               },
                               child: Text(

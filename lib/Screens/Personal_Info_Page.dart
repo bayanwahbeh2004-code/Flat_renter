@@ -1,6 +1,10 @@
+import 'dart:io';
+
 import 'package:baytech/Constants.dart';
 import 'package:baytech/Models/Account.dart';
+import 'package:baytech/Models/Register_request.dart';
 import 'package:baytech/Screens/Login_Page.dart';
+import 'package:baytech/Screens/Signup_page.dart';
 import 'package:baytech/components/SemiCircle.dart';
 import 'package:baytech/components/costum_button.dart';
 import 'package:baytech/components/costum_text_Field.dart';
@@ -11,10 +15,11 @@ class PersonalInfoPage extends StatelessWidget {
   static String id = "Personal information page";
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   String? firstName, secondName;
-  DateTime? Birthdate;
+  DateTime? birthdate;
+  String? identityCard, profilePicture;
+  UploadImage? IdImageuploader, ProfileimageUploader;
   @override
   Widget build(BuildContext context) {
-    //Account account = ModalRoute.of(context)!.settings.arguments as Account;
     return Scaffold(
       backgroundColor: Colors.black,
       body: Form(
@@ -82,9 +87,13 @@ class PersonalInfoPage extends StatelessWidget {
                           ),
                           Row(
                             children: [
-                              UploadImage(height: 180, width: 150, type: "id"),
+                              IdImageuploader = UploadImage(
+                                height: 180,
+                                width: 150,
+                                type: "id",
+                              ),
                               SizedBox(width: 40),
-                              UploadImage(
+                              ProfileimageUploader = UploadImage(
                                 height: 180,
                                 width: 150,
                                 type: "profile",
@@ -97,7 +106,7 @@ class PersonalInfoPage extends StatelessWidget {
                       CostumButton(
                         text: "Birth date",
                         onTap: () async {
-                          Birthdate = await showDatePicker(
+                          birthdate = await showDatePicker(
                             context: context,
                             firstDate: DateTime(1950),
                             lastDate: DateTime(2026),
@@ -125,11 +134,23 @@ class PersonalInfoPage extends StatelessWidget {
                       ),
                       SizedBox(height: 10),
                       CostumButton(
-                        text: "Sign up",
+                        text: "Next",
                         onTap: () {
-                          if (formKey.currentState!.validate()) {
-                            // password confirming and format check{
-                            // navigate}
+                          identityCard = IdImageuploader!.path;
+                          profilePicture = ProfileimageUploader!.path;
+                          if (formKey.currentState!.validate() &&
+                              birthdate != null &&
+                              identityCard != null) {
+                            Navigator.pushNamed(
+                              context,
+                              SignupPage.id,
+                              arguments: RegisterRequest(
+                                firstName: firstName!,
+                                secondName: secondName!,
+                                birthday: birthdate.toString(),
+                                indentityCard: identityCard!,
+                              ),
+                            );
                           }
                         },
                         buttonColor: Colors.black,

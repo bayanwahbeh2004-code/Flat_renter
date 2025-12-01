@@ -5,7 +5,7 @@ import 'package:image_picker/image_picker.dart';
 
 class UploadImage extends StatefulWidget {
   double width, height;
-  String? type;
+  String? type, path;
   UploadImage({required this.height, required this.width, this.type});
 
   @override
@@ -22,6 +22,7 @@ class _UploadImageState extends State<UploadImage> {
         if (pic != null) {
           setState(() {
             image = File(pic.path);
+            widget.path = pic.path;
           });
         }
       },
@@ -35,14 +36,14 @@ class _UploadImageState extends State<UploadImage> {
                 width: widget.width,
               )
             : widget.type == "profile"
-            ? Image.asset(KProfile, height: widget.height, width: 250)
+            ? Image.asset(KProfile, height: widget.height, width: widget.width)
             : widget.type == "id"
             ? Image.asset(
                 KPictureId,
                 height: widget.height,
                 width: widget.width,
               )
-            : Image.file(image!),
+            : Image.file(image!, height: widget.height, width: widget.width),
       ),
     );
   }

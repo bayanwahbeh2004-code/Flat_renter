@@ -1,6 +1,6 @@
 import 'package:baytech/Constants.dart';
 import 'package:baytech/Screens/Login_Page.dart';
-import 'package:baytech/Screens/Signup_page.dart';
+import 'package:baytech/Screens/Personal_Info_Page.dart';
 import 'package:baytech/components/SemiCircle.dart';
 import 'package:baytech/components/costum_button.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +13,7 @@ class WelcomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: Column(
+      body: ListView(
         children: [
           SizedBox(height: 160),
           Image.asset(Klogo, height: 250, width: 250),
@@ -67,7 +67,7 @@ class WelcomePage extends StatelessWidget {
                     CostumButton(
                       text: "Sign up",
                       onTap: () {
-                        Navigator.popAndPushNamed(context, SignupPage.id);
+                        Navigator.popAndPushNamed(context, PersonalInfoPage.id);
                       },
                       buttonColor: Colors.white,
                       textColor: Colors.black,
