@@ -140,7 +140,8 @@ class PersonalInfoPage extends StatelessWidget {
                           profilePicture = ProfileimageUploader!.path;
                           if (formKey.currentState!.validate() &&
                               birthdate != null &&
-                              identityCard != null) {
+                              identityCard != null &&
+                              profilePicture != null) {
                             Navigator.pushNamed(
                               context,
                               SignupPage.id,
@@ -149,12 +150,18 @@ class PersonalInfoPage extends StatelessWidget {
                                 secondName: secondName!,
                                 birthday: birthdate.toString(),
                                 indentityCard: identityCard!,
+                                profilePicture: profilePicture!,
                               ),
                             );
                           } else if (identityCard == null) {
                             showSnackBar(
                               context: context,
-                              message: "Please upload your identy card",
+                              message: "Please upload your identity card",
+                            );
+                          } else if (profilePicture == null) {
+                            showSnackBar(
+                              context: context,
+                              message: "Please upload your profile picture",
                             );
                           } else if (birthdate == null) {
                             showSnackBar(
