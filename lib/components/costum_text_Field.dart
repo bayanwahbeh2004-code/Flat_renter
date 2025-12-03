@@ -22,6 +22,8 @@ class CostumTextFeild extends StatelessWidget {
         return null;
       },
       decoration: InputDecoration(
+        filled: true,
+        fillColor: Colors.grey[100],
         contentPadding: EdgeInsets.only(bottom: 18, left: 15, top: 18),
         labelText: hintText,
         labelStyle: TextStyle(

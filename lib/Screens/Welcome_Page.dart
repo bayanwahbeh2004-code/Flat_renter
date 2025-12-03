@@ -3,6 +3,7 @@ import 'package:baytech/Screens/Login_Page.dart';
 import 'package:baytech/Screens/Personal_Info_Page.dart';
 import 'package:baytech/components/SemiCircle.dart';
 import 'package:baytech/components/costum_button.dart';
+import 'package:baytech/components/go_back_button.dart';
 import 'package:flutter/material.dart';
 
 class WelcomePage extends StatelessWidget {

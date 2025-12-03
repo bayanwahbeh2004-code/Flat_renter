@@ -26,9 +26,8 @@ class _UploadImageState extends State<UploadImage> {
           });
         }
       },
-      child: Container(
-        height: widget.height,
-        width: widget.width,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
         child: image == null
             ? Image.asset(
                 KuploadImage,
@@ -43,7 +42,15 @@ class _UploadImageState extends State<UploadImage> {
                 height: widget.height,
                 width: widget.width,
               )
-            : Image.file(image!, height: widget.height, width: widget.width),
+            : ClipRRect(
+                borderRadius: BorderRadiusGeometry.circular(16),
+                child: Image.file(
+                  image!,
+                  fit: BoxFit.fill,
+                  height: widget.height,
+                  width: widget.width,
+                ),
+              ),
       ),
     );
   }
