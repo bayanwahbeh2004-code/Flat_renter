@@ -1,5 +1,6 @@
 import 'package:baytech/components/SemiCircle.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 class WaitingAdmin extends StatelessWidget {
   static String id = "Waiting admin page";
@@ -22,6 +23,7 @@ class WaitingAdmin extends StatelessWidget {
           ),
           SizedBox(height: 40),
           Stack(
+            alignment: Alignment.topCenter,
             children: [
               SizedBox(
                 height: 580,
@@ -30,6 +32,16 @@ class WaitingAdmin extends StatelessWidget {
                   width: 400,
                   height: 200,
                   radius_for_the_circle: 190,
+                ),
+              ),
+
+              Positioned(
+                top: 100,
+                child: Lottie.asset(
+                  'assets/animation/loading.json',
+                  width: 400,
+                  height: 400,
+                  repeat: true,
                 ),
               ),
             ],
