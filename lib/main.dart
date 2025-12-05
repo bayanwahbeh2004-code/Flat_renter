@@ -8,6 +8,7 @@ import 'package:baytech/admin/Admin_Login_Page.dart';
 import 'package:baytech/admin/Admin_Signup_page.dart';
 import 'package:baytech/Theme/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:baytech/Screens/KeyinAnimation.dart';
 import 'admin/Dashboard.dart';
 
 void main() {
@@ -21,9 +22,9 @@ class Baytech extends StatelessWidget {
       title: "Baytech",
       debugShowCheckedModeBanner: false,
       theme: lightMode,
-      // home: AdminWelcomePage(),
-      initialRoute: Dashboard.id,
+      initialRoute: PersonalInfoPage.id,
       routes: {
+        KeyinAnimation.id: (context) => KeyinAnimation(),
         WelcomePage.id: (context) => WelcomePage(),
         LoginPage.id: (context) => LoginPage(),
         SignupPage.id: (context) => SignupPage(),

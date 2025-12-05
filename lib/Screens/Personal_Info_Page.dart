@@ -9,7 +9,7 @@ import 'package:baytech/components/SemiCircle.dart';
 import 'package:baytech/components/costum_button.dart';
 import 'package:baytech/components/costum_text_Field.dart';
 import 'package:baytech/components/upload_image.dart';
-import 'package:baytech/helper/show_snack_bar.dart';
+import 'package:baytech/helper/show_dialoge.dart';
 import 'package:flutter/material.dart';
 
 class PersonalInfoPage extends StatelessWidget {
@@ -17,7 +17,7 @@ class PersonalInfoPage extends StatelessWidget {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   String? firstName, secondName;
   DateTime? birthdate;
-  String? identityCard, profilePicture;
+  File? identityCard, profilePicture;
   UploadImage? IdImageuploader, ProfileimageUploader;
   @override
   Widget build(BuildContext context) {
@@ -109,8 +109,8 @@ class PersonalInfoPage extends StatelessWidget {
                           birthdate = await showDatePicker(
                             context: context,
                             firstDate: DateTime(1950),
-                            lastDate: DateTime(2026),
-                            builder: (BuildContext context, Widget? child) {
+                            lastDate: DateTime(2020),
+                            builder: (context, child) {
                               return Theme(
                                 data: Theme.of(context).copyWith(
                                   colorScheme: ColorScheme.light(
@@ -136,11 +136,12 @@ class PersonalInfoPage extends StatelessWidget {
                       CostumButton(
                         text: "Next",
                         onTap: () {
-                          identityCard = IdImageuploader!.path;
-                          profilePicture = ProfileimageUploader!.path;
+                          identityCard = IdImageuploader!.image;
+                          profilePicture = ProfileimageUploader!.image;
                           if (formKey.currentState!.validate() &&
                               birthdate != null &&
-                              identityCard != null) {
+                              identityCard != null &&
+                              profilePicture != null) {
                             Navigator.pushNamed(
                               context,
                               SignupPage.id,
@@ -149,22 +150,28 @@ class PersonalInfoPage extends StatelessWidget {
                                 secondName: secondName!,
                                 birthday: birthdate.toString(),
                                 indentityCard: identityCard!,
+                                profilePicture: profilePicture!,
                               ),
                             );
                           } else if (identityCard == null) {
-                            showSnackBar(
-                              context: context,
-                              message: "Please upload your identy card",
+                            showDialoge(
+                              context,
+                              message: "Please upload your identity card",
+                            );
+                          } else if (profilePicture == null) {
+                            showDialoge(
+                               context,
+                              message: "Please upload your profile picture",
                             );
                           } else if (birthdate == null) {
-                            showSnackBar(
-                              context: context,
+                            showDialoge(
+                             context,
                               message: "Please select your birth date",
                             );
                           } else {
-                            showSnackBar(
-                              context: context,
-                              message: "Please somthing went wrong",
+                            showDialoge(
+                              context,
+                              message: "Something went wrong",
                             );
                           }
                         },

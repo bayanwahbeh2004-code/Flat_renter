@@ -5,7 +5,8 @@ import 'package:image_picker/image_picker.dart';
 
 class UploadImage extends StatefulWidget {
   double width, height;
-  String? type, path;
+  String? type;
+  File? image;
   UploadImage({required this.height, required this.width, this.type});
 
   @override
@@ -22,7 +23,7 @@ class _UploadImageState extends State<UploadImage> {
         if (pic != null) {
           setState(() {
             image = File(pic.path);
-            widget.path = pic.path;
+            widget.image = image;
           });
         }
       },
