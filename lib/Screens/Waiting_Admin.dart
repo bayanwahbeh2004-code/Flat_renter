@@ -8,7 +8,7 @@ class WaitingAdmin extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: Column(
+      body: ListView(
         children: [
           SizedBox(height: 80),
           Center(

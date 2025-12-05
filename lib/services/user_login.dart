@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:baytech/Constants.dart';
 import 'package:baytech/Models/Account.dart';
 import 'package:baytech/helper/api.dart';
-import 'package:baytech/helper/show_snack_bar.dart';
+import 'package:baytech/helper/show_dialoge.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 
@@ -15,13 +15,17 @@ Future<void> UserLogin({
   try {
     Response response = await Api().post(
       url: url,
-      body: {"phoneNumber": account.phoneNumber, "password": account.password},
+      body: {"phone": account.phoneNumber, "password": account.password},
     );
-    var meesage = jsonDecode(response.body);
-    showSnackBar(context: context, message: meesage["message"]);
-    //to  home page
-    //Navigator.popAndPushNamed(context, HomePage.id);
+    Map<String, dynamic> body = jsonDecode(response.body);
+    if (response.statusCode != 201) {
+      String message = body["message"];
+        showDialoge(context, message: message);
+    } else {
+      //Navigator.popAndPushNamed(context, HomePage.id);
+    }
   } catch (e) {
-    showSnackBar(context: context, message: "something went wrong");
+    print(e.toString());
+    showDialoge(context, message: "something went wrong");
   }
 }

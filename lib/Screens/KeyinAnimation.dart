@@ -23,7 +23,7 @@ class _KeyAnimation extends State<KeyinAnimation>
 
     animationcontroller = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 30),
+      duration: const Duration(seconds: 10),
     );
 
     keymov =

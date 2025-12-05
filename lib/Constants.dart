@@ -6,4 +6,4 @@ const KProfile = "assets/images/Kprofile.jpg";
 const KPictureId = "assets/images/KPicturewId.png";
 const KPurple = Color(0xff893a89);
 const ktextColor = Color.fromARGB(255, 136, 134, 134);
-const KbaseUrl = "http://127.0.0.1:8000/api/";
+const KbaseUrl = "http://192.168.1.9:8000/api/";

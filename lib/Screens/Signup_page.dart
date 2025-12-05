@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:baytech/Constants.dart';
 import 'package:baytech/Models/Account.dart';
 import 'package:baytech/Models/Register_request.dart';
@@ -96,6 +98,7 @@ class _SignupPageState extends State<SignupPage> {
                           text: "Sign up",
                           onTap: () async {
                             if (formKey.currentState!.validate()) {
+                               print(data.profilePicture is File);
                               setState(() {
                                 isLoading = true;
                               });
