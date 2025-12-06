@@ -64,7 +64,6 @@ class Api {
 
   // post method with media
   Future<http.StreamedResponse> multiPartRequest({
-    required BuildContext context,
     required String url,
     required Map<String, dynamic> fields,
     required Map<String, dynamic> files,

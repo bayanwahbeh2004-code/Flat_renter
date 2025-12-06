@@ -13,25 +13,21 @@ Future<void> UserRegister({
   required String confirmPassword,
 }) async {
   String url = KbaseUrl + "register";
-
-  Map<String, dynamic> fields = {
-    "first_name": data.firstName,
-    "last_name": data.secondName,
-    "date_of_birth": data.birthday,
-    "password": data.account!.password!,
-    "password_confirmation": confirmPassword,
-    "phone": data.account!.phoneNumber!,
-  };
-  Map<String, dynamic> files = {
-    "Personal_identity_photo": data.indentityCard.path,
-    "personal_photo": data.profilePicture.path,
-  };
   try {
-    http.StreamedResponse response = await Api().multiPartRequest(
-      context: context,
+    var response = await Api().multiPartRequest(
       url: url,
-      fields: fields,
-      files: files,
+      fields: {
+        "first_name": data.firstName,
+        "last_name": data.secondName,
+        "date_of_birth": data.birthday,
+        "password": data.account!.password,
+        "password_confirmation": confirmPassword,
+        "phone": data.account!.phoneNumber,
+      },
+      files: {
+        "Personal_identity_photo": data.indentityCard,
+        "personal_photo": data.profilePicture,
+      },
     );
     var responseBody = await response.stream.bytesToString();
     var body = json.decode(responseBody);
@@ -46,13 +42,9 @@ Future<void> UserRegister({
       Navigator.popAndPushNamed(
         context,
         WaitingPage.id,
-        arguments: "Please wait until\n your account\n creation is approved"
+        arguments: "Please wait until\n your account\n creation is approved",
       );
   } catch (e) {
-    print(e.toString());
-    showDialoge(
-      context,
-      message: "something went wrong, please check your internet connection",
-    );
+    showDialoge(context, message: "something went wrong");
   }
 }

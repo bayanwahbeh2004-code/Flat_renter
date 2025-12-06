@@ -26,6 +26,6 @@ Future<void> UserLogin({
     }
   } catch (e) {
     print(e.toString());
-    showDialoge(context, message: "something went wrong");
+    showDialoge(context, message: "something went wrong, please check your internet connection.");
   }
 }

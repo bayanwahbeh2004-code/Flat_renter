@@ -4,8 +4,9 @@ import 'package:baytech/Screens/Signup_page.dart';
 import 'package:baytech/Screens/Waiting_Page.dart';
 import 'package:baytech/Screens/Welcome_Page.dart';
 import 'package:baytech/Screens/add_appartment_page.dart';
-import 'package:baytech/Screens/edit_apartment_page.dart';
-import 'package:baytech/Screens/home_page.dart';
+import 'package:baytech/admin/Admin_Welcome_Page.dart';
+import 'package:baytech/admin/Admin_Login_Page.dart';
+import 'package:baytech/admin/Admin_Signup_page.dart';
 import 'package:baytech/Theme/theme.dart';
 import 'package:baytech/admin/Dashboard.dart';
 import 'package:flutter/material.dart';
@@ -29,9 +30,9 @@ class Baytech extends StatelessWidget {
         SignupPage.id: (context) => SignupPage(),
         WaitingPage.id: (context) => WaitingPage(),
         PersonalInfoPage.id: (context) => PersonalInfoPage(),
-        AddAppartmentPage.id: (context) => AddAppartmentPage(),
-        //editAppartmentPage.id: (context) => editAppartmentPage(),
-        HomePage.id: (context) => HomePage(),
+        AdminWelcomePage.id: (context) => AdminWelcomePage(),
+        AdminLoginPage.id: (context) => AdminLoginPage(),
+        AdminSignupPage.id: (context) => AdminSignupPage(),
         Dashboard.id: (context) => Dashboard(),
       },
     );
