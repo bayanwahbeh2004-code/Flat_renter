@@ -22,7 +22,7 @@ class Baytech extends StatelessWidget {
       title: "Baytech",
       debugShowCheckedModeBanner: false,
       theme: lightMode,
-      initialRoute: PersonalInfoPage.id,
+      initialRoute: Dashboard.id,
       routes: {
         KeyinAnimation.id: (context) => KeyinAnimation(),
         WelcomePage.id: (context) => WelcomePage(),

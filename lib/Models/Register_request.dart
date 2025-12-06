@@ -12,7 +12,7 @@ class RegisterRequest {
     required this.secondName,
     required this.birthday,
     required this.indentityCard,
-    this.profilePicture
+    required this.profilePicture
   });
   factory RegisterRequest.fromMap(Map<String, dynamic> map, Account account) {
     return RegisterRequest(

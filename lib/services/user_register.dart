@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:baytech/Constants.dart';
 import 'package:baytech/Models/Register_request.dart';
 import 'package:baytech/helper/api.dart';
-import 'package:baytech/helper/show_snack_bar.dart';
+import 'package:baytech/helper/show_dialoge.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:baytech/Screens/Waiting_Admin.dart';
@@ -27,13 +27,13 @@ Future<void> UserRegister({
       },
     );
     var meesage = jsonDecode(response.body);
-    showSnackBar(context: context, message: meesage["message"]);
+    showDialoge(context, message: meesage["message"]);
     Navigator.popAndPushNamed(
                                 context,
                                 WaitingAdmin.id,
                                 arguments: data,
                               );
   } catch (e) {
-    showSnackBar(context: context, message:"something went wrong");
+    showDialoge(context, message:"something went wrong");
   }
 }
