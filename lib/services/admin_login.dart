@@ -2,12 +2,13 @@ import 'dart:convert';
 import 'package:baytech/Constants.dart';
 import 'package:baytech/Models/Account.dart';
 import 'package:baytech/Screens/home_page.dart';
+import 'package:baytech/admin/Dashboard.dart';
 import 'package:baytech/helper/api.dart';
 import 'package:baytech/helper/show_dialoge.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 
-Future<void> UserLogin({
+Future<void> AdminLogin({
   required Account account,
   required BuildContext context,
 }) async {
@@ -22,7 +23,7 @@ Future<void> UserLogin({
       String message = body["message"];
         showDialoge(context, message: message);
     } else {
-      Navigator.popAndPushNamed(context, HomePage.id);
+      Navigator.popAndPushNamed(context, Dashboard.id);
     }
   } catch (e) {
     print(e.toString());

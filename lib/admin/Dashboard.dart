@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Dashboard extends StatelessWidget {
+  static String id = "Dash board";
   const Dashboard({super.key});
 
   @override

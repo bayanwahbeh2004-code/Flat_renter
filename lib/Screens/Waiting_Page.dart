@@ -2,10 +2,11 @@ import 'package:baytech/components/SemiCircle.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
-class WaitingAdmin extends StatelessWidget {
-  static String id = "Waiting admin page";
+class WaitingPage extends StatelessWidget {
+  static String id = "Waiting page";
   @override
   Widget build(BuildContext context) {
+    String text = ModalRoute.of(context)!.settings.arguments as String;
     return Scaffold(
       backgroundColor: Colors.black,
       body: ListView(
@@ -13,7 +14,7 @@ class WaitingAdmin extends StatelessWidget {
           SizedBox(height: 80),
           Center(
             child: Text(
-              "Please wait until\n your account\n creation is approved",
+              text,
               style: TextStyle(
                 fontSize: 30,
                 color: Colors.white,

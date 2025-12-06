@@ -1,15 +1,16 @@
-import 'package:baytech/Constants.dart';
+
 import 'package:flutter/material.dart';
 
 class CostumTextFeild extends StatelessWidget {
   String hintText;
   bool obscure;
-  Function(String) onchanged;
+   TextEditingController? controller;
+  Function(String)? onchanged;
   CostumTextFeild({
     required this.hintText,
     this.obscure = false,
-    required this.onchanged,
-  });
+    this.onchanged,
+    this.controller,});
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -22,6 +23,8 @@ class CostumTextFeild extends StatelessWidget {
         return null;
       },
       decoration: InputDecoration(
+        filled: true,
+        fillColor: Colors.grey[100],
         contentPadding: EdgeInsets.only(bottom: 18, left: 15, top: 18),
         labelText: hintText,
         labelStyle: TextStyle(

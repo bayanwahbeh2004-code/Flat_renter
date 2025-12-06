@@ -7,7 +7,10 @@ import 'package:baytech/helper/show_dialoge.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 
-Future<void> UserLogin({
+Future<void> AdminRegister({
+  required String firt_name,
+  required String last_name,
+  required String passwordConfirm,
   required Account account,
   required BuildContext context,
 }) async {
@@ -15,12 +18,18 @@ Future<void> UserLogin({
   try {
     Response response = await Api().post(
       url: url,
-      body: {"phone": account.phoneNumber, "password": account.password},
+      body: {
+        "first_name": firt_name,
+        "last_name": last_name,
+        "password_confirmation": passwordConfirm,
+        "phone": account.phoneNumber,
+        "password": account.password,
+      },
     );
     Map<String, dynamic> body = jsonDecode(response.body);
     if (response.statusCode != 201) {
       String message = body["message"];
-        showDialoge(context, message: message);
+      showDialoge(context, message: message);
     } else {
       Navigator.popAndPushNamed(context, HomePage.id);
     }

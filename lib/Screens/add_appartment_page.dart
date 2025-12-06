@@ -1,4 +1,3 @@
-import 'package:baytech/Constants.dart';
 import 'package:baytech/Models/Location.dart';
 import 'package:baytech/Models/apartment.dart';
 import 'package:baytech/components/adding_custom_text_field.dart';
@@ -8,19 +7,98 @@ import 'package:baytech/components/go_back_button.dart';
 import 'package:baytech/components/upload_image.dart';
 import 'package:flutter/material.dart';
 
-class AddAppartment extends StatelessWidget {
+class AddAppartmentPage extends StatefulWidget {
   static String id = "Add apartment page";
-  Apartment apartment = Apartment();
-  Location location = Location();
-  List<UploadImage> images = [];
-  UploadImage? mainImage;
+
+  const AddAppartmentPage({Key? key}) : super(key: key);
+
+  @override
+  State<AddAppartmentPage> createState() => _AddAppartmentPageState();
+}
+
+class _AddAppartmentPageState extends State<AddAppartmentPage> {
+  late Apartment apartment;
+  late Location location;
+  late List<UploadImage> images;
+  late UploadImage mainImage;
   CustomDropDownButton? category;
+
+  // Controllers
+  late TextEditingController titleController;
+  late TextEditingController townController;
+  late TextEditingController cityController;
+  late TextEditingController bedroomsController;
+  late TextEditingController bathroomsController;
+  late TextEditingController livingRoomsController;
+  late TextEditingController areaController;
+  late TextEditingController priceController;
+  late TextEditingController descriptionController;
+  late GlobalKey<FormState> formKey;
+
+  @override
+  void initState() {
+    super.initState();
+    apartment = Apartment();
+    location = Location();
+    formKey = GlobalKey<FormState>();
+    _initializeControllers();
+    _initializeImages();
+  }
+
+  void _initializeControllers() {
+    titleController = TextEditingController();
+    townController = TextEditingController();
+    cityController = TextEditingController();
+    bedroomsController = TextEditingController();
+    bathroomsController = TextEditingController();
+    livingRoomsController = TextEditingController();
+    areaController = TextEditingController();
+    priceController = TextEditingController();
+    descriptionController = TextEditingController();
+    _setupControllerListeners();
+  }
+
+  void _setupControllerListeners() {
+    titleController.addListener(() => apartment.title = titleController.text);
+    townController.addListener(() => location.town = townController.text);
+    cityController.addListener(() => location.city = cityController.text);
+    bedroomsController.addListener(
+      () => apartment.bedrooms = bedroomsController.text,
+    );
+    bathroomsController.addListener(
+      () => apartment.bathrooms = bathroomsController.text,
+    );
+    livingRoomsController.addListener(
+      () => apartment.livingRooms = livingRoomsController.text,
+    );
+    areaController.addListener(() => apartment.area = areaController.text);
+    priceController.addListener(() => apartment.price = priceController.text);
+    descriptionController.addListener(
+      () => apartment.description = descriptionController.text,
+    );
+  }
+
+  void _initializeImages() {
+    mainImage = UploadImage(height: 250, width: 250);
+    images = List.generate(6, (index) => UploadImage(height: 150, width: 150));
+  }
+
+  @override
+  void dispose() {
+    titleController.dispose();
+    townController.dispose();
+    cityController.dispose();
+    bedroomsController.dispose();
+    bathroomsController.dispose();
+    livingRoomsController.dispose();
+    areaController.dispose();
+    priceController.dispose();
+    descriptionController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    for (int i = 0; i < 6; i++) {
-      images.add(UploadImage(height: 150, width: 150));
-    }
-    GlobalKey<FormState> formKey = GlobalKey<FormState>();
     return Scaffold(
       body: Form(
         key: formKey,
@@ -35,16 +113,14 @@ class AddAppartment extends StatelessWidget {
                   AddingCustomTextField(
                     width: 250,
                     hintText: "apartment title..",
-                    onchanged: (data) {
-                      apartment.title = data;
-                    },
+                    controller: titleController,
                   ),
                 ],
               ),
               SizedBox(height: 30),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 32.0),
-                child: mainImage = UploadImage(height: 250, width: 250),
+                child: mainImage, // Use the SAME instance
               ),
               SizedBox(height: 10),
               Padding(
@@ -55,17 +131,13 @@ class AddAppartment extends StatelessWidget {
                       width: 190,
                       icon: Icons.location_on_outlined,
                       hintText: "town..",
-                      onchanged: (data) {
-                        location.town = data;
-                      },
+                      controller: townController,
                     ),
                     AddingCustomTextField(
                       width: 190,
                       icon: Icons.location_on_outlined,
                       hintText: "city..",
-                      onchanged: (data) {
-                        location.city = data;
-                      },
+                      controller: cityController,
                     ),
                   ],
                 ),
@@ -75,6 +147,7 @@ class AddAppartment extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 32.0),
                 child: Text("Property Photos", style: TextStyle(fontSize: 20)),
               ),
+              SizedBox(height: 10),
               Container(
                 height: 200,
                 child: Padding(
@@ -86,6 +159,7 @@ class AddAppartment extends StatelessWidget {
                   ),
                 ),
               ),
+
               SizedBox(height: 10),
               Padding(
                 padding: const EdgeInsets.only(left: 32.0),
@@ -102,11 +176,7 @@ class AddAppartment extends StatelessWidget {
                       AddingCustomTextField(
                         width: 100,
                         hintText: "bedrooms",
-                        onchanged: (data) {
-                          apartment.bedrooms = data != ""
-                              ? int.parse(data)
-                              : null;
-                        },
+                        controller: bedroomsController,
                       ),
                     ],
                   ),
@@ -118,11 +188,7 @@ class AddAppartment extends StatelessWidget {
                       AddingCustomTextField(
                         width: 100,
                         hintText: "bathrooms",
-                        onchanged: (data) {
-                          apartment.bathrooms = data != ""
-                              ? int.parse(data)
-                              : null;
-                        },
+                        controller: bathroomsController,
                       ),
                     ],
                   ),
@@ -134,11 +200,7 @@ class AddAppartment extends StatelessWidget {
                       AddingCustomTextField(
                         width: 120,
                         hintText: "living rooms",
-                        onchanged: (data) {
-                          apartment.livingRooms = data != ""
-                              ? int.parse(data)
-                              : null;
-                        },
+                        controller: livingRoomsController,
                       ),
                     ],
                   ),
@@ -164,11 +226,7 @@ class AddAppartment extends StatelessWidget {
                         child: AddingCustomTextField(
                           width: 80,
                           hintText: "area",
-                          onchanged: (data) {
-                            apartment.area = data != ""
-                                ? double.parse(data)
-                                : null;
-                          },
+                          controller: areaController,
                         ),
                       ),
                     ],
@@ -181,11 +239,7 @@ class AddAppartment extends StatelessWidget {
                       AddingCustomTextField(
                         width: 120,
                         hintText: "price a day",
-                        onchanged: (data) {
-                          apartment.price = data != ""
-                              ? double.parse(data)
-                              : null;
-                        },
+                        controller: priceController,
                       ),
                     ],
                   ),
@@ -199,9 +253,7 @@ class AddAppartment extends StatelessWidget {
                     icon: Icons.description_outlined,
                     width: 400,
                     hintText: "description..",
-                    onchanged: (data) {
-                      apartment.description = data;
-                    },
+                    controller: descriptionController,
                   ),
                 ),
               ),
@@ -212,9 +264,7 @@ class AddAppartment extends StatelessWidget {
                   textColor: Colors.white,
                   buttonColor: Colors.black,
                   text: "Post",
-                  onTap: () {
-                    if (formKey.currentState!.validate()) {}
-                  },
+                  onTap: () {},
                   height: 60,
                   width: 100,
                 ),

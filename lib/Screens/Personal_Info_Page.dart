@@ -92,7 +92,7 @@ class PersonalInfoPage extends StatelessWidget {
                                 width: 150,
                                 type: "id",
                               ),
-                              SizedBox(width: 40),
+                              SizedBox(width: 20),
                               ProfileimageUploader = UploadImage(
                                 height: 180,
                                 width: 150,
@@ -160,12 +160,12 @@ class PersonalInfoPage extends StatelessWidget {
                             );
                           } else if (profilePicture == null) {
                             showDialoge(
-                               context,
+                              context,
                               message: "Please upload your profile picture",
                             );
                           } else if (birthdate == null) {
                             showDialoge(
-                             context,
+                              context,
                               message: "Please select your birth date",
                             );
                           } else {

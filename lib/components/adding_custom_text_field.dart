@@ -1,0 +1,50 @@
+import 'package:baytech/Constants.dart';
+import 'package:flutter/material.dart';
+
+class AddingCustomTextField extends StatefulWidget {
+  String hintText;
+  Function(String)? onchanged;
+  double width;
+  IconData? icon;
+  TextEditingController? controller;
+
+  AddingCustomTextField({
+    required this.hintText,
+     this.onchanged,
+    required this.width,
+    this.icon,
+    this.controller,
+  });
+
+  @override
+  State<AddingCustomTextField> createState() => _AddingCustomTextFieldState();
+}
+
+class _AddingCustomTextFieldState extends State<AddingCustomTextField> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: widget.width,
+      child: Center(
+        child: TextFormField(
+          controller: widget.controller, // Added controller here
+          onChanged: widget.onchanged,
+          validator: (data) {
+            if (data!.isEmpty) {
+              return "Field is required";
+            }
+            return null;
+          },
+          decoration: InputDecoration(
+            prefixIcon: widget.icon != null ? Icon(widget.icon, size: 30) : null,
+            contentPadding: EdgeInsets.all(8),
+            hintText: widget.hintText,
+            hintStyle: TextStyle(color: Colors.grey, fontSize: 14),
+            maintainHintSize: true,
+            border: InputBorder.none,
+          ),
+        ),
+      ),
+    );
+  }
+}

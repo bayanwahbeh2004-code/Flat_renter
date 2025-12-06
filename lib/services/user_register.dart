@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:baytech/Constants.dart';
 import 'package:baytech/Models/Register_request.dart';
-import 'package:baytech/Screens/Waiting_Admin.dart';
+import 'package:baytech/Screens/Waiting_Page.dart';
 import 'package:baytech/helper/Api.dart';
 import 'package:baytech/helper/show_dialoge.dart';
 import 'package:flutter/material.dart';
@@ -35,16 +35,19 @@ Future<void> UserRegister({
     );
     var responseBody = await response.stream.bytesToString();
     var body = json.decode(responseBody);
-    if (response.statusCode != 201) {
+    if (response.statusCode != 201 && response.statusCode != 200) {
       if (body.containsKey('message')) {
         Map<String, dynamic> message = body["errors"];
         String show = "";
-        message.forEach((key, value) => show = show+value[0].toString());
+        message.forEach((key, value) => show = show + value[0].toString());
         showDialoge(context, message: show);
       }
-      else
-        Navigator.popAndPushNamed(context, WaitingAdmin.id);
-    }
+    } else
+      Navigator.popAndPushNamed(
+        context,
+        WaitingPage.id,
+        arguments: "Please wait until\n your account\n creation is approved"
+      );
   } catch (e) {
     print(e.toString());
     showDialoge(
