@@ -15,7 +15,7 @@ import 'package:flutter/material.dart';
 class PersonalInfoPage extends StatelessWidget {
   static String id = "Personal information page";
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  String? firstName, secondName;
+  Account account = Account();
   DateTime? birthdate;
   File? identityCard, profilePicture;
   UploadImage? IdImageuploader, ProfileimageUploader;
@@ -64,14 +64,14 @@ class PersonalInfoPage extends StatelessWidget {
                       CostumTextFeild(
                         hintText: "Enter your first name",
                         onchanged: (data) {
-                          firstName = data;
+                          account.firstName = data;
                         },
                       ),
                       SizedBox(height: 25),
                       CostumTextFeild(
                         hintText: "Enter your second name",
                         onchanged: (data) {
-                          secondName = data;
+                          account.secondName = data;
                         },
                       ),
                       SizedBox(height: 25),
@@ -137,7 +137,7 @@ class PersonalInfoPage extends StatelessWidget {
                         text: "Next",
                         onTap: () {
                           identityCard = IdImageuploader!.image;
-                          profilePicture = ProfileimageUploader!.image;
+                          account.profilePicture = ProfileimageUploader!.image;
                           if (formKey.currentState!.validate() &&
                               birthdate != null &&
                               identityCard != null &&
@@ -146,11 +146,11 @@ class PersonalInfoPage extends StatelessWidget {
                               context,
                               SignupPage.id,
                               arguments: RegisterRequest(
-                                firstName: firstName!,
-                                secondName: secondName!,
+                                firstName: account.firstName!,
+                                secondName: account.secondName!,
                                 birthday: birthdate.toString(),
                                 indentityCard: identityCard!,
-                                profilePicture: profilePicture!,
+                                profilePicture: account.profilePicture!,
                               ),
                             );
                           } else if (identityCard == null) {

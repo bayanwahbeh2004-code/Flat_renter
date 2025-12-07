@@ -14,26 +14,25 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
+  bool showRegisterList = true;
 
-  bool showRegisterList = true;  
-
-  final List<RegisterRequest> Register_Request = [
+  /*final List<RegisterRequest> Register_Request = [
     RegisterRequest(birthday: "17/7/2005", firstName: "leen", secondName: "AhShughri", indentityCard: "..",),
     RegisterRequest(birthday: "17/7/2005", firstName: "leen", secondName: "AhShughri", indentityCard: ".."),
     RegisterRequest(birthday: "17/7/2005", firstName: "leen", secondName: "AhShughri", indentityCard: ".."),
     RegisterRequest(birthday: "17/7/2005", firstName: "leen", secondName: "AhShughri", indentityCard: ".."),
     RegisterRequest(birthday: "17/7/2005", firstName: "leen", secondName: "AhShughri", indentityCard: ".."),
     RegisterRequest(birthday: "17/7/2005", firstName: "leen", secondName: "AhShughri", indentityCard: ".."),
-  ];
+  ];*/
 
-  final List<RegisterRequest> Deletion_Request = [
+  /*final List<RegisterRequest> Deletion_Request = [
     RegisterRequest(birthday: "17/7/2005", firstName: "Sarah", secondName: "Sedekah", indentityCard: ".."),
     RegisterRequest(birthday: "17/7/2005", firstName: "Sarah", secondName: "Sedekah", indentityCard: ".."),
     RegisterRequest(birthday: "17/7/2005", firstName: "Sarah", secondName: "Sedekah", indentityCard: ".."),
     RegisterRequest(birthday: "17/7/2005", firstName: "Sarah", secondName: "Sedekah", indentityCard: ".."),
     RegisterRequest(birthday: "17/7/2005", firstName: "Sarah", secondName: "Sedekah", indentityCard: ".."),
     RegisterRequest(birthday: "17/7/2005", firstName: "Sarah", secondName: "Sedekah", indentityCard: ".."),
-  ];
+  ];*/
 
   @override
   Widget build(BuildContext context) {
@@ -44,8 +43,10 @@ class _DashboardState extends State<Dashboard> {
       backgroundColor: Colors.black,
       body: Row(
         children: [
-          Container(width: width * 0.2,
-          child: Image.asset(Klogo)),
+          Container(
+            width: width * 0.2,
+            child: Image.asset("assets/images/logo.png"),
+          ),
           Expanded(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
@@ -73,8 +74,8 @@ class _DashboardState extends State<Dashboard> {
                         text: 'Deletion Request',
                         textColor: Colors.black,
                         buttonColor: !showRegisterList
-                            ? KPurple 
-                            : Color.fromARGB(255, 239, 205, 255), 
+                            ? KPurple
+                            : Color.fromARGB(255, 239, 205, 255),
                         onTap: () {
                           setState(() {
                             showRegisterList = false;
@@ -86,11 +87,11 @@ class _DashboardState extends State<Dashboard> {
                     ],
                   ),
                 ),
-                Expanded(
+                /*Expanded(
                   child: showRegisterList
                       ? Registerlist(Request: Register_Request)
                       : Deletionlist(Request: Deletion_Request),
-                )
+                )*/
               ],
             ),
           ),

@@ -14,14 +14,14 @@ class RegisterRequest {
     required this.indentityCard,
     required this.profilePicture
   });
-  factory RegisterRequest.fromMap(Map<String, dynamic> map, Account account) {
+  factory RegisterRequest.fromjson(data, Account account) {
     return RegisterRequest(
       account: account,
-      firstName: map['first_name'],
-      secondName: map['last_name'],
-      birthday: map['date_of_birth'],
-      indentityCard: map['Personal_identity_photo'],
-      profilePicture: map['personal_photo']
+      firstName: data['first_name'],
+      secondName: data['last_name'],
+      birthday: data['date_of_birth'],
+      indentityCard: data['Personal_identity_photo'],
+      profilePicture: data['personal_photo']
     );
   }
 }

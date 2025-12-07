@@ -18,18 +18,21 @@ class AdminWelcomePage extends StatelessWidget {
       backgroundColor: Colors.black,
       body: ListView(
         children: [
-          SizedBox(height: height*0.08),
-          Image.asset(Klogo, height: height*0.35, width: width*0.13),
-          SizedBox(height: height*0.07),
+          SizedBox(height: height * 0.08),
+          Image.asset(Klogo, height: height * 0.35, width: width * 0.13),
+          SizedBox(height: height * 0.07),
           Stack(
             children: [
-              SizedBox(
-                height: height*0.5,
-                width: width,
-                child: Semicircle(
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: width * 0.05),
+                child: SizedBox(
+                  height: height * 0.6,
                   width: width,
-                  height: height*0.3,
-                  radius_for_the_circle: 400,
+                  child: Semicircle(
+                    width: width,
+                    height: height * 1.2,
+                    radius_for_the_circle: 190,
+                  ),
                 ),
               ),
 
@@ -40,22 +43,22 @@ class AdminWelcomePage extends StatelessWidget {
                     Text(
                       "WELCOME",
                       style: TextStyle(
-                        fontSize: 36,
+                        fontSize: 56,
                         color: Color(0xff545454),
                         fontWeight: FontWeight.w900,
                       ),
                     ),
-                    SizedBox(height: 10),
+                    SizedBox(height: 20),
                     Text(
                       "Find your next space, feel at home",
-                      style: TextStyle(color: ktextColor, fontSize: 16),
+                      style: TextStyle(color: ktextColor, fontSize: 20),
                     ),
                     SizedBox(height: 5),
                     Text(
                       "Where comfort meets convenience",
-                      style: TextStyle(color: ktextColor, fontSize: 16),
+                      style: TextStyle(color: ktextColor, fontSize: 20),
                     ),
-                    SizedBox(height: 20),
+                    SizedBox(height: 40),
                     CostumButton(
                       text: "Log in",
                       onTap: () {
@@ -64,7 +67,7 @@ class AdminWelcomePage extends StatelessWidget {
                       buttonColor: Colors.black,
                       textColor: Colors.white,
                       height: 50,
-                      width: 225,
+                      width: 250,
                     ),
                     SizedBox(height: 20),
                     CostumButton(
@@ -75,8 +78,9 @@ class AdminWelcomePage extends StatelessWidget {
                       buttonColor: Colors.white,
                       textColor: Colors.black,
                       height: 50,
-                      width: 225,
+                      width: 250,
                     ),
+                    SizedBox(height: 50),
                   ],
                 ),
               ),

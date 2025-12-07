@@ -29,6 +29,7 @@ class Baytech extends StatelessWidget {
         LoginPage.id: (context) => LoginPage(),
         SignupPage.id: (context) => SignupPage(),
         WaitingPage.id: (context) => WaitingPage(),
+        AddAppartmentPage.id: (context) => AddAppartmentPage(),
         PersonalInfoPage.id: (context) => PersonalInfoPage(),
         AdminWelcomePage.id: (context) => AdminWelcomePage(),
         AdminLoginPage.id: (context) => AdminLoginPage(),

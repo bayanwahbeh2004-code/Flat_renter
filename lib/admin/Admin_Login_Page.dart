@@ -30,48 +30,52 @@ class _LoginState extends State<AdminLoginPage> {
           inAsyncCall: isLoading,
           child: ListView(
             children: [
-              SizedBox(height: height*0.04),
-              Image.asset(Klogo, height: height*0.35, width: width*0.13),
+              SizedBox(height: height * 0.1),
+              Image.asset(Klogo, height: height * 0.35, width: width * 0.13),
+              SizedBox(height: height * 0.1),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(left: width*0.08),
+                    padding: EdgeInsets.only(left: width * 0.1),
                     child: Text(
                       "Log in",
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: height*0.05,
+                        fontSize: height * 0.07,
                         fontFamily: "Platypi",
                       ),
                     ),
                   ),
                 ],
               ),
-              SizedBox(height: height*0.01),
+              SizedBox(height: height * 0.1),
               Stack(
                 children: [
-                  SizedBox(
-                    height: height*0.53,
-                    width: width,
-                    child: Semicircle(
-                      width: width,
-                      height: height*0.31,
-                      radius_for_the_circle: 190,
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: width * 0.03),
+                    child: SizedBox(
+                      height: height,
+                      width: width * 0.95,
+                      child: Semicircle(
+                        width: width * 0.95,
+                        height: height,
+                        radius_for_the_circle: width * 0.6,
+                      ),
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: width*0.06),
+                    padding: EdgeInsets.symmetric(horizontal: width * 0.3),
                     child: Column(
                       children: [
-                        SizedBox(height: height*0.06),
+                        SizedBox(height: height * 0.1),
                         CostumTextFeild(
                           hintText: "Phone number",
                           onchanged: (data) {
                             phoneNumber = data;
                           },
                         ),
-                        SizedBox(height: height*0.02),
+                        SizedBox(height: height * 0.04),
                         CostumTextFeild(
                           hintText: "Password",
                           obscure: true,
@@ -79,7 +83,7 @@ class _LoginState extends State<AdminLoginPage> {
                             password = data;
                           },
                         ),
-                        SizedBox(height: height*0.02),
+                        SizedBox(height: height * 0.1),
                         CostumButton(
                           text: "Log in",
                           onTap: () async {
@@ -102,10 +106,10 @@ class _LoginState extends State<AdminLoginPage> {
                           },
                           buttonColor: Colors.black,
                           textColor: Colors.white,
-                          height: height*0.078,
-                          width: width*0.165,
+                          height: height * 0.078,
+                          width: width * 0.165,
                         ),
-                        SizedBox(height: height*0.03),
+                        SizedBox(height: height * 0.03),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -119,7 +123,10 @@ class _LoginState extends State<AdminLoginPage> {
                               },
                               child: Text(
                                 "sign up",
-                                style: TextStyle(color: KPurple, fontSize: height*0.028),
+                                style: TextStyle(
+                                  color: KPurple,
+                                  fontSize: height * 0.028,
+                                ),
                               ),
                             ),
                           ],
