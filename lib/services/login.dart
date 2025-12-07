@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:baytech/Constants.dart';
-import 'package:baytech/Models/Account.dart';
+
+import 'package:baytech/Models/Register_request.dart';
 import 'package:baytech/Screens/Waiting_Page.dart';
 import 'package:baytech/admin/Dashboard.dart';
 import 'package:baytech/helper/api.dart';
@@ -8,8 +9,8 @@ import 'package:baytech/helper/show_dialoge.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 
-Future<void> UserLogin({
-  required Account account,
+Future<void> Login({
+  required Register account,
   required BuildContext context,
 }) async {
   String url = KbaseUrl + "login";
@@ -20,15 +21,17 @@ Future<void> UserLogin({
     );
     Map<String, dynamic> body = jsonDecode(response.body);
     if (response.statusCode != 201 && response.statusCode != 200) {
-      print("this is log in");
       String message = body["message"];
       showDialoge(context, message: message);
     } else {
       if (body["User"]["role"] == "user") {
-        Account account = Account.fromjson(body);
+        Register account = Register.fromjson(body);
+        account.token = body['Token'];
         Navigator.popAndPushNamed(context, WaitingPage.id, arguments: account);
       } else {
-        Account account = Account.fromjson(body);
+        Register account = Register.fromjson(body);
+        account.token = body['Token'];
+        print(account.token);
         Navigator.popAndPushNamed(context, Dashboard.id, arguments: account);
       }
     }

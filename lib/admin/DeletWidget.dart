@@ -1,14 +1,13 @@
 import 'dart:io';
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:baytech/Models/Register_request.dart';
 import 'package:baytech/components/costum_button.dart';
 
-class Requestwidget extends StatelessWidget {
+class Deletwidget extends StatelessWidget {
   final Register request;
-  const Requestwidget({super.key, required this.request});
+  const Deletwidget({super.key, required this.request});
 
   @override
   Widget build(BuildContext context) {
@@ -30,10 +29,7 @@ class Requestwidget extends StatelessWidget {
       ),
       child: Row(
         children: [
-          CircleAvatar(
-            radius: 40,
-            backgroundImage: NetworkImage(request.profilePicturePath!,scale: width*0.05),
-          ),
+          Image.network(request.profilePicturePath!),
           Text(request.firstName! + " "),
           Text(request.secondName!),
           Spacer(flex: 12),

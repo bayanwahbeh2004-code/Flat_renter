@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:baytech/Constants.dart';
-import 'package:baytech/Models/Account.dart';
 import 'package:baytech/Models/Register_request.dart';
 import 'package:baytech/Screens/Login_Page.dart';
 import 'package:baytech/Screens/Signup_page.dart';
@@ -15,7 +14,7 @@ import 'package:flutter/material.dart';
 class PersonalInfoPage extends StatelessWidget {
   static String id = "Personal information page";
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  Account account = Account();
+  Register account = Register();
   DateTime? birthdate;
   File? identityCard, profilePicture;
   UploadImage? IdImageuploader, ProfileimageUploader;
@@ -145,7 +144,7 @@ class PersonalInfoPage extends StatelessWidget {
                             Navigator.pushNamed(
                               context,
                               SignupPage.id,
-                              arguments: RegisterRequest(
+                              arguments: Register(
                                 firstName: account.firstName!,
                                 secondName: account.secondName!,
                                 birthday: birthdate.toString(),

@@ -1,10 +1,10 @@
 import 'package:baytech/Constants.dart';
-import 'package:baytech/Models/Account.dart';
+import 'package:baytech/Models/Register_request.dart';
 import 'package:baytech/admin/Admin_Signup_page.dart';
 import 'package:baytech/components/SemiCircle.dart';
 import 'package:baytech/components/costum_button.dart';
 import 'package:baytech/components/costum_text_Field.dart';
-import 'package:baytech/services/user_login.dart';
+import 'package:baytech/services/login.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:flutter/material.dart';
 
@@ -91,14 +91,11 @@ class _LoginState extends State<AdminLoginPage> {
                               isLoading = true;
                             });
                             if (formKey.currentState!.validate()) {
-                              Account account = Account(
+                              Register account = Register(
                                 password: password!,
                                 phoneNumber: phoneNumber!,
                               );
-                              await UserLogin(
-                                account: account,
-                                context: context,
-                              );
+                              await Login(account: account, context: context);
                             }
                             setState(() {
                               isLoading = false;

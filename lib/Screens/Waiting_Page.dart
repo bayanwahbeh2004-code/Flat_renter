@@ -1,12 +1,47 @@
+import 'dart:async';
+
+import 'package:baytech/Models/Register_request.dart';
 import 'package:baytech/components/SemiCircle.dart';
+import 'package:baytech/services/users/user_active.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
-class WaitingPage extends StatelessWidget {
+class WaitingPage extends StatefulWidget {
   static String id = "Waiting page";
+
+  @override
+  State<WaitingPage> createState() => _WaitingPageState();
+}
+
+class _WaitingPageState extends State<WaitingPage> {
   @override
   Widget build(BuildContext context) {
-    String text = ModalRoute.of(context)!.settings.arguments as String;
+    Register account = ModalRoute.of(context)!.settings.arguments as Register;
+    Timer? _timer;
+    @override
+    Future<void> _checkStatus() async {
+      try {
+        bool isActive = await userStatus(token: account.token!);
+        if (isActive) {
+          _timer?.cancel();
+          //Navigator.popAndPushNamed(context, HomePage.id);
+        }
+      } catch (e) {
+        print('Error checking status: $e');
+      }
+    }
+
+    void _startPolling() {
+      _timer = Timer.periodic(const Duration(seconds: 15), (timer) {
+        _checkStatus();
+      });
+    }
+
+    void initState() {
+      super.initState();
+      _startPolling();
+    }
+
     return Scaffold(
       backgroundColor: Colors.black,
       body: ListView(
@@ -14,7 +49,7 @@ class WaitingPage extends StatelessWidget {
           SizedBox(height: 80),
           Center(
             child: Text(
-              text,
+              "text",
               style: TextStyle(
                 fontSize: 30,
                 color: Colors.white,

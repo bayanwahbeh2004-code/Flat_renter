@@ -1,15 +1,14 @@
 import 'dart:convert';
 import 'package:baytech/Constants.dart';
 import 'package:baytech/Models/Register_request.dart';
-import 'package:baytech/Screens/Waiting_Page.dart';
 import 'package:baytech/helper/Api.dart';
 import 'package:baytech/helper/show_dialoge.dart';
-import 'package:baytech/services/user_login.dart';
+import 'package:baytech/services/login.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 Future<void> UserRegister({
-  required RegisterRequest data,
+  required Register data,
   required BuildContext context,
   required String confirmPassword,
 }) async {
@@ -21,9 +20,9 @@ Future<void> UserRegister({
         "first_name": data.firstName,
         "last_name": data.secondName,
         "date_of_birth": data.birthday,
-        "password": data.account!.password,
+        "password": data.password,
         "password_confirmation": confirmPassword,
-        "phone": data.account!.phoneNumber,
+        "phone": data.phoneNumber,
       },
       files: {
         "Personal_identity_photo": data.indentityCard,
@@ -40,8 +39,9 @@ Future<void> UserRegister({
         showDialoge(context, message: show);
       }
     } else
-      UserLogin(account: data.account!, context: context);
+      Login(account: data, context: context);
   } catch (e) {
+    print(e.toString());
     showDialoge(context, message: "something went wrong");
   }
 }

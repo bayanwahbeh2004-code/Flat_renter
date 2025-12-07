@@ -22,7 +22,7 @@ class Baytech extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: lightMode,
-      initialRoute: AddAppartmentPage.id,
+      initialRoute: AdminWelcomePage.id,
       routes: {
         KeyinAnimation.id: (context) => KeyinAnimation(),
         WelcomePage.id: (context) => WelcomePage(),

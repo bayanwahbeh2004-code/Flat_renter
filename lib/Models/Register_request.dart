@@ -1,27 +1,44 @@
 import 'dart:io';
-import 'package:baytech/Models/Account.dart';
 import 'package:flutter/foundation.dart';
 
-class RegisterRequest {
-  Account? account;
-  String firstName, secondName, birthday;
-  File profilePicture, indentityCard;
-  RegisterRequest({
-    this.account,
-    required this.firstName,
-    required this.secondName,
-    required this.birthday,
-    required this.indentityCard,
-    required this.profilePicture
+class Register {
+  String? phoneNumber,
+      password,
+      token,
+      firstName,
+      secondName,
+      birthday,
+      role,
+      indentityCardPath,
+      profilePicturePath;
+  int? id;
+  File? profilePicture, indentityCard;
+  Register({
+    this.phoneNumber,
+    this.password,
+    this.token,
+    this.role,
+    this.firstName,
+    this.secondName,
+    this.birthday,
+    this.id,
+    this.indentityCard,
+    this.indentityCardPath,
+    this.profilePicture,
+    this.profilePicturePath,
   });
-  factory RegisterRequest.fromjson(data, Account account) {
-    return RegisterRequest(
-      account: account,
-      firstName: data['first_name'],
-      secondName: data['last_name'],
-      birthday: data['date_of_birth'],
-      indentityCard: data['Personal_identity_photo'],
-      profilePicture: data['personal_photo']
+  factory Register.fromjson(data) {
+    dynamic user = data['User'];
+    return Register(
+      id: user['id'],
+      firstName: user['first_name'],
+      secondName: user['last_name'],
+      phoneNumber: user['phone'],
+      birthday: user['date_of_birth'],
+      indentityCardPath: user['Personal_identity_photo'],
+      profilePicturePath: user['personal_photo'],
+      password: user['password'],
+      role: user['role'],
     );
   }
 }

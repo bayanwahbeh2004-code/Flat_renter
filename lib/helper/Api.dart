@@ -5,21 +5,23 @@ import 'package:http/http.dart' as http;
 
 class Api {
   // get method
-  Future<List<dynamic>> get({required String url, String? token}) async {
-    Map<String, String> headers = {};
+  Future<Map<String, dynamic>> get({required String url, String? token}) async {
+    Map<String, String> headers ={};
     if (token != null) {
-      headers.addAll({'Authorization': 'Bearer $token'});
+      headers['Authorization'] = 'Bearer $token';
     }
+
     http.Response response = await http.get(Uri.parse(url), headers: headers);
+
     if (response.statusCode == 200 || response.statusCode == 201) {
       return jsonDecode(response.body);
     } else {
-      throw Exception("status code is ${response.statusCode}");
+      throw Exception('Request failed with status: ${response.statusCode}');
     }
   }
 
   // post method
-  Future<dynamic> post({
+  Future<http.Response> post({
     required String url,
     dynamic body,
     String? token,
@@ -38,7 +40,7 @@ class Api {
   }
 
   // put method
-  Future<dynamic> put({
+  Future<http.Response> put({
     required String url,
     dynamic body,
     String? token,
@@ -46,7 +48,7 @@ class Api {
     Map<String, String> headers = {};
     if (token != null) {
       headers.addAll({
-        'Content-Type': 'application/x-www-form-urlencoded',
+        'Accept': 'application/json',
         'Authorization': 'Bearer $token',
       });
     }
@@ -55,11 +57,7 @@ class Api {
       body: body,
       headers: headers,
     );
-    if (response.statusCode == 200 || response.statusCode == 201) {
-      return jsonDecode(response.body);
-    } else {
-      throw Exception("status code is ${response.statusCode}");
-    }
+    return response;
   }
 
   // post method with media

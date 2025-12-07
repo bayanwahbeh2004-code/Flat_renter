@@ -1,10 +1,9 @@
 import 'dart:convert';
 import 'package:baytech/Constants.dart';
-import 'package:baytech/Models/Account.dart';
-import 'package:baytech/Screens/home_page.dart';
+import 'package:baytech/Models/Register_request.dart';
 import 'package:baytech/helper/api.dart';
 import 'package:baytech/helper/show_dialoge.dart';
-import 'package:baytech/services/user_login.dart';
+import 'package:baytech/services/login.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 
@@ -12,7 +11,7 @@ Future<void> AdminRegister({
   required String firt_name,
   required String last_name,
   required String passwordConfirm,
-  required Account account,
+  required Register account,
   required BuildContext context,
 }) async {
   String url = KbaseUrl + "registerAdmin";
@@ -40,7 +39,7 @@ Future<void> AdminRegister({
         showDialoge(context, message: show);
       }
     } else {
-      UserLogin(account: account, context: context);
+      Login(account: account, context: context);
     }
   } catch (e) {
     print(e.toString());

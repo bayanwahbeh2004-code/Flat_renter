@@ -23,7 +23,7 @@ class Apartment {
     this.price,
     this.location,
   });
-  factory Apartment.fromJson(Map<String, dynamic> data) {
+  factory Apartment.fromJson(data) {
     return Apartment(
       mainImage: data['mainImage'],
       area: data['area'],

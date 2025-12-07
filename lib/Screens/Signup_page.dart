@@ -1,13 +1,11 @@
 import 'dart:io';
-
 import 'package:baytech/Constants.dart';
-import 'package:baytech/Models/Account.dart';
 import 'package:baytech/Models/Register_request.dart';
 import 'package:baytech/Screens/Login_Page.dart';
 import 'package:baytech/components/SemiCircle.dart';
 import 'package:baytech/components/costum_button.dart';
 import 'package:baytech/components/costum_text_Field.dart';
-import 'package:baytech/services/user_register.dart';
+import 'package:baytech/services/users/user_register.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
@@ -25,8 +23,7 @@ class _SignupPageState extends State<SignupPage> {
 
   @override
   Widget build(BuildContext context) {
-    RegisterRequest data =
-        ModalRoute.of(context)!.settings.arguments as RegisterRequest;
+    Register data = ModalRoute.of(context)!.settings.arguments as Register;
     return Scaffold(
       backgroundColor: Colors.black,
       body: ModalProgressHUD(
@@ -98,11 +95,10 @@ class _SignupPageState extends State<SignupPage> {
                           text: "Sign up",
                           onTap: () async {
                             if (formKey.currentState!.validate()) {
-                                print(data.profilePicture is File);
                               setState(() {
                                 isLoading = true;
                               });
-                              data.account = Account(
+                              data = Register(
                                 phoneNumber: phoneNumber!,
                                 password: password!,
                               );
