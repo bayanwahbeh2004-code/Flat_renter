@@ -1,8 +1,7 @@
 import 'dart:convert';
 import 'package:baytech/Constants.dart';
-import 'package:baytech/Models/Register_request.dart';
+import 'package:baytech/Models/User.dart';
 import 'package:baytech/Screens/Login_Page.dart';
-import 'package:baytech/admin/Admin_Login_Page.dart';
 import 'package:baytech/helper/api.dart';
 import 'package:baytech/helper/show_dialoge.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +9,7 @@ import 'package:http/http.dart';
 
 Future<void> Logout({
   required BuildContext context,
-  required Register account,
+  required User account,
   required String token,
 }) async {
   String url = KbaseUrl + "logout";
@@ -23,8 +22,6 @@ Future<void> Logout({
     } else {
       if (account.role == "user") {
         Navigator.popAndPushNamed(context, LoginPage.id);
-      } else {
-        Navigator.popAndPushNamed(context, AdminLoginPage.id);
       }
     }
   } catch (e) {

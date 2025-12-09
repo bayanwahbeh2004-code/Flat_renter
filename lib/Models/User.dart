@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:flutter/foundation.dart';
 
-class Register {
+class User {
   String? phoneNumber,
       password,
       token,
@@ -13,7 +13,7 @@ class Register {
       profilePicturePath;
   int? id;
   File? profilePicture, indentityCard;
-  Register({
+  User({
     this.phoneNumber,
     this.password,
     this.token,
@@ -27,9 +27,9 @@ class Register {
     this.profilePicture,
     this.profilePicturePath,
   });
-  factory Register.fromjson(data) {
+  factory User.fromjson(data) {
     dynamic user = data['User'];
-    return Register(
+    return User(
       id: user['id'],
       firstName: user['first_name'],
       secondName: user['last_name'],

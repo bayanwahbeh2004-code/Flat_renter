@@ -1,6 +1,7 @@
 import 'dart:async';
 
-import 'package:baytech/Models/Register_request.dart';
+import 'package:baytech/Models/User.dart';
+import 'package:baytech/auth.dart';
 import 'package:baytech/components/SemiCircle.dart';
 import 'package:baytech/services/users/user_active.dart';
 import 'package:flutter/material.dart';
@@ -16,15 +17,14 @@ class WaitingPage extends StatefulWidget {
 class _WaitingPageState extends State<WaitingPage> {
   @override
   Widget build(BuildContext context) {
-    Register account = ModalRoute.of(context)!.settings.arguments as Register;
     Timer? _timer;
     @override
     Future<void> _checkStatus() async {
       try {
-        bool isActive = await userStatus(token: account.token!);
+        bool isActive = await userStatus(token:  await AuthService.getToken());
         if (isActive) {
           _timer?.cancel();
-          //Navigator.popAndPushNamed(context, HomePage.id);
+        //Navigator.popAndPushNamed(context, HomePage.id);
         }
       } catch (e) {
         print('Error checking status: $e');

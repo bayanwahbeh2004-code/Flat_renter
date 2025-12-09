@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:baytech/Constants.dart';
-import 'package:baytech/Models/Register_request.dart';
+import 'package:baytech/Models/User.dart';
 import 'package:baytech/helper/api.dart';
 import 'package:baytech/helper/show_dialoge.dart';
 import 'package:baytech/services/login.dart';
@@ -11,7 +11,7 @@ Future<void> AdminRegister({
   required String firt_name,
   required String last_name,
   required String passwordConfirm,
-  required Register account,
+  required User account,
   required BuildContext context,
 }) async {
   String url = KbaseUrl + "registerAdmin";

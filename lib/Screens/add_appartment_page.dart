@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:baytech/Models/Location.dart';
 import 'package:baytech/Models/apartment.dart';
 import 'package:baytech/components/adding_custom_text_field.dart';
@@ -19,8 +21,8 @@ class AddAppartmentPage extends StatefulWidget {
 class _AddAppartmentPageState extends State<AddAppartmentPage> {
   late Apartment apartment;
   late Location location;
-  late List<UploadImage> images;
-  late UploadImage mainImage;
+  File? mainImage;
+  late List<File?> images;
   CustomDropDownButton? category;
 
   // Controllers
@@ -79,9 +81,10 @@ class _AddAppartmentPageState extends State<AddAppartmentPage> {
   }
 
   void _initializeImages() {
-    mainImage = UploadImage(height: 250, width: 250);
-    images = List.generate(6, (index) => UploadImage(height: 150, width: 150));
+  mainImage = null;
+  images = List.generate(12, (_) => null);
   }
+
 
   @override
   void dispose() {
@@ -96,6 +99,7 @@ class _AddAppartmentPageState extends State<AddAppartmentPage> {
     descriptionController.dispose();
     super.dispose();
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -120,7 +124,16 @@ class _AddAppartmentPageState extends State<AddAppartmentPage> {
               SizedBox(height: 30),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 32.0),
-                child: mainImage, // Use the SAME instance
+                child: UploadImage(
+                  height: 250,
+                  width: 250,
+                  image: mainImage,
+                  onPick: (file) {
+                    setState(() {
+                      mainImage = file;
+                    });
+                  },
+                ),
               ),
               SizedBox(height: 10),
               Padding(
@@ -155,7 +168,18 @@ class _AddAppartmentPageState extends State<AddAppartmentPage> {
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: images.length,
-                    itemBuilder: (context, index) => images[index],
+                    itemBuilder: (context, index) {
+                      return UploadImage(
+                        height: 150,
+                        width: 150,
+                        image: images[index],
+                        onPick: (file) {
+                          setState(() {
+                            images[index] = file;
+                          });
+                        },
+                      );
+                    },
                   ),
                 ),
               ),
@@ -184,6 +208,7 @@ class _AddAppartmentPageState extends State<AddAppartmentPage> {
                   Column(
                     children: [
                       Icon(Icons.bathtub_outlined, size: 40),
+
 
                       AddingCustomTextField(
                         width: 100,

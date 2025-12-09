@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 class Api {
   // get method
   Future<Map<String, dynamic>> get({required String url, String? token}) async {
-    Map<String, String> headers ={};
+    Map<String, String> headers = {};
     if (token != null) {
       headers['Authorization'] = 'Bearer $token';
     }
@@ -55,6 +55,23 @@ class Api {
     http.Response response = await http.put(
       Uri.parse(url),
       body: body,
+      headers: headers,
+    );
+    return response;
+  }
+
+  // delete method
+  Future<http.Response> del({
+    required String url,
+    dynamic body,
+    String? token,
+  }) async {
+    Map<String, String> headers = {'Accept': 'application/json'};
+    if (token != null) {
+      headers.addAll({'Authorization': 'Bearer $token'});
+    }
+    http.Response response = await http.delete(
+      Uri.parse(url),
       headers: headers,
     );
     return response;

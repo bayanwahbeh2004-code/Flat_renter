@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:baytech/Constants.dart';
-import 'package:baytech/Models/Register_request.dart';
+import 'package:baytech/Models/User.dart';
 import 'package:baytech/helper/Api.dart';
 import 'package:baytech/helper/show_dialoge.dart';
 import 'package:baytech/services/login.dart';
@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 Future<void> UserRegister({
-  required Register data,
+  required User data,
   required BuildContext context,
   required String confirmPassword,
 }) async {

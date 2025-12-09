@@ -1,3 +1,3 @@
-Future<bool> userStatus({required String token}) async {
+Future<bool> userStatus({ String? token}) async {
   return true;
 }

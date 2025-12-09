@@ -2,35 +2,40 @@ import 'dart:io';
 import 'package:baytech/Constants.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:flutter/foundation.dart';
 
 class UploadImage extends StatefulWidget {
-  double width, height;
-  String? type;
-  UploadImage({required this.height, required this.width, this.type});
+  final double width, height;
+  final String? type;
+  final File? image;
+  final Function(File) onPick;
 
-  File? image;
-  
+  UploadImage({
+    required this.height,
+    required this.width,
+    required this.image,
+    required this.onPick,
+    this.type,
+  });
+
 
   @override
   State<UploadImage> createState() => _UploadImageState();
 }
 
 class _UploadImageState extends State<UploadImage> {
-  File? image;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () async {
         final pic = await ImagePicker().pickImage(source: ImageSource.gallery);
         if (pic != null) {
-          setState(() {
-            image = File(pic.path);
-          });
+          widget.onPick(File(pic.path));
         }
       },
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: image == null
+        child: widget.image == null
             ? Image.asset(
                 KuploadImage,
                 height: widget.height,
@@ -47,11 +52,11 @@ class _UploadImageState extends State<UploadImage> {
             : ClipRRect(
                 borderRadius: BorderRadiusGeometry.circular(16),
                 child: Image.file(
-                  widget.image!,
-                  fit: BoxFit.fill,
-                  height: widget.height,
-                  width: widget.width,
-                ),
+                      widget.image!,
+                      fit: BoxFit.fill,
+                      height: widget.height,
+                      width: widget.width,
+                    )
               ),
       ),
     );
