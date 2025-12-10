@@ -1,3 +1,7 @@
+import 'package:baytech/Screens/HomeApp.dart';
+import 'package:baytech/Screens/Waiting_Page.dart';
+import 'package:baytech/auth.dart';
+import 'package:baytech/services/users/user_active.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
 import 'package:baytech/Screens/Welcome_Page.dart';
@@ -55,9 +59,16 @@ class _KeyAnimation extends State<KeyinAnimation>
       ),
     );
 
-    animationcontroller.addStatusListener((status) {
+    animationcontroller.addStatusListener((status) async {
       if (status == AnimationStatus.completed) {
-        Navigator.of(context).pushReplacementNamed(WelcomePage.id);
+        final token = await AuthService.getToken();
+        if (token == null)
+          Navigator.of(context).pushReplacementNamed(WelcomePage.id);
+        else if (!await userStatus(context: context)) {
+          Navigator.of(context).pushReplacementNamed(WaitingPage.id);
+        } else {
+          Navigator.of(context).pushReplacementNamed(HomeScreen.id);
+        }
       }
     });
 

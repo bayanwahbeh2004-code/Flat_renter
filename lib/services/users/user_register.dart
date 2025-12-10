@@ -25,8 +25,8 @@ Future<void> UserRegister({
         "phone": data.phoneNumber,
       },
       files: {
-        "Personal_identity_photo": data.indentityCard,
-        "personal_photo": data.profilePicture,
+        "Personal_identity_photo": data.indentityCardPath,
+        "personal_photo": data.profilePicturePath,
       },
     );
     var responseBody = await response.stream.bytesToString();
@@ -36,12 +36,22 @@ Future<void> UserRegister({
         Map<String, dynamic> message = body["errors"];
         String show = "";
         message.forEach((key, value) => show = show + value[0].toString());
-        showDialoge(context, message: show);
+        showDialoge(context, child: Text(show));
       }
-    } else
+    } else {
+      print('registered successfully');
+      String message = body["message"];
+      showDialoge(context, child: Text(message));
       Login(account: data, context: context);
+    }
   } catch (e) {
     print(e.toString());
-    showDialoge(context, message: "something went wrong");
+    //print('this is register');
+    showDialoge(
+      context,
+      child: Text(
+        "something went wrong, please check your interntet connection",
+      ),
+    );
   }
 }

@@ -1,7 +1,5 @@
 import 'dart:async';
-
-import 'package:baytech/Models/User.dart';
-import 'package:baytech/auth.dart';
+import 'package:baytech/Screens/HomeApp.dart';
 import 'package:baytech/components/SemiCircle.dart';
 import 'package:baytech/services/users/user_active.dart';
 import 'package:flutter/material.dart';
@@ -21,10 +19,11 @@ class _WaitingPageState extends State<WaitingPage> {
     @override
     Future<void> _checkStatus() async {
       try {
-        bool isActive = await userStatus(token:  await AuthService.getToken());
+        bool isActive = await userStatus(context: context);
+        print(isActive);
         if (isActive) {
           _timer?.cancel();
-        //Navigator.popAndPushNamed(context, HomePage.id);
+          Navigator.popAndPushNamed(context, HomeScreen.id);
         }
       } catch (e) {
         print('Error checking status: $e');
@@ -49,7 +48,7 @@ class _WaitingPageState extends State<WaitingPage> {
           SizedBox(height: 80),
           Center(
             child: Text(
-              "text",
+              "Please wait until\nyour account\ncreation is approved",
               style: TextStyle(
                 fontSize: 30,
                 color: Colors.white,
@@ -62,7 +61,7 @@ class _WaitingPageState extends State<WaitingPage> {
             alignment: Alignment.topCenter,
             children: [
               SizedBox(
-                height: 580,
+                height: 700,
                 width: 400,
                 child: Semicircle(
                   width: 400,

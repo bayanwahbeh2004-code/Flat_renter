@@ -1,11 +1,13 @@
 import 'dart:convert';
 import 'package:baytech/Constants.dart';
 import 'package:baytech/Models/User.dart';
+import 'package:baytech/Screens/HomeApp.dart';
 import 'package:baytech/Screens/Waiting_Page.dart';
 import 'package:baytech/helper/api.dart';
 import 'package:baytech/helper/show_dialoge.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
+import 'package:baytech/auth.dart';
 
 Future<void> Login({
   required User account,
@@ -20,19 +22,20 @@ Future<void> Login({
     Map<String, dynamic> body = jsonDecode(response.body);
     if (response.statusCode != 201 && response.statusCode != 200) {
       String message = body["message"];
-      showDialoge(context, message: message);
+      showDialoge(context, child: Text(message));
     } else {
-      if (body["User"]["role"] == "user") {
-        User account = User.fromjson(body);
-        account.token = body['Token'];
-        Navigator.popAndPushNamed(context, WaitingPage.id, arguments: account);
-      }
+      AuthService.saveToken(body['Token']);
+      Navigator.popAndPushNamed(context, HomeScreen.id);
+      print(AuthService.getToken());
     }
   } catch (e) {
     print(e.toString());
+    print('this is log in');
     showDialoge(
       context,
-      message: "something went wrong, please check your internet connection.",
+      child: Text(
+        "something went wrong, please check your internet connection.",
+      ),
     );
   }
 }

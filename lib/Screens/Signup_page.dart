@@ -98,15 +98,15 @@ class _SignupPageState extends State<SignupPage> {
                               setState(() {
                                 isLoading = true;
                               });
-                              data = User(
-                                phoneNumber: phoneNumber!,
-                                password: password!,
-                              );
+                              data.phoneNumber = phoneNumber!;
+                              data.password = password!;
+                              print('registering...');
                               await UserRegister(
                                 data: data,
                                 context: context,
                                 confirmPassword: confirmPassword!,
                               );
+                              print('finished registering..');
                               setState(() {
                                 isLoading = false;
                               });

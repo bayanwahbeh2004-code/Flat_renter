@@ -13,7 +13,11 @@ class User {
       profilePicturePath;
   int? id;
   File? profilePicture, indentityCard;
+  String? active;
+  String? account;
   User({
+    this.account,
+    this.active,
     this.phoneNumber,
     this.password,
     this.token,
@@ -39,6 +43,8 @@ class User {
       profilePicturePath: user['personal_photo'],
       password: user['password'],
       role: user['role'],
+      active: user['active'],
+      account:user['account'],
     );
   }
 }

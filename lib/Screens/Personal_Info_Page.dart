@@ -17,6 +17,7 @@ class PersonalInfoPage extends StatefulWidget {
   @override
   State<PersonalInfoPage> createState() => _PersonalInfoPageState();
 }
+
 class _PersonalInfoPageState extends State<PersonalInfoPage> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final User account = User();
@@ -162,6 +163,8 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                               context,
                               SignupPage.id,
                               arguments: User(
+                                profilePicturePath: profilePicture!.path,
+                                indentityCardPath: identityCard!.path,
                                 firstName: account.firstName!,
                                 secondName: account.secondName!,
                                 birthday: birthdate.toString(),
@@ -172,22 +175,24 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                           } else if (identityCard == null) {
                             showDialoge(
                               context,
-                              message: "Please upload your identity card",
+                              child: Text("Please upload your identity card"),
                             );
                           } else if (profilePicture == null) {
                             showDialoge(
                               context,
-                              message: "Please upload your profile picture",
+                              child: Text("Please upload your profile picture"),
                             );
                           } else if (birthdate == null) {
                             showDialoge(
                               context,
-                              message: "Please select your birth date",
+                              child: Text("Please select your birth date"),
                             );
                           } else {
                             showDialoge(
                               context,
-                              message: "Something went wrong",
+                              child: Text(
+                                "Something went wrong, check your internet connection.",
+                              ),
                             );
                           }
                         },
