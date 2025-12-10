@@ -11,13 +11,21 @@ import 'package:baytech/components/upload_image.dart';
 import 'package:baytech/helper/show_dialoge.dart';
 import 'package:flutter/material.dart';
 
-class PersonalInfoPage extends StatelessWidget {
+class PersonalInfoPage extends StatefulWidget {
   static String id = "Personal information page";
-  GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  Register account = Register();
+
+  @override
+  State<PersonalInfoPage> createState() => _PersonalInfoPageState();
+}
+
+class _PersonalInfoPageState extends State<PersonalInfoPage> {
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final Register account = Register();
+
   DateTime? birthdate;
-  File? identityCard, profilePicture;
-  UploadImage? IdImageuploader, ProfileimageUploader;
+  File? identityCard;
+  File? profilePicture;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,24 +34,24 @@ class PersonalInfoPage extends StatelessWidget {
         key: formKey,
         child: ListView(
           children: [
-            SizedBox(height: 40),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 25.0),
-                  child: Text(
-                    "Personal information",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 28,
-                      fontFamily: "Platypi",
-                    ),
-                  ),
+            const SizedBox(height: 40),
+
+            // ================= Title =================
+            const Padding(
+              padding: EdgeInsets.only(left: 25.0),
+              child: Text(
+                "Personal information",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 28,
+                  fontFamily: "Platypi",
                 ),
-              ],
+              ),
             ),
-            SizedBox(height: 60),
+
+            const SizedBox(height: 60),
+
+            // ================= Background =================
             Stack(
               children: [
                 SizedBox(
@@ -55,55 +63,87 @@ class PersonalInfoPage extends StatelessWidget {
                     radius_for_the_circle: 225,
                   ),
                 ),
+
+                // ================= Content =================
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 28.0),
                   child: Column(
                     children: [
-                      SizedBox(height: 70),
+                      const SizedBox(height: 70),
+
                       CostumTextFeild(
                         hintText: "Enter your first name",
                         onchanged: (data) {
                           account.firstName = data;
                         },
                       ),
-                      SizedBox(height: 25),
+
+                      const SizedBox(height: 25),
+
                       CostumTextFeild(
                         hintText: "Enter your second name",
                         onchanged: (data) {
                           account.secondName = data;
                         },
                       ),
-                      SizedBox(height: 25),
+
+                      const SizedBox(height: 25),
+
+                      // ================= Images =================
                       Column(
                         children: [
                           Row(
-                            children: [
+                            children: const [
                               SizedBox(width: 15),
                               Text("Identity card"),
                               SizedBox(width: 100),
-                              Text("profile picture"),
+                              Text("Profile picture"),
                             ],
                           ),
+
+                          const SizedBox(height: 10),
+
                           Row(
                             children: [
-                              IdImageuploader = UploadImage(
+                              UploadImage(
                                 height: 180,
                                 width: 150,
+                                image: identityCard,
                                 type: "id",
+                                onPick: (file) {
+                                  setState(() {
+                                    identityCard = file;
+                                  });
+                                },
                               ),
-                              SizedBox(width: 20),
-                              ProfileimageUploader = UploadImage(
+
+                              const SizedBox(width: 20),
+
+                              UploadImage(
                                 height: 180,
                                 width: 150,
+                                image: profilePicture,
                                 type: "profile",
+                                onPick: (file) {
+                                  setState(() {
+                                    profilePicture = file;
+                                  });
+                                },
                               ),
                             ],
                           ),
                         ],
                       ),
-                      SizedBox(height: 10),
+
+                      const SizedBox(height: 15),
+
+                      // ================= Birthdate =================
                       CostumButton(
                         text: "Birth date",
+                        height: 50,
+                        width: 225,
+                        buttonColor: Colors.white,
+                        textColor: Colors.black,
                         onTap: () async {
                           birthdate = await showDatePicker(
                             context: context,
@@ -112,31 +152,26 @@ class PersonalInfoPage extends StatelessWidget {
                             builder: (context, child) {
                               return Theme(
                                 data: Theme.of(context).copyWith(
-                                  colorScheme: ColorScheme.light(
-                                    primary: KPurple,
-                                  ),
-                                  textButtonTheme: TextButtonThemeData(
-                                    style: TextButton.styleFrom(
-                                      foregroundColor: KPurple,
-                                    ),
-                                  ),
+                                  colorScheme:
+                                      const ColorScheme.light(primary: KPurple),
                                 ),
                                 child: child!,
                               );
                             },
                           );
                         },
-                        textColor: Colors.black,
-                        buttonColor: Colors.white,
-                        height: 50,
-                        width: 225,
                       ),
-                      SizedBox(height: 10),
+
+                      const SizedBox(height: 15),
+
+                      // ================= Next =================
                       CostumButton(
                         text: "Next",
+                        height: 50,
+                        width: 225,
+                        buttonColor: Colors.black,
+                        textColor: Colors.white,
                         onTap: () {
-                          identityCard = IdImageuploader!.image;
-                          account.profilePicture = ProfileimageUploader!.image;
                           if (formKey.currentState!.validate() &&
                               birthdate != null &&
                               identityCard != null &&
@@ -149,7 +184,7 @@ class PersonalInfoPage extends StatelessWidget {
                                 secondName: account.secondName!,
                                 birthday: birthdate.toString(),
                                 indentityCard: identityCard!,
-                                profilePicture: account.profilePicture!,
+                                profilePicture: profilePicture!,
                               ),
                             );
                           } else if (identityCard == null) {
@@ -174,23 +209,25 @@ class PersonalInfoPage extends StatelessWidget {
                             );
                           }
                         },
-                        buttonColor: Colors.black,
-                        textColor: Colors.white,
-                        height: 50,
-                        width: 225,
                       ),
-                      SizedBox(height: 30),
+
+                      const SizedBox(height: 30),
+
+                      // ================= Login =================
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text("Alredy have an account? "),
+                          const Text("Already have an account? "),
                           GestureDetector(
                             onTap: () {
-                              Navigator.popAndPushNamed(context, LoginPage.id);
+                              Navigator.pushNamed(context, LoginPage.id);
                             },
-                            child: Text(
+                            child: const Text(
                               "log in",
-                              style: TextStyle(color: KPurple, fontSize: 18),
+                              style: TextStyle(
+                                color: KPurple,
+                                fontSize: 18,
+                              ),
                             ),
                           ),
                         ],

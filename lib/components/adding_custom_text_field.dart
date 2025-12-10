@@ -10,7 +10,7 @@ class AddingCustomTextField extends StatefulWidget {
 
   AddingCustomTextField({
     required this.hintText,
-     this.onchanged,
+    this.onchanged,
     required this.width,
     this.icon,
     this.controller,
