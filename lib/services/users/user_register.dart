@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:baytech/Constants.dart';
-import 'package:baytech/Models/Register_request.dart';
+import 'package:baytech/Models/User.dart';
 import 'package:baytech/helper/Api.dart';
 import 'package:baytech/helper/show_dialoge.dart';
 import 'package:baytech/services/login.dart';
@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 Future<void> UserRegister({
-  required Register data,
+  required User data,
   required BuildContext context,
   required String confirmPassword,
 }) async {
@@ -25,8 +25,8 @@ Future<void> UserRegister({
         "phone": data.phoneNumber,
       },
       files: {
-        "Personal_identity_photo": data.indentityCard,
-        "personal_photo": data.profilePicture,
+        "Personal_identity_photo": data.indentityCardPath,
+        "personal_photo": data.profilePicturePath,
       },
     );
     var responseBody = await response.stream.bytesToString();
@@ -36,12 +36,22 @@ Future<void> UserRegister({
         Map<String, dynamic> message = body["errors"];
         String show = "";
         message.forEach((key, value) => show = show + value[0].toString());
-        showDialoge(context, message: show);
+        showDialoge(context, child: Text(show));
       }
-    } else
+    } else {
+      print('registered successfully');
+      String message = body["message"];
+      showDialoge(context, child: Text(message));
       Login(account: data, context: context);
+    }
   } catch (e) {
     print(e.toString());
-    showDialoge(context, message: "something went wrong");
+    //print('this is register');
+    showDialoge(
+      context,
+      child: Text(
+        "something went wrong, please check your interntet connection",
+      ),
+    );
   }
 }

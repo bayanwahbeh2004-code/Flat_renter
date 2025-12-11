@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:baytech/Constants.dart';
-import 'package:baytech/Models/Register_request.dart';
+import 'package:baytech/Models/User.dart';
 import 'package:baytech/Screens/Login_Page.dart';
 import 'package:baytech/components/SemiCircle.dart';
 import 'package:baytech/components/costum_button.dart';
@@ -23,7 +23,7 @@ class _SignupPageState extends State<SignupPage> {
 
   @override
   Widget build(BuildContext context) {
-    Register data = ModalRoute.of(context)!.settings.arguments as Register;
+    User data = ModalRoute.of(context)!.settings.arguments as User;
     return Scaffold(
       backgroundColor: Colors.black,
       body: ModalProgressHUD(
@@ -98,15 +98,15 @@ class _SignupPageState extends State<SignupPage> {
                               setState(() {
                                 isLoading = true;
                               });
-                              data = Register(
-                                phoneNumber: phoneNumber!,
-                                password: password!,
-                              );
+                              data.phoneNumber = phoneNumber!;
+                              data.password = password!;
+                              print('registering...');
                               await UserRegister(
                                 data: data,
                                 context: context,
                                 confirmPassword: confirmPassword!,
                               );
+                              print('finished registering..');
                               setState(() {
                                 isLoading = false;
                               });

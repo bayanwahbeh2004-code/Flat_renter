@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:baytech/helper/show_dialoge.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -6,7 +7,7 @@ import 'package:http/http.dart' as http;
 class Api {
   // get method
   Future<Map<String, dynamic>> get({required String url, String? token}) async {
-    Map<String, String> headers ={};
+    Map<String, String> headers = {};
     if (token != null) {
       headers['Authorization'] = 'Bearer $token';
     }
@@ -60,6 +61,23 @@ class Api {
     return response;
   }
 
+  // delete method
+  Future<http.Response> del({
+    required String url,
+    dynamic body,
+    String? token,
+  }) async {
+    Map<String, String> headers = {'Accept': 'application/json'};
+    if (token != null) {
+      headers.addAll({'Authorization': 'Bearer $token'});
+    }
+    http.Response response = await http.delete(
+      Uri.parse(url),
+      headers: headers,
+    );
+    return response;
+  }
+
   // post method with media
   Future<http.StreamedResponse> multiPartRequest({
     required String url,
@@ -69,12 +87,18 @@ class Api {
     var request = http.MultipartRequest('POST', Uri.parse(url));
     request.headers['Accept'] = 'application/json';
     request.headers['X-Requested-With'] = 'XMLHttpRequest';
-
-    fields.forEach((key, value) => request.fields[key] = value);
-    files.forEach(
-      (key, value) async =>
-          request.files.add(await http.MultipartFile.fromPath(key, value)),
-    );
+    request.fields.addAll(Map<String, String>.from(fields));
+    for (var entry in files.entries) {
+      if (entry.value != null && entry.value is String) {
+        var filePath = entry.value as String;
+        var file = File(filePath);
+        if (await file.exists()) {
+          request.files.add(
+            await http.MultipartFile.fromPath(entry.key, filePath),
+          );
+        }
+      }
+    }
     http.StreamedResponse response = await request.send();
     return response;
   }

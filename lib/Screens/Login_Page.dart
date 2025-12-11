@@ -1,5 +1,5 @@
 import 'package:baytech/Constants.dart';
-import 'package:baytech/Models/Register_request.dart';
+import 'package:baytech/Models/User.dart';
 import 'package:baytech/Screens/Personal_Info_Page.dart';
 import 'package:baytech/components/SemiCircle.dart';
 import 'package:baytech/components/costum_button.dart';
@@ -86,7 +86,7 @@ class _LoginState extends State<LoginPage> {
                               isLoading = true;
                             });
                             if (formKey.currentState!.validate()) {
-                              Register account = Register(
+                              User account = User(
                                 password: password!,
                                 phoneNumber: phoneNumber!,
                               );

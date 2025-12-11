@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:baytech/Constants.dart';
-import 'package:baytech/Models/Register_request.dart';
+import 'package:baytech/Models/User.dart';
 import 'package:baytech/Screens/Login_Page.dart';
 import 'package:baytech/Screens/Signup_page.dart';
 import 'package:baytech/components/SemiCircle.dart';
@@ -20,8 +20,7 @@ class PersonalInfoPage extends StatefulWidget {
 
 class _PersonalInfoPageState extends State<PersonalInfoPage> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  final Register account = Register();
-
+  final User account = User();
   DateTime? birthdate;
   File? identityCard;
   File? profilePicture;
@@ -35,8 +34,6 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
         child: ListView(
           children: [
             const SizedBox(height: 40),
-
-            // ================= Title =================
             const Padding(
               padding: EdgeInsets.only(left: 25.0),
               child: Text(
@@ -48,10 +45,7 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                 ),
               ),
             ),
-
             const SizedBox(height: 60),
-
-            // ================= Background =================
             Stack(
               children: [
                 SizedBox(
@@ -70,26 +64,20 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                   child: Column(
                     children: [
                       const SizedBox(height: 70),
-
                       CostumTextFeild(
                         hintText: "Enter your first name",
                         onchanged: (data) {
                           account.firstName = data;
                         },
                       ),
-
                       const SizedBox(height: 25),
-
                       CostumTextFeild(
                         hintText: "Enter your second name",
                         onchanged: (data) {
                           account.secondName = data;
                         },
                       ),
-
                       const SizedBox(height: 25),
-
-                      // ================= Images =================
                       Column(
                         children: [
                           Row(
@@ -100,9 +88,7 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                               Text("Profile picture"),
                             ],
                           ),
-
                           const SizedBox(height: 10),
-
                           Row(
                             children: [
                               UploadImage(
@@ -137,7 +123,6 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
 
                       const SizedBox(height: 15),
 
-                      // ================= Birthdate =================
                       CostumButton(
                         text: "Birth date",
                         height: 50,
@@ -152,8 +137,9 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                             builder: (context, child) {
                               return Theme(
                                 data: Theme.of(context).copyWith(
-                                  colorScheme:
-                                      const ColorScheme.light(primary: KPurple),
+                                  colorScheme: const ColorScheme.light(
+                                    primary: KPurple,
+                                  ),
                                 ),
                                 child: child!,
                               );
@@ -164,7 +150,6 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
 
                       const SizedBox(height: 15),
 
-                      // ================= Next =================
                       CostumButton(
                         text: "Next",
                         height: 50,
@@ -179,7 +164,9 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                             Navigator.pushNamed(
                               context,
                               SignupPage.id,
-                              arguments: Register(
+                              arguments: User(
+                                profilePicturePath: profilePicture!.path,
+                                indentityCardPath: identityCard!.path,
                                 firstName: account.firstName!,
                                 secondName: account.secondName!,
                                 birthday: birthdate.toString(),
@@ -190,22 +177,24 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                           } else if (identityCard == null) {
                             showDialoge(
                               context,
-                              message: "Please upload your identity card",
+                              child: Text("Please upload your identity card"),
                             );
                           } else if (profilePicture == null) {
                             showDialoge(
                               context,
-                              message: "Please upload your profile picture",
+                              child: Text("Please upload your profile picture"),
                             );
                           } else if (birthdate == null) {
                             showDialoge(
                               context,
-                              message: "Please select your birth date",
+                              child: Text("Please select your birth date"),
                             );
                           } else {
                             showDialoge(
                               context,
-                              message: "Something went wrong",
+                              child: Text(
+                                "Something went wrong, check your internet connection.",
+                              ),
                             );
                           }
                         },
@@ -213,7 +202,6 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
 
                       const SizedBox(height: 30),
 
-                      // ================= Login =================
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [

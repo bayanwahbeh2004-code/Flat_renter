@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class CostumTextFeild extends StatelessWidget {
   String hintText;
   bool obscure;
-   TextEditingController? controller;
+  TextEditingController? controller;
   Function(String)? onchanged;
   CostumTextFeild({
     required this.hintText,

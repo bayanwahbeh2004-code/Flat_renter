@@ -100,6 +100,7 @@ class _AddAppartmentPageState extends State<AddAppartmentPage> {
     super.dispose();
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -133,7 +134,6 @@ class _AddAppartmentPageState extends State<AddAppartmentPage> {
                     });
                   },
                 ),
- // Use the SAME instance
               ),
               SizedBox(height: 10),
               Padding(
@@ -208,6 +208,7 @@ class _AddAppartmentPageState extends State<AddAppartmentPage> {
                   Column(
                     children: [
                       Icon(Icons.bathtub_outlined, size: 40),
+
 
                       AddingCustomTextField(
                         width: 100,
