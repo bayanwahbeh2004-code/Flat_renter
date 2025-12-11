@@ -5,11 +5,10 @@ ThemeData lightmode = ThemeData(
   brightness: Brightness.light,
   colorScheme: ColorScheme.light(
     primaryContainer: Colors.white, //scaffold color
-    primary: Colors.black,//buttons and taps color
+    primary: Colors.black, //buttons and taps color
     secondary: KPurple, //dialog's text color
-    onSurface: Colors.black,  //text color
-  onSecondary: ktextColor //color of text fields
-    
+    onSurface: Colors.black, //text color
+    onSecondary: ktextColor, //color of text fields
   ),
 );
 ThemeData darkmode = ThemeData(
@@ -19,6 +18,6 @@ ThemeData darkmode = ThemeData(
     primary: Colors.black,
     secondary: KPurple,
     onSurface: Colors.black,
-    onSecondary: ktextColor
+    onSecondary: ktextColor,
   ),
 );

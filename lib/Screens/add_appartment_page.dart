@@ -81,10 +81,9 @@ class _AddAppartmentPageState extends State<AddAppartmentPage> {
   }
 
   void _initializeImages() {
-  mainImage = null;
-  images = List.generate(12, (_) => null);
+    mainImage = null;
+    images = List.generate(12, (_) => null);
   }
-
 
   @override
   void dispose() {
@@ -99,7 +98,6 @@ class _AddAppartmentPageState extends State<AddAppartmentPage> {
     descriptionController.dispose();
     super.dispose();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -208,7 +206,6 @@ class _AddAppartmentPageState extends State<AddAppartmentPage> {
                   Column(
                     children: [
                       Icon(Icons.bathtub_outlined, size: 40),
-
 
                       AddingCustomTextField(
                         width: 100,
