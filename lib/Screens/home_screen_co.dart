@@ -34,8 +34,8 @@ Widget _buildminuRep(
   );
 }
 
-class HomeScreenBild extends StatelessWidget {
-  const HomeScreenBild({super.key});
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -84,11 +84,15 @@ class HomeScreenBild extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             child: Row(
               children: [
-                _buildminuRep('Nearby estates', isSelected: true),
+                _buildminuRep('All', isSelected: true),
                 _buildminuRep('Hotels'),
                 _buildminuRep('Rooms'),
-                _buildminuRep('Complex'),
-                _buildminuRep('Stays'),
+                _buildminuRep('Duplex'),
+                _buildminuRep('Villa'),
+                _buildminuRep('Suites'),
+                _buildminuRep('Apartment'),
+                _buildminuRep('House'),
+                _buildminuRep('Others'),
               ],
             ),
           ),
