@@ -82,7 +82,8 @@ class _AddAppartmentPageState extends State<AddAppartmentPage> {
 
   void _initializeImages() {
     mainImage = null;
-    images = List.generate(12, (_) => null);
+
+    images = List.generate(6, (_) => null);
   }
 
   @override
@@ -196,6 +197,7 @@ class _AddAppartmentPageState extends State<AddAppartmentPage> {
                     children: [
                       Icon(Icons.bed_outlined, size: 40),
                       AddingCustomTextField(
+                        textInputType: TextInputType.number,
                         width: 100,
                         hintText: "bedrooms",
                         controller: bedroomsController,
@@ -208,6 +210,7 @@ class _AddAppartmentPageState extends State<AddAppartmentPage> {
                       Icon(Icons.bathtub_outlined, size: 40),
 
                       AddingCustomTextField(
+                        textInputType: TextInputType.number,
                         width: 100,
                         hintText: "bathrooms",
                         controller: bathroomsController,
@@ -220,6 +223,7 @@ class _AddAppartmentPageState extends State<AddAppartmentPage> {
                     children: [
                       Icon(Icons.apartment_outlined, size: 40),
                       AddingCustomTextField(
+                        textInputType: TextInputType.number,
                         width: 120,
                         hintText: "living rooms",
                         controller: livingRoomsController,
@@ -236,7 +240,19 @@ class _AddAppartmentPageState extends State<AddAppartmentPage> {
                   Column(
                     children: [
                       Icon(Icons.question_mark_outlined, size: 40),
-                      category = CustomDropDownButton(),
+                      category = CustomDropDownButton(
+                        selectedItem: 'category',
+                        dropDownValues: [
+                          "Hotels",
+                          "Rooms",
+                          "Duplex",
+                          "Villa",
+                          "Suites",
+                          "Apartment",
+                          "House",
+                          "Others",
+                        ],
+                      ),
                     ],
                   ),
                   SizedBox(width: 20),
@@ -246,6 +262,7 @@ class _AddAppartmentPageState extends State<AddAppartmentPage> {
                       Padding(
                         padding: const EdgeInsets.only(left: 36.0),
                         child: AddingCustomTextField(
+                          textInputType: TextInputType.number,
                           width: 80,
                           hintText: "area",
                           controller: areaController,
@@ -259,6 +276,7 @@ class _AddAppartmentPageState extends State<AddAppartmentPage> {
                     children: [
                       Icon(Icons.attach_money_outlined, size: 40),
                       AddingCustomTextField(
+                        textInputType: TextInputType.number,
                         width: 120,
                         hintText: "price a day",
                         controller: priceController,

@@ -13,40 +13,47 @@ class WaitingPage extends StatefulWidget {
 }
 
 class _WaitingPageState extends State<WaitingPage> {
+  Timer? _timer;
+
+  @override
+  void initState() {
+    super.initState();
+    _startPolling();
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
+
+  Future<void> _checkStatus() async {
+    try {
+      bool isActive = await userStatus(context: context);
+      if (isActive && mounted) {
+        _timer?.cancel();
+        Navigator.popAndPushNamed(context, HomeScreen.id);
+      }
+    } catch (e) {
+      print('Error checking status: $e');
+    }
+  }
+
+  void _startPolling() {
+    _checkStatus();
+    _timer = Timer.periodic(const Duration(seconds: 5), (timer) {
+      _checkStatus();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    Timer? _timer;
-    @override
-    Future<void> _checkStatus() async {
-      try {
-        bool isActive = await userStatus(context: context);
-        print(isActive);
-        if (isActive) {
-          _timer?.cancel();
-          Navigator.popAndPushNamed(context, HomeScreen.id);
-        }
-      } catch (e) {
-        print('Error checking status: $e');
-      }
-    }
-
-    void _startPolling() {
-      _timer = Timer.periodic(const Duration(seconds: 15), (timer) {
-        _checkStatus();
-      });
-    }
-
-    void initState() {
-      super.initState();
-      _startPolling();
-    }
-
     return Scaffold(
       backgroundColor: Colors.black,
       body: ListView(
         children: [
-          SizedBox(height: 80),
-          Center(
+          const SizedBox(height: 80),
+          const Center(
             child: Text(
               "Please wait until\nyour account\ncreation is approved",
               style: TextStyle(
@@ -56,7 +63,7 @@ class _WaitingPageState extends State<WaitingPage> {
               ),
             ),
           ),
-          SizedBox(height: 40),
+          const SizedBox(height: 40),
           Stack(
             alignment: Alignment.topCenter,
             children: [
@@ -69,7 +76,6 @@ class _WaitingPageState extends State<WaitingPage> {
                   radius_for_the_circle: 190,
                 ),
               ),
-
               Positioned(
                 top: 100,
                 child: Lottie.asset(

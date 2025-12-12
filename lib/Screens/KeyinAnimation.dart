@@ -27,7 +27,7 @@ class _KeyAnimation extends State<KeyinAnimation>
 
     animationcontroller = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 10),
+      duration: const Duration(seconds: 8),
     );
 
     keymov =
@@ -64,10 +64,10 @@ class _KeyAnimation extends State<KeyinAnimation>
         final token = await AuthService.getToken();
         if (token == null)
           Navigator.of(context).pushReplacementNamed(WelcomePage.id);
-        else if (!await userStatus(context: context)) {
-          Navigator.of(context).pushReplacementNamed(WaitingPage.id);
-        } else {
+        else if (await userStatus(context: context)) {
           Navigator.of(context).pushReplacementNamed(HomeScreen.id);
+        } else {
+          Navigator.of(context).pushReplacementNamed(WaitingPage.id);
         }
       }
     });
@@ -89,7 +89,7 @@ class _KeyAnimation extends State<KeyinAnimation>
         child: AnimatedBuilder(
           animation: animationcontroller,
           builder: (context, child) {
-            double wiggleAngle = sin(keyhz.value * 150 * pi) * 0.17;
+            double wiggleAngle = sin(keyhz.value * 15 * pi) * 0.17;
             return Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

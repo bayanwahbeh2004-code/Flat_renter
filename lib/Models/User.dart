@@ -44,7 +44,7 @@ class User {
       password: user['password'],
       role: user['role'],
       active: user['active'],
-      account:user['account'],
+      account: user['account'],
     );
   }
 }

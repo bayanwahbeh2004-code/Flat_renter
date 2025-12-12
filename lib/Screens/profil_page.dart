@@ -5,6 +5,7 @@ import 'package:baytech/Theme/theme_proider.dart';
 import 'package:baytech/helper/show_dialoge.dart';
 import 'package:baytech/services/logout.dart';
 import 'package:baytech/services/users/delete_account_request.dart';
+import 'package:baytech/services/users/get_user.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:provider/provider.dart';
@@ -201,7 +202,8 @@ class _ProfileInformaState extends State<ProfileInforma> {
             _buildMenuItem(
               icon: Icons.payments_outlined,
               title: "Payment",
-              onTap: () {
+              onTap: () async {
+                User data = await getUser(context: context);
                 showDialoge(
                   context,
                   ok: false,
@@ -220,7 +222,8 @@ class _ProfileInformaState extends State<ProfileInforma> {
                           ),
                         ],
                       ),
-                      Text(user!.account ?? '0'),
+
+                      Text(data.account ?? '0'),
                     ],
                   ),
                 );
@@ -247,7 +250,7 @@ class _ProfileInformaState extends State<ProfileInforma> {
                         children: [
                           CircleAvatar(
                             backgroundImage: AssetImage(
-                              "assets/images/bayan wehbeh.png",
+                              "assets/images/team/bayan wehbeh.png",
                             ),
                             radius: 50,
                           ),
@@ -262,7 +265,7 @@ class _ProfileInformaState extends State<ProfileInforma> {
                           SizedBox(width: 20),
                           CircleAvatar(
                             backgroundImage: AssetImage(
-                              "assets/images/bayan wehbeh.png",
+                              "assets/images/team/amina ainia.jpg",
                             ),
                             radius: 50,
                           ),
@@ -284,11 +287,11 @@ class _ProfileInformaState extends State<ProfileInforma> {
                       SizedBox(height: 20),
                       Row(
                         children: [
-                          Text("sarah sedeka"),
+                          Text("sarah sedekah"),
                           SizedBox(width: 20),
                           CircleAvatar(
                             backgroundImage: AssetImage(
-                              "assets/images/bayan wehbeh.png",
+                              "assets/images/team/sarah sedekah.jpg",
                             ),
                             radius: 50,
                           ),
@@ -299,7 +302,7 @@ class _ProfileInformaState extends State<ProfileInforma> {
                         children: [
                           CircleAvatar(
                             backgroundImage: AssetImage(
-                              "assets/images/bayan_khere.png",
+                              "assets/team/images/bayan_khere.png",
                             ),
                             radius: 50,
                           ),

@@ -3,9 +3,7 @@ import 'package:baytech/Screens/Bookings.dart';
 import 'package:baytech/Screens/chat_page.dart';
 import 'package:baytech/Screens/estate_page.dart';
 import 'package:baytech/Screens/profil_page.dart';
-import 'package:baytech/auth.dart';
 import 'package:baytech/components/BottomNaviga.dart';
-import 'package:baytech/components/home_screen_co.dart';
 import 'package:baytech/components/notification.dart';
 import 'package:baytech/services/users/get_user.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     _widgetOptions = <Widget>[
-      const HomeScreenBild(),
+      const HomeScreen(),
       const BookingsPage(),
       const YourEstatesPage(),
       const ChatsPage(),
@@ -56,9 +54,11 @@ class _HomeScreenState extends State<HomeScreen> {
           IconButton(
             icon: const Icon(Icons.menu, color: Colors.black),
             onPressed: () async {
-              User user= await getUser(context:context);
-              if(user.firstName!=null)
-              Navigator.of(context).pushNamed(ProfileInforma.id, arguments: user );
+              User user = await getUser(context: context);
+              if (user.firstName != null)
+                Navigator.of(
+                  context,
+                ).pushNamed(ProfileInforma.id, arguments: user);
             },
           ),
         ],

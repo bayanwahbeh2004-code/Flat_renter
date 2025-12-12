@@ -70,7 +70,7 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                       ),
                       const SizedBox(height: 25),
                       CostumTextFeild(
-                        hintText: "Enter your second name",
+                        hintText: "Enter your last name",
                         onchanged: (data) {
                           account.secondName = data;
                         },

@@ -1,7 +1,6 @@
 import 'dart:convert';
-
 import 'package:baytech/Constants.dart';
-import 'package:baytech/Screens/KeyinAnimation.dart';
+import 'package:baytech/Screens/Welcome_Page.dart';
 import 'package:baytech/auth.dart';
 import 'package:baytech/helper/Api.dart';
 import 'package:baytech/helper/show_dialoge.dart';
@@ -15,6 +14,14 @@ Future<void> deleteRequest({required BuildContext context}) async {
       url: url,
       token: await AuthService.getToken(),
     );
+    if (response.statusCode == 403) {
+      showDialoge(
+        context,
+        child: Text("Your account was deleted by the admin"),
+      );
+      Navigator.popAndPushNamed(context, WelcomePage.id);
+      return;
+    }
     Map<String, dynamic> body = jsonDecode(response.body);
     String message = body["message"];
     print(await AuthService.getToken());

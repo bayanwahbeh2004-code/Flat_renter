@@ -10,7 +10,6 @@ import 'package:baytech/Screens/chat_page.dart';
 import 'package:baytech/Screens/estate_page.dart';
 import 'package:baytech/Screens/profil_page.dart';
 import 'package:baytech/Screens/view_appartment.dart';
-import 'package:baytech/Theme/theme.dart';
 import 'package:baytech/Theme/theme_proider.dart';
 import 'package:baytech/components/notification.dart';
 import 'package:flutter/material.dart';

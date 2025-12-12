@@ -69,6 +69,7 @@ class _SignupPageState extends State<SignupPage> {
                       children: [
                         SizedBox(height: 70),
                         CostumTextFeild(
+                          textInputType: TextInputType.number,
                           hintText: "Phone number",
                           onchanged: (data) {
                             phoneNumber = data;
@@ -100,13 +101,11 @@ class _SignupPageState extends State<SignupPage> {
                               });
                               data.phoneNumber = phoneNumber!;
                               data.password = password!;
-                              print('registering...');
                               await UserRegister(
                                 data: data,
                                 context: context,
                                 confirmPassword: confirmPassword!,
                               );
-                              print('finished registering..');
                               setState(() {
                                 isLoading = false;
                               });
