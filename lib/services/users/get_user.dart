@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:baytech/Constants.dart';
 import 'package:baytech/Models/User.dart';
+import 'package:baytech/Screens/Welcome_Page.dart';
 import 'package:baytech/auth.dart';
 import 'package:baytech/helper/Api.dart';
 import 'package:baytech/helper/show_dialoge.dart';
@@ -12,29 +13,40 @@ Future<User> getUser({required BuildContext context}) async {
   print(url);
   try {
     print(await AuthService.getToken());
-    Map<String, dynamic> data = await Api().get(
+    Response data = await Api().get(
       url: url,
       token: await AuthService.getToken(),
     );
-    return User(
-      id: data['id'],
-      firstName: data['first_name'],
-      secondName: data['last_name'],
-      phoneNumber: data['phone'],
-      birthday: data['date_of_birth'],
-      indentityCardPath: data['Personal_identity_photo'],
-      profilePicturePath: data['personal_photo'],
-      password: data['password'],
-      role: data['role'],
-      active: data['active'],
-      account: data['account'],
-    );
-    ;
+    if (data.statusCode == 401) {
+      Navigator.popAndPushNamed(context, WelcomePage.id);
+      showDialoge(
+        context,
+        child: Text("Your account was deleted by the admin"),
+      );
+      return User();
+    } else {
+      Map<String, dynamic> user = jsonDecode(data.body);
+      return User(
+        id: user['id'],
+        firstName: user['first_name'],
+        secondName: user['last_name'],
+        phoneNumber: user['phone'],
+        birthday: user['date_of_birth'],
+        indentityCardPath: user['Personal_identity_photo'],
+        profilePicturePath: user['personal_photo'],
+        password: user['password'],
+        role: user['role'],
+        active: user['active'],
+        account: user['account'],
+      );
+    }
   } catch (e) {
     print(e.toString());
     showDialoge(
       context,
-      child: Text("something went wrong, please check your internet connection."),
+      child: Text(
+        "something went wrong, please check your internet connection.",
+      ),
     );
     return User();
   }

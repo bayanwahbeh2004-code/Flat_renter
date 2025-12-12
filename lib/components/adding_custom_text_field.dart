@@ -7,8 +7,9 @@ class AddingCustomTextField extends StatefulWidget {
   double width;
   IconData? icon;
   TextEditingController? controller;
-
+  TextInputType? textInputType;
   AddingCustomTextField({
+    this.textInputType,
     required this.hintText,
      this.onchanged,
     required this.width,
@@ -27,7 +28,7 @@ class _AddingCustomTextFieldState extends State<AddingCustomTextField> {
       width: widget.width,
       child: Center(
         child: TextFormField(
-          controller: widget.controller, // Added controller here
+          controller: widget.controller,
           onChanged: widget.onchanged,
           validator: (data) {
             if (data!.isEmpty) {

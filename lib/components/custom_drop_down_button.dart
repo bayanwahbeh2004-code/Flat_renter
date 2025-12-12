@@ -1,35 +1,30 @@
 import 'package:flutter/material.dart';
 
 class CustomDropDownButton extends StatefulWidget {
-  String selectedItem = "category";
+  String selectedItem;
+  List<String> dropDownValues;
+  CustomDropDownButton({
+    required this.selectedItem,
+    required this.dropDownValues,
+  });
   @override
   State<CustomDropDownButton> createState() => _MyWidgetState();
 }
 
 class _MyWidgetState extends State<CustomDropDownButton> {
-  List<String> dropDownValues = [
-    "Hotels",
-    "Rooms",
-    "Duplex",
-    "Villa",
-    "Suites",
-    "Apartment",
-    "House",
-    "Others",
-  ];
-  String selectedItem = "category";
+  String? selectedItem;
 
   @override
   Widget build(BuildContext context) {
     return DropdownButton<String>(
-      items: dropDownValues
+      items: widget.dropDownValues
           .map(
             (value) =>
                 DropdownMenuItem<String>(value: value, child: Text(value)),
           )
           .toList(),
-      value: selectedItem == "category" ? null : selectedItem,
-      hint: Text("category"),
+      value: selectedItem == widget.selectedItem ? null : selectedItem,
+      hint: Text(widget.selectedItem),
       onChanged: (item) {
         setState(() {
           widget.selectedItem = item!;

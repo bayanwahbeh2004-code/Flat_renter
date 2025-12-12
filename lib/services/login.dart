@@ -5,6 +5,8 @@ import 'package:baytech/Screens/HomeApp.dart';
 import 'package:baytech/Screens/Waiting_Page.dart';
 import 'package:baytech/helper/api.dart';
 import 'package:baytech/helper/show_dialoge.dart';
+import 'package:baytech/services/users/get_user.dart';
+import 'package:baytech/services/users/user_active.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:baytech/auth.dart';
@@ -25,7 +27,19 @@ Future<void> Login({
       showDialoge(context, child: Text(message));
     } else {
       AuthService.saveToken(body['Token']);
-      Navigator.popAndPushNamed(context, HomeScreen.id);
+      bool active = await userStatus(context: context);
+      if ((await getUser(context: context)).role == 'admin') {
+        showDialoge(
+          context,
+          child: Text("this is admin account, create a user account please."),
+        );
+        return;
+      }
+
+      if (active)
+        Navigator.popAndPushNamed(context, HomeScreen.id);
+      else
+        Navigator.popAndPushNamed(context, WaitingPage.id);
       print(AuthService.getToken());
     }
   } catch (e) {

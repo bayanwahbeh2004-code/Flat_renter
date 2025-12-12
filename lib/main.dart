@@ -9,7 +9,6 @@ import 'package:baytech/Screens/add_appartment_page.dart';
 import 'package:baytech/Screens/chat_page.dart';
 import 'package:baytech/Screens/estate_page.dart';
 import 'package:baytech/Screens/profil_page.dart';
-import 'package:baytech/Theme/theme.dart';
 import 'package:baytech/Theme/theme_proider.dart';
 import 'package:baytech/components/notification.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +32,8 @@ class Baytech extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: Provider.of<ThemeProvider>(context, listen: false).themeData,
-      initialRoute: LoginPage.id,
+      initialRoute: WelcomePage
+      .id,
       routes: {
         KeyinAnimation.id: (context) => const KeyinAnimation(),
         WelcomePage.id: (context) => const WelcomePage(),

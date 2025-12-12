@@ -65,6 +65,7 @@ class _LoginState extends State<LoginPage> {
                       children: [
                         SizedBox(height: 70),
                         CostumTextFeild(
+                          textInputType: TextInputType.number,
                           hintText: "Phone number",
                           onchanged: (data) {
                             phoneNumber = data;
