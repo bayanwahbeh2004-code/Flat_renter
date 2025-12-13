@@ -55,10 +55,11 @@ class _HomeScreenState extends State<HomeScreen> {
             icon: const Icon(Icons.menu, color: Colors.black),
             onPressed: () async {
               User user = await getUser(context: context);
-              if (user.firstName != null)
+              if (user.firstName != null) {
                 Navigator.of(
                   context,
                 ).pushNamed(ProfileInforma.id, arguments: user);
+              }
             },
           ),
         ],

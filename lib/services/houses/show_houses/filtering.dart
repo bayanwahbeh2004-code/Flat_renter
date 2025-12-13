@@ -19,17 +19,17 @@ Future<List<Apartment>> Filtering({
       "&city_search=${filter.city}" +
       "&governorate_search=${filter.governorate}" +
       "&category_search=${filter.category}" +
-      "&min_price_search=${filter.minPrice}" +
-      "&max_price_search=${filter.maxPrice}" +
-      "&min_area_serach=${filter.minarea}" +
-      "&max_area_search=${filter.maxarea}" +
-      "&min_bedrooms_search=${filter.minBedroom}" +
-      "&max_bedrooms_search=${filter.maxBedroom}" +
-      "&min_bathrooms_search=${filter.minBathroom}" +
-      "&max_bathrooms_search=${filter.maxBathroom}" +
-      "&min_livingrooms_search=${filter.minLivingRoom}" +
-      "&max_livingrooms_search=${filter.maxLivingRoom}" +
-      "&descreption_search=${filter.description}";
+      "&min_price=${filter.minPrice}" +
+      "&max_price=${filter.maxPrice}" +
+      "&min_area=${filter.minarea}" +
+      "&max_area=${filter.maxarea}" +
+      "&min_bedrooms=${filter.minBedroom}" +
+      "&max_bedrooms=${filter.maxBedroom}" +
+      "&min_bathrooms=${filter.minBathroom}" +
+      "&max_bathrooms=${filter.maxBathroom}" +
+      "&min_livingrooms=${filter.minLivingRoom}" +
+      "&max_livingrooms=${filter.maxLivingRoom}" +
+      "&search=${filter.description}";
   try {
     Response response = await Api().get(
       url: url,
