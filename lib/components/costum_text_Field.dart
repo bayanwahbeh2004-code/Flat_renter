@@ -1,16 +1,19 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class CostumTextFeild extends StatelessWidget {
   String hintText;
   bool obscure;
+  bool? isNum=false;
   TextEditingController? controller;
   Function(String)? onchanged;
   CostumTextFeild({
     required this.hintText,
     this.obscure = false,
     this.onchanged,
-    this.controller,});
+    this.controller,
+    this.isNum});
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -38,6 +41,8 @@ class CostumTextFeild extends StatelessWidget {
           borderRadius: BorderRadius.circular(32),
         ),
       ),
+      keyboardType: isNum == true ? TextInputType.number:TextInputType.text,
+      inputFormatters: isNum == true ? [FilteringTextInputFormatter.digitsOnly]: <TextInputFormatter>[],
     );
   }
 }
