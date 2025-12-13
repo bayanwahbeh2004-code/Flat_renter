@@ -13,20 +13,7 @@ class Filteringpage extends StatefulWidget {
 }
 
 class _FilteringpageState extends State<Filteringpage> {
-  Filter filter = Filter(
-    city: ["city"],
-    governorate: ["governorate"],
-    maxBathroom: "maxBathroom",
-    maxBedroom: "maxBedroom",
-    maxLivingRoom: "maxLivingRoom",
-    maxPrice: "maxPrice",
-    maxarea: "maxarea",
-    minBathroom: "minBathroom",
-    minBedroom: "minBedroom",
-    minLivingRoom: "minLivingRoom",
-    minPrice: "minPrice",
-    minarea: "minarea",
-  );
+  Filter filter = Filter();
 
   @override
   Widget build(BuildContext context) {
@@ -73,14 +60,14 @@ class _FilteringpageState extends State<Filteringpage> {
                           CostumTextFeild(
                             hintText: "",
                             onchanged: (city) {
-                              filter.city.add(city);
+                              filter.city = city;
                             },
                           ),
                           const SizedBox(height: 10),
                           CostumTextFeild(
                             hintText: "",
                             onchanged: (governorate) {
-                              filter.governorate.add(governorate);
+                              filter.governorate = governorate;
                             },
                           ),
                           const SizedBox(height: 10),

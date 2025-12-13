@@ -3,7 +3,8 @@ import 'dart:io';
 import 'package:baytech/Models/Location.dart';
 
 class Apartment {
-  String? title,
+  String? id,
+      title,
       description,
       ownerId,
       category,
@@ -12,9 +13,8 @@ class Apartment {
       livingRooms,
       price,
       area;
-  List<File>? images = [];
-  List<String>? reviews = [];
-  File? mainImage;
+  List<String>? images = [];
+  String? mainImage;
   Location? location;
   Apartment({
     this.mainImage,
@@ -24,7 +24,6 @@ class Apartment {
     this.title,
     this.ownerId,
     this.images,
-    this.reviews,
     this.bedrooms,
     this.bathrooms,
     this.livingRooms,
@@ -36,13 +35,12 @@ class Apartment {
       mainImage: data['mainImage'],
       area: data['area'],
       title: data['title'],
-      ownerId: data['ownerId'],
-      images: List<File>.from(data['images']),
-      reviews: List<String>.from(data['reviews']),
+      ownerId: data['user_id'],
       bedrooms: data['bedrooms'],
       bathrooms: data['bathrooms'],
-      livingRooms: data['livingRooms'],
-      price: data['price'],
+      livingRooms: data['livingrooms'],
+      category: data['category'],
+      price: data['day_price'],
       location: Location.fromJson(data['location']),
     );
   }

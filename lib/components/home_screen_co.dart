@@ -1,5 +1,4 @@
 import 'package:baytech/Constants.dart';
-import 'package:baytech/Screens/FilteringPage.dart';
 import 'package:flutter/material.dart';
 
 Widget _buildminuRep(
@@ -53,26 +52,27 @@ class HomeScreen extends StatelessWidget {
             ),
             child: Row(
               children: [
-                Expanded(child: 
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(context, Filteringpage.id);
-                    },
-                    child: Container(
-                      width: double.infinity,
-                      height: 40,
-                      decoration: BoxDecoration(color: Color.fromARGB(0, 197, 197, 197),borderRadius: BorderRadius.circular(15)),
-                      child: Row(
-                        children: [
-                          Icon( Icons.tune,
-                          color: Color.fromARGB(255, 68, 68, 68),
-                          ),
-                          SizedBox(width: 20,),
-                          Text("Filter..",style: TextStyle(fontWeight: FontWeight.bold)),
-                        ],
+                const Expanded(
+                  child: TextField(
+                    decoration: InputDecoration(
+                      hintText: 'Search..',
+                      border: InputBorder.none,
+
+                      prefixIcon: Icon(
+                        Icons.search,
+                        color: Color.fromARGB(255, 68, 68, 68),
                       ),
                     ),
                   ),
+                ),
+                IconButton(
+                  icon: const Icon(
+                    Icons.tune,
+                    color: Color.fromARGB(255, 84, 83, 83),
+                  ),
+                  onPressed: () {
+                    //  الفلترة
+                  },
                 ),
               ],
             ),

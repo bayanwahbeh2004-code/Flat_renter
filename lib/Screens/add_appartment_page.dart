@@ -27,7 +27,7 @@ class _AddAppartmentPageState extends State<AddAppartmentPage> {
 
   // Controllers
   late TextEditingController titleController;
-  late TextEditingController townController;
+  late TextEditingController governorateController;
   late TextEditingController cityController;
   late TextEditingController bedroomsController;
   late TextEditingController bathroomsController;
@@ -49,7 +49,7 @@ class _AddAppartmentPageState extends State<AddAppartmentPage> {
 
   void _initializeControllers() {
     titleController = TextEditingController();
-    townController = TextEditingController();
+    governorateController = TextEditingController();
     cityController = TextEditingController();
     bedroomsController = TextEditingController();
     bathroomsController = TextEditingController();
@@ -62,8 +62,8 @@ class _AddAppartmentPageState extends State<AddAppartmentPage> {
 
   void _setupControllerListeners() {
     titleController.addListener(() => apartment.title = titleController.text);
-    townController.addListener(() => location.town = townController.text);
-    cityController.addListener(() => location.city = cityController.text);
+    governorateController.addListener(() => location.city = governorateController.text);
+    cityController.addListener(() => location.governorate = cityController.text);
     bedroomsController.addListener(
       () => apartment.bedrooms = bedroomsController.text,
     );
@@ -88,7 +88,7 @@ class _AddAppartmentPageState extends State<AddAppartmentPage> {
   @override
   void dispose() {
     titleController.dispose();
-    townController.dispose();
+    governorateController.dispose();
     cityController.dispose();
     bedroomsController.dispose();
     bathroomsController.dispose();
@@ -141,14 +141,14 @@ class _AddAppartmentPageState extends State<AddAppartmentPage> {
                     AddingCustomTextField(
                       width: 190,
                       icon: Icons.location_on_outlined,
-                      hintText: "town..",
-                      controller: townController,
+                      hintText: "city..",
+                      controller: cityController,
                     ),
                     AddingCustomTextField(
                       width: 190,
                       icon: Icons.location_on_outlined,
-                      hintText: "city..",
-                      controller: cityController,
+                      hintText: "governorate..",
+                      controller: governorateController,
                     ),
                   ],
                 ),

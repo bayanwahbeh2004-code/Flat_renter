@@ -1,12 +1,12 @@
 class Location {
-  String? town,city;
+  String? governorate,city;
   Location({
-    this.town,
+    this.governorate,
     this.city,
   });
   factory Location.fromJson(Map<String, dynamic> data){
     return Location(
-      town: data['town'],
+      governorate: data['governorate'],
       city: data['city'],
     );
   }
