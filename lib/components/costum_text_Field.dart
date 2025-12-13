@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class CostumTextFeild extends StatefulWidget {
   String hintText;
@@ -61,7 +62,7 @@ class _CostumTextFeildState extends State<CostumTextFeild> {
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(32),
         ),
-      ),
+      )
     );
   }
 }

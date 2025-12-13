@@ -57,6 +57,8 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                     radius_for_the_circle: 225,
                   ),
                 ),
+
+                // ================= Content =================
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 28.0),
                   child: Column(
@@ -210,7 +212,10 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                             },
                             child: const Text(
                               "log in",
-                              style: TextStyle(color: KPurple, fontSize: 18),
+                              style: TextStyle(
+                                color: KPurple,
+                                fontSize: 18,
+                              ),
                             ),
                           ),
                         ],

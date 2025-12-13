@@ -1,4 +1,5 @@
 import 'package:baytech/Screens/Bookings.dart';
+import 'package:baytech/Screens/FilteringPage.dart';
 import 'package:baytech/Screens/HomeApp.dart';
 import 'package:baytech/Screens/Login_Page.dart';
 import 'package:baytech/Screens/Personal_Info_Page.dart';
@@ -32,8 +33,7 @@ class Baytech extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: Provider.of<ThemeProvider>(context, listen: false).themeData,
-      initialRoute: WelcomePage
-      .id,
+      initialRoute:HomeScreen.id,
       routes: {
         KeyinAnimation.id: (context) => const KeyinAnimation(),
         WelcomePage.id: (context) => const WelcomePage(),
@@ -48,6 +48,7 @@ class Baytech extends StatelessWidget {
         ChatsPage.id: (context) => const ChatsPage(),
         YourEstatesPage.id: (context) => const YourEstatesPage(),
         ProfileInforma.id: (context) => ProfileInforma(),
+        Filteringpage.id: (context) => Filteringpage(),
       },
     );
   }
