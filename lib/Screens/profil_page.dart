@@ -302,7 +302,7 @@ class _ProfileInformaState extends State<ProfileInforma> {
                         children: [
                           CircleAvatar(
                             backgroundImage: AssetImage(
-                              "assets/team/images/bayan_khere.png",
+                              "assets/team/images/bayan_kheder.png",
                             ),
                             radius: 50,
                           ),

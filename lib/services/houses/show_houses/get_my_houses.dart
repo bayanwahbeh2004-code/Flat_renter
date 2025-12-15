@@ -24,11 +24,14 @@ Future<List<Apartment>> getHousesForOwner({
         child: Text("Your account was deleted by the admin"),
       );
       return [];
-    } else {
+    } else if (response.statusCode == 200) {
       List<dynamic> data = jsonDecode(response.body)['data'];
       List<Apartment> houses = [];
       data.forEach((item) => houses.add(Apartment.fromJson(item['House'])));
       return houses;
+    } else {
+      print("status code is: ${response.statusCode}");
+      return [];
     }
   } catch (e) {
     print(e.toString());

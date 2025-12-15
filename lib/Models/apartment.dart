@@ -16,10 +16,13 @@ class Apartment {
   List<String>? images = [];
   String? mainImage;
   Location? location;
+  bool? isFavourite;
   Apartment({
+    this.id,
     this.mainImage,
     this.description,
     this.category,
+    this.isFavourite,
     this.area,
     this.title,
     this.ownerId,
@@ -32,16 +35,18 @@ class Apartment {
   });
   factory Apartment.fromJson(data) {
     return Apartment(
+      id: data['id'].toString(),
       mainImage: data['mainImage'],
       area: data['area'],
       title: data['title'],
-      ownerId: data['user_id'],
-      bedrooms: data['bedrooms'],
-      bathrooms: data['bathrooms'],
-      livingRooms: data['livingrooms'],
+      ownerId: data['user_id'].toString(),
+      bedrooms: data['bedrooms'].toString(),
+      bathrooms: data['bathrooms'].toString(),
+      livingRooms: data['livingrooms'].toString(),
       category: data['category'],
-      price: data['day_price'],
-      location: Location.fromJson(data['location']),
+      price: data['day_price'].toString(),
+      description: data['descreption'],
+      location: Location.fromJson(data),
     );
   }
 }

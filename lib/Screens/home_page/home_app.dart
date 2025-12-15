@@ -2,6 +2,7 @@ import 'package:baytech/Models/User.dart';
 import 'package:baytech/Screens/Bookings.dart';
 import 'package:baytech/Screens/chat_page.dart';
 import 'package:baytech/Screens/estate_page.dart';
+import 'package:baytech/Screens/home_page/home_content.dart'; // Add this import
 import 'package:baytech/Screens/profil_page.dart';
 import 'package:baytech/components/BottomNaviga.dart';
 import 'package:baytech/components/notification.dart';
@@ -23,10 +24,10 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     _widgetOptions = <Widget>[
-      const HomeScreen(),
-      const BookingsPage(),
-      const YourEstatesPage(),
-      const ChatsPage(),
+      HomeContent(),
+      BookingsPage(),
+      YourEstatesPage(),
+      ChatsPage(),
     ];
   }
 

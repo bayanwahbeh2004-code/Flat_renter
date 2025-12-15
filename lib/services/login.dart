@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:baytech/Constants.dart';
 import 'package:baytech/Models/User.dart';
-import 'package:baytech/Screens/HomeApp.dart';
+import 'package:baytech/Screens/home_page/home_app.dart';
 import 'package:baytech/Screens/Waiting_Page.dart';
 import 'package:baytech/helper/api.dart';
 import 'package:baytech/helper/show_dialoge.dart';
@@ -27,6 +27,7 @@ Future<void> Login({
       showDialoge(context, child: Text(message));
     } else {
       AuthService.saveToken(body['Token']);
+      print(body['Token']);
       bool active = await userStatus(context: context);
       if ((await getUser(context: context)).role == 'admin') {
         showDialoge(

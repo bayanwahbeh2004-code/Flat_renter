@@ -8,7 +8,7 @@ import 'package:baytech/helper/show_dialoge.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 
-Future<void> deleteHouse({
+Future<void> deleteImages({
   required BuildContext context,
   required Apartment house,
   String? token,

@@ -15,21 +15,21 @@ Future<List<Apartment>> Filtering({
 }) async {
   String url =
       "${KbaseUrl}getHouses?" +
-      "title_search=${filter.title}" +
-      "&city_search=${filter.city}" +
-      "&governorate_search=${filter.governorate}" +
-      "&category_search=${filter.category}" +
-      "&min_price=${filter.minPrice}" +
-      "&max_price=${filter.maxPrice}" +
-      "&min_area=${filter.minarea}" +
-      "&max_area=${filter.maxarea}" +
-      "&min_bedrooms=${filter.minBedroom}" +
-      "&max_bedrooms=${filter.maxBedroom}" +
-      "&min_bathrooms=${filter.minBathroom}" +
-      "&max_bathrooms=${filter.maxBathroom}" +
-      "&min_livingrooms=${filter.minLivingRoom}" +
-      "&max_livingrooms=${filter.maxLivingRoom}" +
-      "&search=${filter.description}";
+      "title_search=${filter.title ?? ''}" +
+      "&city_search=${filter.city ?? ''}" +
+      "&governorate_search=${filter.governorate ?? ''}" +
+      "&category_search=${filter.category ?? ''}" +
+      "&min_price=${filter.minPrice ?? ''}" +
+      "&max_price=${filter.maxPrice ?? ''}" +
+      "&min_area=${filter.minarea ?? ''}" +
+      "&max_area=${filter.maxarea ?? ''}" +
+      "&min_bedrooms=${filter.minBedroom ?? ''}" +
+      "&max_bedrooms=${filter.maxBedroom ?? ''}" +
+      "&min_bathrooms=${filter.minBathroom ?? ''}" +
+      "&max_bathrooms=${filter.maxBathroom ?? ''}" +
+      "&min_livingrooms=${filter.minLivingRoom ?? ''}" +
+      "&max_livingrooms=${filter.maxLivingRoom ?? ''}" +
+      "&search=${filter.description ?? ''}";
   try {
     Response response = await Api().get(
       url: url,
@@ -42,18 +42,21 @@ Future<List<Apartment>> Filtering({
         child: Text("Your account was deleted by the admin"),
       );
       return [];
-    } else {
-      List<dynamic> data = jsonDecode(response.body)['data'];
+    } else if (response.statusCode == 200) {
       List<Apartment> houses = [];
+      List<dynamic> data = jsonDecode(response.body)['data'];
       data.forEach((item) => houses.add(Apartment.fromJson(item['House'])));
+
       return houses;
+    } else {
+      return [];
     }
   } catch (e) {
     print(e.toString());
     showDialoge(
       context,
       child: Text(
-        "something went wrong, please check your internet connection.",
+        "something went wrong. please check your internet connection.",
       ),
     );
     return [];

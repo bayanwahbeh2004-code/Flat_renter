@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:baytech/Screens/HomeApp.dart';
+import 'package:baytech/Screens/home_page/home_app.dart';
 import 'package:baytech/components/SemiCircle.dart';
 import 'package:baytech/services/users/user_active.dart';
 import 'package:flutter/material.dart';
@@ -30,6 +30,7 @@ class _WaitingPageState extends State<WaitingPage> {
   Future<void> _checkStatus() async {
     try {
       bool isActive = await userStatus(context: context);
+      print(isActive);
       if (isActive && mounted) {
         _timer?.cancel();
         Navigator.popAndPushNamed(context, HomeScreen.id);

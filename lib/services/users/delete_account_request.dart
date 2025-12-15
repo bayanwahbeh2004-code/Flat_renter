@@ -25,7 +25,6 @@ Future<void> deleteRequest({required BuildContext context}) async {
     Map<String, dynamic> body = jsonDecode(response.body);
     String message = body["message"];
     print(await AuthService.getToken());
-    //  Navigator.popAndPushNamed(context, KeyinAnimation.id);
     showDialoge(context, child: Text(message));
   } catch (e) {
     print(e.toString());

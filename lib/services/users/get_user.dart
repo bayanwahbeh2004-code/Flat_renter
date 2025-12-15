@@ -25,7 +25,7 @@ Future<User> getUser({required BuildContext context}) async {
       );
       return User();
     } else {
-      Map<String, dynamic> user = jsonDecode(data.body);
+      Map<String, dynamic> user = jsonDecode(data.body)['User'];
       return User(
         id: user['id'],
         firstName: user['first_name'],

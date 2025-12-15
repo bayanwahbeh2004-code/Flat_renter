@@ -25,7 +25,11 @@ Future<bool> isfavourite({
       );
       return false;
     } else {
-      return data.body==1;
+      if (data.body == '1') {
+        return true;
+      } else {
+        return false;
+      }
     }
   } catch (e) {
     print(e.toString());
