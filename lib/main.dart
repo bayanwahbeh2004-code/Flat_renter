@@ -13,6 +13,7 @@ import 'package:baytech/Screens/profil_page.dart';
 import 'package:baytech/Screens/viewAppartment.dart';
 import 'package:baytech/Theme/theme_proider.dart';
 import 'package:baytech/components/notification.dart';
+import 'package:baytech/helper/RitingWidget.dart';
 import 'package:baytech/providers/Filter_provider.dart';
 import 'package:baytech/providers/cities_provider.dart';
 import 'package:baytech/providers/favourites_provider.dart';
@@ -44,24 +45,25 @@ class Baytech extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: Provider.of<ThemeProvider>(context, listen: false).themeData,
-      initialRoute: HomeScreen.id,
-      routes: {
-        KeyinAnimation.id: (context) => const KeyinAnimation(),
-        WelcomePage.id: (context) => const WelcomePage(),
-        LoginPage.id: (context) => LoginPage(),
-        SignupPage.id: (context) => SignupPage(),
-        WaitingPage.id: (context) => WaitingPage(),
-        AddAppartmentPage.id: (context) => AddAppartmentPage(),
-        PersonalInfoPage.id: (context) => PersonalInfoPage(),
-        HomeScreen.id: (context) => HomeScreen(),
-        NotificationScreen.id: (context) => NotificationScreen(),
-        BookingsPage.id: (context) => BookingsPage(),
-        ChatsPage.id: (context) => ChatsPage(),
-        YourEstatesPage.id: (context) => YourEstatesPage(),
-        ProfileInforma.id: (context) => ProfileInforma(),
-        Filteringpage.id: (context) => Filteringpage(),
-        ApartmentDetailsPage.id: (context) => ApartmentDetailsPage(),
-      },
+      home: Ritingwidget(),
+      // initialRoute: Ritingwidget.id,
+      // routes: {
+      //   KeyinAnimation.id: (context) => const KeyinAnimation(),
+      //   WelcomePage.id: (context) => const WelcomePage(),
+      //   LoginPage.id: (context) => LoginPage(),
+      //   SignupPage.id: (context) => SignupPage(),
+      //   WaitingPage.id: (context) => WaitingPage(),
+      //   AddAppartmentPage.id: (context) => AddAppartmentPage(),
+      //   PersonalInfoPage.id: (context) => PersonalInfoPage(),
+      //   HomeScreen.id: (context) => HomeScreen(),
+      //   NotificationScreen.id: (context) => NotificationScreen(),
+      //   BookingsPage.id: (context) => BookingsPage(),
+      //   ChatsPage.id: (context) => ChatsPage(),
+      //   YourEstatesPage.id: (context) => YourEstatesPage(),
+      //   ProfileInforma.id: (context) => ProfileInforma(),
+      //   Filteringpage.id: (context) => Filteringpage(),
+      //   ApartmentDetailsPage.id: (context) => ApartmentDetailsPage(),
+      // },
     );
   }
 }
