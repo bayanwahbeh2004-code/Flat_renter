@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:baytech/Constants.dart';
 import 'package:baytech/Models/apartment.dart';
+import 'package:baytech/Screens/Login_Page.dart';
 import 'package:baytech/Screens/Welcome_Page.dart';
 import 'package:baytech/auth.dart';
 import 'package:baytech/helper/Api.dart';
@@ -18,16 +19,20 @@ Future<List<Apartment>> FavouriteHousesList({
       token: await AuthService.getToken(),
     );
     if (response.statusCode == 401) {
-      Navigator.popAndPushNamed(context, WelcomePage.id);
+       Navigator.popAndPushNamed(context, WelcomePage.id);
       showDialoge(
         context,
-        child: Text("Your account was deleted by the admin"),
+        child: Text(
+          'Your account was deleted by the admin or session was over.',
+        ),
       );
       return [];
     } else {
-      List<dynamic> data = jsonDecode(response.body)['data'];
+      List<dynamic> data = jsonDecode(response.body)['data'] ?? [];
       List<Apartment> houses = [];
-      data.forEach((item) => houses.add(Apartment.fromJson(item['House'])));
+      if (data.isNotEmpty) {
+        data.forEach((item) => houses.add(Apartment.fromJson(item['House'])));
+      }
       return houses;
     }
   } catch (e) {

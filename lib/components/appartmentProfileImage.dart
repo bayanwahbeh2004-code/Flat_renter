@@ -10,7 +10,6 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 class AppartmentProfileImage extends StatefulWidget {
   final Apartment house;
   double width, heigth;
-
   AppartmentProfileImage({
     super.key,
     required this.width,
@@ -92,7 +91,7 @@ class _AppartmentProfileImageState extends State<AppartmentProfileImage> {
                           size: widget.heigth * 0.04,
                         ),
                         Text(
-                          '${widget.house.location!.governorate!}, ${widget.house.location!.city!}',
+                          '${widget.house.governorate!}, ${widget.house.city!}',
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: widget.width * 0.06,

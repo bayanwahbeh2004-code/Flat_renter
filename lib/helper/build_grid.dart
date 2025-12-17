@@ -2,7 +2,7 @@ import 'package:baytech/Models/apartment.dart';
 import 'package:baytech/components/appartmentProfileImage.dart';
 import 'package:flutter/material.dart';
 
-Widget buildGrid(List<Apartment> data) {
+Widget buildGrid(List<Apartment> data, bool mine) {
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 8.0),
     child: GridView.builder(
@@ -16,6 +16,7 @@ Widget buildGrid(List<Apartment> data) {
         childAspectRatio: 0.6,
       ),
       itemBuilder: (context, index) {
+        data[index].mine = mine;
         return AppartmentProfileImage(
           house: data[index],
           heigth: 300,

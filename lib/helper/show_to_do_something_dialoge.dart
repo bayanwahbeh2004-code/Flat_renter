@@ -6,7 +6,6 @@ void showToDoSomeThingDialoge(
   BuildContext context, {
   required String message,
   Future<dynamic>? toDo,
-  Future<dynamic>? toDo2,
   bool cancel = false,
   required String whereTo,
 }) {
@@ -26,16 +25,12 @@ void showToDoSomeThingDialoge(
           TextButton(
             child: const Text('ok', style: TextStyle(color: KPurple)),
             onPressed: () async {
-              bool ok1 = false, ok2 = false;
+              bool ok = false;
               if (toDo != null) {
                 await toDo;
-                ok1 = true;
+                ok = true;
               }
-              if (toDo2 != null) {
-                await toDo2;
-                ok2 = true;
-              }
-              if (ok1 && ok2) {
+              if (ok) {
                 Navigator.popAndPushNamed(context, whereTo);
               }
             },

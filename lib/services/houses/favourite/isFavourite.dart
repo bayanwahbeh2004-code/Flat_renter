@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:baytech/Constants.dart';
+import 'package:baytech/Screens/Login_Page.dart';
 import 'package:baytech/Screens/Welcome_Page.dart';
 import 'package:baytech/auth.dart';
 import 'package:baytech/helper/Api.dart';
@@ -21,7 +22,9 @@ Future<bool> isfavourite({
       Navigator.popAndPushNamed(context, WelcomePage.id);
       showDialoge(
         context,
-        child: Text("Your account was deleted by the admin"),
+        child: Text(
+          'Your account was deleted by the admin or session was over.',
+        ),
       );
       return false;
     } else {

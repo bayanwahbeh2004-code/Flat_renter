@@ -1,7 +1,5 @@
-import 'package:baytech/Models/Filter.dart';
 import 'package:baytech/Models/apartment.dart';
 import 'package:baytech/services/houses/favourite/favourite_houses_list.dart';
-import 'package:baytech/services/houses/show_houses/filtering.dart';
 import 'package:flutter/material.dart';
 
 class FavouritesProvider extends ChangeNotifier {

@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:baytech/Constants.dart';
 import 'package:baytech/Models/apartment.dart';
+import 'package:baytech/Screens/Login_Page.dart';
 import 'package:baytech/Screens/Welcome_Page.dart';
 import 'package:baytech/auth.dart';
 import 'package:baytech/helper/api.dart';
@@ -19,11 +20,11 @@ Future<void> addToFavourites({
       token: await AuthService.getToken(),
     );
     Map<String, dynamic> body = jsonDecode(response.body);
-    if (response.statusCode == 401) {
-      Navigator.popAndPushNamed(context, WelcomePage.id);
+     if (response.statusCode == 401) {
+       Navigator.popAndPushNamed(context, WelcomePage.id);
       showDialoge(
         context,
-        child: Text('Your account was deleted by the admin.'),
+        child: Text('Your account was deleted by the admin or session was over.'),
       );
     }
     if (response.statusCode != 201 && response.statusCode != 200) {

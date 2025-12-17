@@ -28,6 +28,8 @@ class _AddingCustomTextFieldState extends State<AddingCustomTextField> {
       width: widget.width,
       child: Center(
         child: TextFormField(
+          textAlign: TextAlign.center, 
+          textAlignVertical: TextAlignVertical.center,
           keyboardType: widget.textInputType,
           controller: widget.controller,
           onChanged: widget.onchanged,

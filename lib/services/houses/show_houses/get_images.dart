@@ -19,14 +19,16 @@ Future<List<String>> getImages({
       token: await AuthService.getToken(),
     );
     if (response.statusCode == 401) {
-      Navigator.popAndPushNamed(context, WelcomePage.id);
+       Navigator.popAndPushNamed(context, WelcomePage.id);
       showDialoge(
         context,
-        child: Text("Your account was deleted by the admin"),
+        child: Text(
+          'Your account was deleted by the admin or session was over.',
+        ),
       );
       return [];
     } else {
-      List<dynamic> data = jsonDecode(response.body)['data'];
+      List<dynamic> data = jsonDecode(response.body)['data']??[];
       List<String> images = [];
       data.forEach((item) => images.add(item['Image']['houseImages']));
       return images;

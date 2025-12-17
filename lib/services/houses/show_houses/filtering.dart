@@ -39,7 +39,9 @@ Future<List<Apartment>> Filtering({
       Navigator.popAndPushNamed(context, WelcomePage.id);
       showDialoge(
         context,
-        child: Text("Your account was deleted by the admin"),
+        child: Text(
+          'Your account was deleted by the admin or session was over.',
+        ),
       );
       return [];
     } else if (response.statusCode == 200) {

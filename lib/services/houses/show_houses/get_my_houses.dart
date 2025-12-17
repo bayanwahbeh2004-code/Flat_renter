@@ -21,11 +21,13 @@ Future<List<Apartment>> getHousesForOwner({
       Navigator.popAndPushNamed(context, WelcomePage.id);
       showDialoge(
         context,
-        child: Text("Your account was deleted by the admin"),
+        child: Text(
+          'Your account was deleted by the admin or session was over.',
+        ),
       );
       return [];
     } else if (response.statusCode == 200) {
-      List<dynamic> data = jsonDecode(response.body)['data'];
+      List<dynamic> data = jsonDecode(response.body)['data'] ?? [];
       List<Apartment> houses = [];
       data.forEach((item) => houses.add(Apartment.fromJson(item['House'])));
       return houses;

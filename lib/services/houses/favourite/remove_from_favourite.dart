@@ -1,5 +1,6 @@
 import 'package:baytech/Constants.dart';
 import 'package:baytech/Models/apartment.dart';
+import 'package:baytech/Screens/Login_Page.dart';
 import 'package:baytech/Screens/Welcome_Page.dart';
 import 'package:baytech/auth.dart';
 import 'package:baytech/helper/api.dart';
@@ -17,11 +18,11 @@ Future<void> removeFromFavourite({
       url: url,
       token: await AuthService.getToken(),
     );
-    if (response.statusCode == 401) {
+     if (response.statusCode == 401) {
       Navigator.popAndPushNamed(context, WelcomePage.id);
       showDialoge(
         context,
-        child: Text('Your account was deleted by the admin.'),
+        child: Text('Your account was deleted by the admin or session was over.'),
       );
     }
   } catch (e) {
@@ -29,7 +30,7 @@ Future<void> removeFromFavourite({
     showDialoge(
       context,
       child: Text(
-        "something went wrong, please double check your data and your internet connection.",
+        "something went wrong, please double check your data and your internet connection",
       ),
     );
   }

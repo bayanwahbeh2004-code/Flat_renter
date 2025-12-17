@@ -15,6 +15,7 @@ Future<void> UserRegister({
   String url = KbaseUrl + "register";
   try {
     var response = await Api().multiPartRequest(
+      method: 'POST',
       url: url,
       fields: {
         "first_name": data.firstName,

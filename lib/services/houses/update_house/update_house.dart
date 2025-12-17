@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:baytech/Constants.dart';
 import 'package:baytech/Models/apartment.dart';
+import 'package:baytech/Screens/Login_Page.dart';
 import 'package:baytech/Screens/Welcome_Page.dart';
 import 'package:baytech/auth.dart';
 import 'package:baytech/helper/api.dart';
@@ -8,43 +9,60 @@ import 'package:baytech/helper/show_dialoge.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 
-Future<Apartment> updateHouse({
+Future<bool> updateHouse({
   required BuildContext context,
+  required Apartment old_house,
   required Apartment house,
+  required String mainImage,
+  required String id,
 }) async {
-  String url = "${KbaseUrl}updateHouse/$house.id";
+  String url = "${KbaseUrl}updateHouse/$id";
   try {
-    Response response = await Api().post(
-      url: url,
+    var response = await Api().multiPartRequest(
       token: await AuthService.getToken(),
+      url: url,
+      fields: {
+        "_method": 'PUT',
+        "governorate": house.governorate ?? old_house.governorate,
+        "city": house.city ?? old_house.city,
+        "category": house.category ?? old_house.category,
+        "title": house.title ?? old_house.title,
+        "bedrooms": house.bedrooms ?? old_house.bedrooms,
+        "bathrooms": house.bathrooms ?? old_house.bathrooms,
+        "livingrooms": house.livingRooms ?? old_house.bathrooms,
+        "area": house.area ?? old_house.area,
+        "day_price": house.price ?? old_house.price,
+        "descreption": house.description ?? old_house.description,
+      },
+      files: {"mainImage": mainImage},
     );
-    Map<String, dynamic> data = jsonDecode(response.body);
+    var responseBody = await response.stream.bytesToString();
+    var body = json.decode(responseBody);
     if (response.statusCode == 401) {
       Navigator.popAndPushNamed(context, WelcomePage.id);
       showDialoge(
         context,
-        child: Text('Your account was deleted by the admin.'),
+        child: Text(
+          'Your account was deleted by the admin or session was over.',
+        ),
       );
-      return Apartment();
-    } else if (response.statusCode != 201 && response.statusCode != 200) {
-      if (data.containsKey("errors")) {
-        Map<String, dynamic> message = data["errors"];
-        String show = "";
-        message.forEach((key, value) => show = show + value[0].toString());
-        showDialoge(context, child: Text(show));
+    }
+    if (response.statusCode != 200) {
+      if (body.containsKey('message')) {
+        dynamic message = body["message"];
+        showDialoge(context, child: Text(message.toString()));
       }
-      return Apartment();
+      return false;
     } else {
-      return Apartment.fromJson(data['data']['House']);
+      return true;
     }
   } catch (e) {
-    print(e.toString());
     showDialoge(
       context,
       child: Text(
-        "something went wrong, please check your internet connection.",
+        "something went wrong, please check your interntet connection. ${e.toString()}",
       ),
     );
-    return Apartment();
+    return true;
   }
 }

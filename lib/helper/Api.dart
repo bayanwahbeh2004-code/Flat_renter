@@ -77,11 +77,16 @@ class Api {
 
   // post method with media
   Future<http.StreamedResponse> multiPartRequest({
+    String? method,
     required String url,
     required Map<String, dynamic> fields,
     required Map<String, dynamic> files,
+    String? token,
   }) async {
-    var request = http.MultipartRequest('POST', Uri.parse(url));
+    var request = http.MultipartRequest(method ?? 'POST', Uri.parse(url));
+    if (token != null && token.isNotEmpty) {
+      request.headers['Authorization'] = 'Bearer $token';
+    }
     request.headers['Accept'] = 'application/json';
     request.headers['X-Requested-With'] = 'XMLHttpRequest';
     request.fields.addAll(Map<String, String>.from(fields));

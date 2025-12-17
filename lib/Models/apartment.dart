@@ -1,7 +1,5 @@
 import 'dart:io';
 
-import 'package:baytech/Models/Location.dart';
-
 class Apartment {
   String? id,
       title,
@@ -12,17 +10,19 @@ class Apartment {
       bathrooms,
       livingRooms,
       price,
-      area;
+      area,
+      governorate,
+      city;
   List<String>? images = [];
   String? mainImage;
-  Location? location;
-  bool? isFavourite;
+  bool? isFavourite, mine;
   Apartment({
     this.id,
     this.mainImage,
     this.description,
     this.category,
     this.isFavourite,
+    this.mine,
     this.area,
     this.title,
     this.ownerId,
@@ -31,7 +31,8 @@ class Apartment {
     this.bathrooms,
     this.livingRooms,
     this.price,
-    this.location,
+    this.city,
+    this.governorate,
   });
   factory Apartment.fromJson(data) {
     return Apartment(
@@ -46,7 +47,8 @@ class Apartment {
       category: data['category'],
       price: data['day_price'].toString(),
       description: data['descreption'],
-      location: Location.fromJson(data),
+      city: data['city'],
+      governorate: data['governorate'],
     );
   }
 }

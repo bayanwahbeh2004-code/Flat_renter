@@ -195,18 +195,18 @@ class _HomeContentState extends State<HomeContent> {
                       onTap: () => currentSelectedButton('All'),
                     ),
                     _buildMenuButton(
-                      'Hotels',
+                      'Hotel',
                       isSelected:
-                          buttonSelected == 'Hotels' &&
+                          buttonSelected == 'Hotel' &&
                           !filterProvider.hasActiveFilter,
-                      onTap: () => currentSelectedButton('Hotels'),
+                      onTap: () => currentSelectedButton('Hotel'),
                     ),
                     _buildMenuButton(
-                      'Rooms',
+                      'Room',
                       isSelected:
-                          buttonSelected == 'Rooms' &&
+                          buttonSelected == 'Room' &&
                           !filterProvider.hasActiveFilter,
-                      onTap: () => currentSelectedButton('Rooms'),
+                      onTap: () => currentSelectedButton('Room'),
                     ),
                     _buildMenuButton(
                       'Duplex',
@@ -223,11 +223,11 @@ class _HomeContentState extends State<HomeContent> {
                       onTap: () => currentSelectedButton('Villa'),
                     ),
                     _buildMenuButton(
-                      'Suites',
+                      'Suite',
                       isSelected:
-                          buttonSelected == 'Suites' &&
+                          buttonSelected == 'Suite' &&
                           !filterProvider.hasActiveFilter,
-                      onTap: () => currentSelectedButton('Suites'),
+                      onTap: () => currentSelectedButton('Suite'),
                     ),
                     _buildMenuButton(
                       'Apartment',
@@ -285,7 +285,7 @@ class _HomeContentState extends State<HomeContent> {
                           : 530,
                       child: Padding(
                         padding: const EdgeInsets.only(bottom: 16.0),
-                        child: buildGrid(filterProviderConsumer.houses),
+                        child: buildGrid(filterProviderConsumer.houses, false),
                       ),
                     ),
             ],

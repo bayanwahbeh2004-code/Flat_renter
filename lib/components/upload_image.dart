@@ -18,7 +18,6 @@ class UploadImage extends StatefulWidget {
     this.type,
   });
 
-
   @override
   State<UploadImage> createState() => _UploadImageState();
 }
@@ -52,11 +51,11 @@ class _UploadImageState extends State<UploadImage> {
             : ClipRRect(
                 borderRadius: BorderRadiusGeometry.circular(16),
                 child: Image.file(
-                      widget.image!,
-                      fit: BoxFit.fill,
-                      height: widget.height,
-                      width: widget.width,
-                    )
+                  widget.image!,
+                  fit: BoxFit.cover,
+                  height: widget.height,
+                  width: widget.width,
+                ),
               ),
       ),
     );

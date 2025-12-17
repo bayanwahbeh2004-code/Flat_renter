@@ -28,7 +28,12 @@ class Filteringpage extends StatelessWidget {
               Expanded(
                 child: ListView(
                   children: [
-                    location = CityGovernorate(),
+                    location = CityGovernorate(
+                      onChanged: (gov, city) {
+                        filter.city = city;
+                        filter.governorate = gov;
+                      },
+                    ),
                     SizedBox(height: 10),
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -212,9 +217,6 @@ class Filteringpage extends StatelessWidget {
                 text: "search",
                 onTap: () async {
                   filterProvider.clearFilter();
-                //  print(location!.governorate);
-                  filter.city = location!.city;
-                  filter.governorate = location!.governorate;
                   await filterProvider.setFilter(filter, context);
                   Navigator.pop(context);
                 },
