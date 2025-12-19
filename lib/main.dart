@@ -15,6 +15,7 @@ import 'package:baytech/Screens/viewAppartment.dart';
 import 'package:baytech/Theme/theme_proider.dart';
 import 'package:baytech/Screens/calendar_booking_page.dart';
 import 'package:baytech/components/notification.dart';
+import 'package:baytech/helper/RitingWidget.dart';
 import 'package:baytech/providers/Filter_provider.dart';
 import 'package:baytech/providers/cities_provider.dart';
 import 'package:baytech/providers/favourites_provider.dart';
