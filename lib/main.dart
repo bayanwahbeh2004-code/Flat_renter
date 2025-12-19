@@ -13,6 +13,7 @@ import 'package:baytech/Screens/etate_page/estate_page.dart';
 import 'package:baytech/Screens/profil_page.dart';
 import 'package:baytech/Screens/viewAppartment.dart';
 import 'package:baytech/Theme/theme_proider.dart';
+import 'package:baytech/Screens/calendar_booking_page.dart';
 import 'package:baytech/components/notification.dart';
 import 'package:baytech/providers/Filter_provider.dart';
 import 'package:baytech/providers/cities_provider.dart';
@@ -46,7 +47,7 @@ class Baytech extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: Provider.of<ThemeProvider>(context, listen: false).themeData,
+      theme: Provider.of<ThemeProvider>(context).themeData,
       initialRoute: HomeScreen.id,
       routes: {
         KeyinAnimation.id: (context) => const KeyinAnimation(),
@@ -65,6 +66,7 @@ class Baytech extends StatelessWidget {
         ProfileInforma.id: (context) => ProfileInforma(),
         Filteringpage.id: (context) => Filteringpage(),
         ApartmentDetailsPage.id: (context) => ApartmentDetailsPage(),
+        calendar_book.id: (context) => calendar_book(),
       },
     );
   }

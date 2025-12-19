@@ -1,11 +1,7 @@
-import 'package:baytech/Constants.dart';
-import 'package:baytech/Screens/add_appartment_page.dart';
 import 'package:baytech/Screens/etate_page/favurites.dart';
 import 'package:baytech/Screens/etate_page/my_houses.dart';
-import 'package:baytech/helper/build_grid.dart';
-import 'package:baytech/providers/favourites_provider.dart';
+
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class YourEstatesPage extends StatefulWidget {
   static String id = "Your Estates Page";
@@ -36,18 +32,14 @@ class _YourEstatesPageState extends State<YourEstatesPage> {
             child: Row(
               children: [
                 _buildminuRep(
+                  context,
                   'My houses',
                   isSelected: selectButton == 'My houses',
                   onTap: () => selectButNow('My houses'),
                 ),
                 SizedBox(width: 10),
                 _buildminuRep(
-                  'Renting requests',
-                  isSelected: selectButton == 'Renting requests',
-                  onTap: () => selectButNow('Renting requests'),
-                ),
-                SizedBox(width: 10),
-                _buildminuRep(
+                  context,
                   'Favourites',
                   isSelected: selectButton == 'Favourites',
                   onTap: () => selectButNow('Favourites'),
@@ -60,13 +52,13 @@ class _YourEstatesPageState extends State<YourEstatesPage> {
         // Favourites content
         if (selectButton == 'Favourites') Favourites(),
         if (selectButton == 'My houses') MyHouses(),
-        //if(selectButton=='Renting requests'),
       ],
     );
   }
 }
 
 Widget _buildminuRep(
+  BuildContext context,
   String title, {
   bool isSelected = false,
   VoidCallback? onTap,
@@ -78,13 +70,17 @@ Widget _buildminuRep(
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
         decoration: BoxDecoration(
-          color: isSelected ? Colors.black : Koption,
+          color: isSelected
+              ? Theme.of(context).colorScheme.primary
+              : Theme.of(context).colorScheme.primaryContainer,
           borderRadius: const BorderRadius.all(Radius.circular(20)),
         ),
         child: Text(
           title,
           style: TextStyle(
-            color: isSelected ? Colors.white : Colors.black87,
+            color: isSelected
+                ? Theme.of(context).colorScheme.onPrimary
+                : Theme.of(context).colorScheme.onPrimaryContainer,
             fontWeight: FontWeight.bold,
             fontSize: 14,
           ),

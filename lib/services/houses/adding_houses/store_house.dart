@@ -29,6 +29,7 @@ Future<bool> storeHouse({
         context,
         child: Text(
           'Property photos field is required, please upload at least one picture',
+          style: TextStyle(color: Theme.of(context).colorScheme.primary),
         ),
       );
       await deleteHouse(context: context, house: successfullyAdded);

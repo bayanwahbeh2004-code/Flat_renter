@@ -3,13 +3,8 @@ import 'package:flutter/material.dart';
 class NotificationItem {
   final String title;
   final String body;
-  final bool isError;
 
-  const NotificationItem({
-    required this.title,
-    required this.body,
-    required this.isError,
-  });
+  const NotificationItem({required this.title, required this.body});
 }
 
 class NotificationCard extends StatelessWidget {
@@ -24,7 +19,7 @@ class NotificationCard extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(16.0),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Theme.of(context).colorScheme.onPrimary,
           borderRadius: BorderRadius.circular(12.0),
           boxShadow: [
             BoxShadow(
@@ -44,10 +39,10 @@ class NotificationCard extends StatelessWidget {
                 children: [
                   Text(
                     item.title,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 14,
-                      color: Colors.black87,
+                      color: Theme.of(context).colorScheme.primary,
                     ),
                   ),
 
@@ -56,9 +51,9 @@ class NotificationCard extends StatelessWidget {
                       padding: const EdgeInsets.only(top: 4.0),
                       child: Text(
                         item.body,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 12,
-                          color: Color(0xFF757575),
+                          color: Theme.of(context).colorScheme.onSurface,
                         ),
                       ),
                     ),
@@ -85,35 +80,32 @@ class _NotificationScreenState extends State<NotificationScreen> {
     const NotificationItem(
       title: 'about your booking',
       body: 'your booking in 12/1/2025.',
-      isError: false,
     ),
-    const NotificationItem(title: 'wrong', body: 'attintion', isError: true),
-    const NotificationItem(
-      title: 'waitttttt',
-      body: 'nbvgcfdchj',
-      isError: false,
-    ),
+    const NotificationItem(title: 'wrong', body: 'attintion'),
+    const NotificationItem(title: 'waitttttt', body: 'nbvgcfdchj'),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
+        foregroundColor: Theme.of(context).appBarTheme.foregroundColor,
 
         title: Center(
-          child: const Text(
+          child: Text(
             'Notifications',
             style: TextStyle(
-              color: Colors.black87,
+              color: Theme.of(context).colorScheme.primary,
               fontWeight: FontWeight.w600,
             ),
           ),
         ),
 
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios, color: Colors.black87),
+          icon: const Icon(Icons.arrow_back_ios),
           onPressed: () {
             Navigator.of(context).pop();
           },

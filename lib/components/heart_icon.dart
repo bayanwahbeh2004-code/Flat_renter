@@ -24,7 +24,7 @@ class HeartIconButtonState extends State<HeartIconButton> {
         highlightColor: Colors.transparent,
         icon: Icon(
           widget.isFavourite ? Icons.favorite : Icons.favorite_border,
-          color: widget.isFavourite ? Colors.red[700] : Colors.black,
+          color: widget.isFavourite ? Colors.red[700] : Theme.of(context).colorScheme.primary,
           size: 30,
         ),
         onPressed: () async {

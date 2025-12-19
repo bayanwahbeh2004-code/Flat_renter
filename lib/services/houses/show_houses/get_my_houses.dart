@@ -23,6 +23,7 @@ Future<List<Apartment>> getHousesForOwner({
         context,
         child: Text(
           'Your account was deleted by the admin or session was over.',
+          style: TextStyle(color: Theme.of(context).colorScheme.primary),
         ),
       );
       return [];
@@ -41,6 +42,7 @@ Future<List<Apartment>> getHousesForOwner({
       context,
       child: Text(
         "something went wrong, please check your internet connection.",
+        style: TextStyle(color: Theme.of(context).colorScheme.primary),
       ),
     );
     return [];

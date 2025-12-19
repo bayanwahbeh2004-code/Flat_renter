@@ -24,7 +24,13 @@ Future<void> Login({
     Map<String, dynamic> body = jsonDecode(response.body);
     if (response.statusCode != 201 && response.statusCode != 200) {
       String message = body["message"];
-      showDialoge(context, child: Text(message));
+      showDialoge(
+        context,
+        child: Text(
+          message,
+          style: TextStyle(color: Theme.of(context).colorScheme.primary),
+        ),
+      );
     } else {
       AuthService.saveToken(body['Token']);
       print(body['Token']);
@@ -32,7 +38,10 @@ Future<void> Login({
       if ((await getUser(context: context)).role == 'admin') {
         showDialoge(
           context,
-          child: Text("this is admin account, create a user account please."),
+          child: Text(
+            "this is admin account, create a user account please.",
+            style: TextStyle(color: Theme.of(context).colorScheme.primary),
+          ),
         );
         return;
       }
@@ -50,6 +59,7 @@ Future<void> Login({
       context,
       child: Text(
         "something went wrong, please check your internet connection.",
+        style: TextStyle(color: Theme.of(context).colorScheme.primary),
       ),
     );
   }

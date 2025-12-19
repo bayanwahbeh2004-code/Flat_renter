@@ -28,7 +28,7 @@ class _AddingCustomTextFieldState extends State<AddingCustomTextField> {
       width: widget.width,
       child: Center(
         child: TextFormField(
-          textAlign: TextAlign.center, 
+          textAlign: TextAlign.center,
           textAlignVertical: TextAlignVertical.center,
           keyboardType: widget.textInputType,
           controller: widget.controller,
@@ -41,11 +41,18 @@ class _AddingCustomTextFieldState extends State<AddingCustomTextField> {
           },
           decoration: InputDecoration(
             prefixIcon: widget.icon != null
-                ? Icon(widget.icon, size: 30)
+                ? Icon(
+                    widget.icon,
+                    size: 30,
+                    color: Theme.of(context).colorScheme.primary,
+                  )
                 : null,
             contentPadding: EdgeInsets.all(8),
             hintText: widget.hintText,
-            hintStyle: TextStyle(color: Colors.grey, fontSize: 14),
+            hintStyle: TextStyle(
+              color: Theme.of(context).colorScheme.onSurface,
+              fontSize: 14,
+            ),
             maintainHintSize: true,
             border: InputBorder.none,
           ),

@@ -17,7 +17,10 @@ Future<void> deleteRequest({required BuildContext context}) async {
     if (response.statusCode == 403) {
       showDialoge(
         context,
-        child: Text("Your account was deleted by the admin"),
+        child: Text(
+          "Your account was deleted by the admin",
+          style: TextStyle(color: Theme.of(context).colorScheme.primary),
+        ),
       );
       Navigator.popAndPushNamed(context, WelcomePage.id);
       return;
@@ -25,13 +28,20 @@ Future<void> deleteRequest({required BuildContext context}) async {
     Map<String, dynamic> body = jsonDecode(response.body);
     String message = body["message"];
     print(await AuthService.getToken());
-    showDialoge(context, child: Text(message));
+    showDialoge(
+      context,
+      child: Text(
+        message,
+        style: TextStyle(color: Theme.of(context).colorScheme.primary),
+      ),
+    );
   } catch (e) {
     print(e.toString());
     showDialoge(
       context,
       child: Text(
         "something went wrong, please double check your data and your internet connection.",
+        style: TextStyle(color: Theme.of(context).colorScheme.primary),
       ),
     );
   }

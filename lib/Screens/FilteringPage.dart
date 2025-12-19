@@ -1,26 +1,28 @@
 import 'package:baytech/Models/Filter.dart';
 import 'package:baytech/components/costum_button.dart';
 import 'package:baytech/components/costum_text_Field.dart';
+import 'package:baytech/components/custom_drop_down_button.dart';
 import 'package:baytech/helper/build_drop_down_list.dart';
 import 'package:baytech/providers/Filter_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class Filteringpage extends StatelessWidget {
+class Filteringpage extends StatefulWidget {
   static String id = "Filtering_Page";
+
+  @override
+  State<Filteringpage> createState() => _FilteringpageState();
+}
+
+class _FilteringpageState extends State<Filteringpage> {
   final Filter filter = Filter();
-  CityGovernorate? location;
+  String? order;
 
   @override
   Widget build(BuildContext context) {
     return Consumer<FilterProvider>(
       builder: (context, filterProvider, child) => Scaffold(
-        appBar: AppBar(
-          title: const Text("Filter"),
-          centerTitle: true,
-          backgroundColor: Colors.black,
-          foregroundColor: Colors.white,
-        ),
+        appBar: AppBar(),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
@@ -28,13 +30,31 @@ class Filteringpage extends StatelessWidget {
               Expanded(
                 child: ListView(
                   children: [
-                    location = CityGovernorate(
-                      onChanged: (gov, city) {
-                        filter.city = city;
-                        filter.governorate = gov;
-                      },
+                    Padding(
+                      padding: const EdgeInsets.only(left: 16.0),
+                      child: CityGovernorate(
+                        onChanged: (gov, city) {
+                          filter.city = city;
+                          filter.governorate = gov;
+                        },
+                      ),
                     ),
-                    SizedBox(height: 10),
+
+                    Padding(
+                      padding: const EdgeInsets.all(32.0),
+                      child: CustomDropDownButton(
+                        value: order,
+                        onChanged: (item) {
+                          setState(() {
+                            order = item;
+                            filter.rating_order = item == '' ? 'asc' : 'desc';
+                          });
+                        },
+                        hintText: ' reputation-based filter',
+                        dropDownValues: ['Descending order', 'Ascending order'],
+                      ),
+                    ),
+
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -44,19 +64,62 @@ class Filteringpage extends StatelessWidget {
                             padding: const EdgeInsets.only(left: 16.0),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
-                              children: const [
+                              children: [
                                 SizedBox(height: 40),
-                                Text("Price:"),
+                                Text(
+                                  "Price:",
+                                  style: TextStyle(
+                                    color: Theme.of(
+                                      context,
+                                    ).colorScheme.onSurface,
+                                  ),
+                                ),
                                 SizedBox(height: 70),
-                                Text("Area:"),
+                                Text(
+                                  "Area:",
+                                  style: TextStyle(
+                                    color: Theme.of(
+                                      context,
+                                    ).colorScheme.onSurface,
+                                  ),
+                                ),
                                 SizedBox(height: 70),
-                                Text("Bathrooms:"),
+                                Text(
+                                  "Bathrooms:",
+                                  style: TextStyle(
+                                    color: Theme.of(
+                                      context,
+                                    ).colorScheme.onSurface,
+                                  ),
+                                ),
                                 SizedBox(height: 70),
-                                Text("Livingrooms:"),
+                                Text(
+                                  "Livingrooms:",
+                                  style: TextStyle(
+                                    color: Theme.of(
+                                      context,
+                                    ).colorScheme.onSurface,
+                                  ),
+                                ),
                                 SizedBox(height: 70),
-                                Text("Bedrooms:"),
+                                Text(
+                                  "Bedrooms:",
+                                  style: TextStyle(
+                                    color: Theme.of(
+                                      context,
+                                    ).colorScheme.onSurface,
+                                  ),
+                                ),
                                 SizedBox(height: 70),
-                                Text("description:"),
+                                Text(
+                                  "description:",
+                                  style: TextStyle(
+                                    color: Theme.of(
+                                      context,
+                                    ).colorScheme.onSurface,
+                                  ),
+                                ),
+                                SizedBox(height: 70),
                               ],
                             ),
                           ),
@@ -220,8 +283,8 @@ class Filteringpage extends StatelessWidget {
                   await filterProvider.setFilter(filter, context);
                   Navigator.pop(context);
                 },
-                textColor: Colors.white,
-                buttonColor: Colors.black,
+                textColor: Theme.of(context).colorScheme.onPrimary,
+                buttonColor: Theme.of(context).colorScheme.primary,
                 height: 60,
                 width: 300,
               ),

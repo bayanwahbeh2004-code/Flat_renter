@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 void showToDoSomeThingDialoge(
   BuildContext context, {
   required String message,
-  Future<dynamic>? toDo,
+  Future<dynamic> Function()? toDo,
   bool cancel = false,
   required String whereTo,
 }) {
@@ -27,7 +27,7 @@ void showToDoSomeThingDialoge(
             onPressed: () async {
               bool ok = false;
               if (toDo != null) {
-                await toDo;
+                await toDo();
                 ok = true;
               }
               if (ok) {

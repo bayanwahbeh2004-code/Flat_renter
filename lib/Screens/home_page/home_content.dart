@@ -81,7 +81,6 @@ class _HomeContentState extends State<HomeContent> {
   @override
   Widget build(BuildContext context) {
     final filterProvider = Provider.of<FilterProvider>(context);
-
     return Consumer<FilterProvider>(
       builder: (context, filterProviderConsumer, child) => ModalProgressHUD(
         inAsyncCall: filterProviderConsumer.isLoading,
@@ -103,47 +102,67 @@ class _HomeContentState extends State<HomeContent> {
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(16),
-                    color: Koption,
+                    color: Theme.of(context).colorScheme.primaryContainer,
                   ),
                   height: 50,
                   child: Row(
                     children: [
-                      const Padding(
+                      Padding(
                         padding: EdgeInsets.only(left: 16.0),
-                        child: Text('Search...'),
+                        child: Text(
+                          'Search...',
+                          style: TextStyle(
+                            color: Theme.of(
+                              context,
+                            ).colorScheme.onPrimaryContainer,
+                          ),
+                        ),
                       ),
                       if (filterProvider.hasActiveFilter)
                         Container(
-                          margin: const EdgeInsets.only(left: 8),
-                          padding: const EdgeInsets.symmetric(
+                          margin: EdgeInsets.only(left: 8),
+                          padding: EdgeInsets.symmetric(
                             horizontal: 8,
                             vertical: 2,
                           ),
                           decoration: BoxDecoration(
-                            color: KPurple,
+                            color: Theme.of(context).colorScheme.secondary,
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          child: const Text(
+                          child: Text(
                             'Filtered',
-                            style: TextStyle(color: Colors.white, fontSize: 12),
+                            style: TextStyle(
+                              color: Theme.of(context).colorScheme.onSecondary,
+                              fontSize: 12,
+                            ),
                           ),
                         ),
 
                       const Spacer(),
 
-                      Icon(Icons.search, color: Colors.grey[700]),
+                      Icon(
+                        Icons.search,
+                        color: Theme.of(context).colorScheme.onPrimaryContainer,
+                      ),
                       const SizedBox(width: 16),
                       Stack(
                         children: [
-                          Icon(Icons.tune, color: Colors.grey[700]),
+                          Icon(
+                            Icons.tune,
+                            color: Theme.of(
+                              context,
+                            ).colorScheme.onPrimaryContainer,
+                          ),
                           if (filterProvider.hasActiveFilter)
                             Positioned(
                               right: 0,
                               top: 0,
                               child: Container(
                                 padding: const EdgeInsets.all(2),
-                                decoration: const BoxDecoration(
-                                  color: KPurple,
+                                decoration: BoxDecoration(
+                                  color: Theme.of(
+                                    context,
+                                  ).colorScheme.secondary,
                                   shape: BoxShape.circle,
                                 ),
                                 constraints: const BoxConstraints(
@@ -175,8 +194,12 @@ class _HomeContentState extends State<HomeContent> {
                           icon: const Icon(Icons.clear, size: 16),
                           label: const Text('Clear Filters'),
                           style: OutlinedButton.styleFrom(
-                            foregroundColor: KPurple,
-                            side: const BorderSide(color: KPurple),
+                            foregroundColor: Theme.of(
+                              context,
+                            ).colorScheme.secondary,
+                            side: BorderSide(
+                              color: Theme.of(context).colorScheme.secondary,
+                            ),
                           ),
                         ),
                       ),
@@ -188,6 +211,7 @@ class _HomeContentState extends State<HomeContent> {
                 child: Row(
                   children: [
                     _buildMenuButton(
+                      context,
                       'All',
                       isSelected:
                           buttonSelected == 'All' &&
@@ -195,6 +219,7 @@ class _HomeContentState extends State<HomeContent> {
                       onTap: () => currentSelectedButton('All'),
                     ),
                     _buildMenuButton(
+                      context,
                       'Hotel',
                       isSelected:
                           buttonSelected == 'Hotel' &&
@@ -202,6 +227,7 @@ class _HomeContentState extends State<HomeContent> {
                       onTap: () => currentSelectedButton('Hotel'),
                     ),
                     _buildMenuButton(
+                      context,
                       'Room',
                       isSelected:
                           buttonSelected == 'Room' &&
@@ -209,6 +235,7 @@ class _HomeContentState extends State<HomeContent> {
                       onTap: () => currentSelectedButton('Room'),
                     ),
                     _buildMenuButton(
+                      context,
                       'Duplex',
                       isSelected:
                           buttonSelected == 'Duplex' &&
@@ -216,6 +243,7 @@ class _HomeContentState extends State<HomeContent> {
                       onTap: () => currentSelectedButton('Duplex'),
                     ),
                     _buildMenuButton(
+                      context,
                       'Villa',
                       isSelected:
                           buttonSelected == 'Villa' &&
@@ -223,6 +251,7 @@ class _HomeContentState extends State<HomeContent> {
                       onTap: () => currentSelectedButton('Villa'),
                     ),
                     _buildMenuButton(
+                      context,
                       'Suite',
                       isSelected:
                           buttonSelected == 'Suite' &&
@@ -230,6 +259,7 @@ class _HomeContentState extends State<HomeContent> {
                       onTap: () => currentSelectedButton('Suite'),
                     ),
                     _buildMenuButton(
+                      context,
                       'Apartment',
                       isSelected:
                           buttonSelected == 'Apartment' &&
@@ -237,6 +267,7 @@ class _HomeContentState extends State<HomeContent> {
                       onTap: () => currentSelectedButton('Apartment'),
                     ),
                     _buildMenuButton(
+                      context,
                       'House',
                       isSelected:
                           buttonSelected == 'House' &&
@@ -244,6 +275,7 @@ class _HomeContentState extends State<HomeContent> {
                       onTap: () => currentSelectedButton('House'),
                     ),
                     _buildMenuButton(
+                      context,
                       'Others',
                       isSelected:
                           buttonSelected == 'Others' &&
@@ -260,19 +292,19 @@ class _HomeContentState extends State<HomeContent> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Icon(
+                          Icon(
                             Icons.home_work_outlined,
                             size: 64,
-                            color: Colors.grey,
+                            color: Theme.of(context).colorScheme.onSurface,
                           ),
                           const SizedBox(height: 16),
                           Text(
                             filterProvider.hasActiveFilter
                                 ? 'No houses found with the current filters'
                                 : 'No houses found for "$buttonSelected"',
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontSize: 16,
-                              color: Colors.grey,
+                              color: Theme.of(context).colorScheme.onSurface,
                             ),
                           ),
                           const SizedBox(height: 16),
@@ -297,6 +329,7 @@ class _HomeContentState extends State<HomeContent> {
 }
 
 Widget _buildMenuButton(
+  BuildContext context,
   String title, {
   bool isSelected = false,
   VoidCallback? onTap,
@@ -308,13 +341,17 @@ Widget _buildMenuButton(
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
         decoration: BoxDecoration(
-          color: isSelected ? Colors.black : Koption,
+          color: isSelected
+              ? Theme.of(context).colorScheme.primary
+              : Theme.of(context).colorScheme.primaryContainer,
           borderRadius: BorderRadius.circular(20),
         ),
         child: Text(
           title,
           style: TextStyle(
-            color: isSelected ? Colors.white : Colors.black87,
+            color: isSelected
+                ? Theme.of(context).colorScheme.onPrimary
+                : Theme.of(context).colorScheme.onPrimaryContainer,
             fontWeight: FontWeight.bold,
             fontSize: 14,
           ),

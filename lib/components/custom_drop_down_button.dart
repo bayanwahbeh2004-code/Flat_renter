@@ -26,7 +26,7 @@ class CustomDropDownButton extends StatelessWidget {
       hint: Text(hintText),
       onChanged: onChanged,
       isExpanded: false,
-      underline: Container(height: 1, color: Colors.grey),
+      underline: Container(height: 1, color: Theme.of(context).colorScheme.onSurface,),
     );
   }
 }

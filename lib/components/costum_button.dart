@@ -21,7 +21,7 @@ class CostumButton extends StatelessWidget {
         height: height,
         width: width,
         decoration: BoxDecoration(
-          border: Border.all(color: Colors.grey),
+          border: Border.all(color: Theme.of(context).colorScheme.onSurface,),
           borderRadius: BorderRadius.circular(32),
           color: buttonColor,
         ),

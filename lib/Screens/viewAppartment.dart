@@ -2,13 +2,16 @@ import 'dart:io';
 import 'package:baytech/Constants.dart';
 import 'package:baytech/Models/apartment.dart';
 import 'package:baytech/Screens/edit_apartment_page.dart';
-import 'package:baytech/Screens/etate_page/estate_page.dart';
+import 'package:baytech/Screens/calendar_booking_page.dart';
 import 'package:baytech/components/go_back_button.dart';
 import 'package:baytech/components/heart_icon.dart';
 import 'package:baytech/helper/File_from_url.dart';
+import 'package:baytech/helper/RatedWidget.dart';
 import 'package:baytech/providers/my_houses_provider.dart';
 import 'package:baytech/services/houses/deleting_houses/delete_house.dart';
+import 'package:baytech/services/houses/send_rating.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:photo_view/photo_view_gallery.dart';
 import 'package:provider/provider.dart';
@@ -51,9 +54,10 @@ class _ApartmentDetailsPageState extends State<ApartmentDetailsPage> {
                     padding: const EdgeInsets.only(left: 32.0),
                     child: Text(
                       widget.house!.title!,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
+                        color: Theme.of(context).colorScheme.primary,
                       ),
                     ),
                   ),
@@ -73,7 +77,6 @@ class _ApartmentDetailsPageState extends State<ApartmentDetailsPage> {
                   borderRadius: BorderRadius.circular(15.0),
                   child: GestureDetector(
                     onTap: () {
-                      print(widget.house!.mine!);
                       Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -106,28 +109,44 @@ class _ApartmentDetailsPageState extends State<ApartmentDetailsPage> {
                 padding: const EdgeInsets.symmetric(horizontal: 32.0),
                 child: Row(
                   children: [
-                    Icon(Icons.location_on_outlined, color: Colors.grey[700]),
+                    Icon(
+                      Icons.location_on_outlined,
+                      color: Theme.of(context).colorScheme.onSurface,
+                    ),
                     const SizedBox(width: 5),
                     Text(
                       widget.house!.governorate!,
-                      style: TextStyle(fontSize: 18, color: Colors.grey[700]),
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Theme.of(context).colorScheme.onSurface,
+                      ),
                     ),
                     const SizedBox(width: 30),
-                    Icon(Icons.location_on_outlined, color: Colors.grey[700]),
+                    Icon(
+                      Icons.location_on_outlined,
+                      color: Theme.of(context).colorScheme.onSurface,
+                    ),
                     const SizedBox(width: 5),
                     Text(
                       widget.house!.city!,
-                      style: TextStyle(fontSize: 18, color: Colors.grey[700]),
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Theme.of(context).colorScheme.onSurface,
+                      ),
                     ),
                   ],
                 ),
               ),
               const SizedBox(height: 20),
-              const Padding(
+              Padding(
                 padding: EdgeInsets.only(left: 32.0),
                 child: Text(
                   "Property Photos",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
                 ),
               ),
               const SizedBox(height: 10),
@@ -179,11 +198,15 @@ class _ApartmentDetailsPageState extends State<ApartmentDetailsPage> {
                 ),
               ),
               const SizedBox(height: 20),
-              const Padding(
+              Padding(
                 padding: EdgeInsets.only(left: 32.0),
                 child: Text(
                   "Property details",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
                 ),
               ),
               const SizedBox(height: 20),
@@ -191,16 +214,19 @@ class _ApartmentDetailsPageState extends State<ApartmentDetailsPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   _IconNorm(
+                    context,
                     Icons.bed_outlined,
                     widget.house!.bedrooms!.toString(),
                     "Bedrooms",
                   ),
                   _IconNorm(
+                    context,
                     Icons.bathtub_outlined,
                     widget.house!.bathrooms!.toString(),
                     "Bathrooms",
                   ),
                   _IconNorm(
+                    context,
                     Icons.apartment_outlined,
                     widget.house!.livingRooms!.toString(),
                     "Living Rooms",
@@ -212,16 +238,19 @@ class _ApartmentDetailsPageState extends State<ApartmentDetailsPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   _IconNorm(
+                    context,
                     Icons.question_mark_outlined,
                     widget.house!.category!,
                     "Category",
                   ),
                   _IconNorm(
+                    context,
                     Icons.villa_outlined,
                     "${widget.house!.area}m²",
                     "Area",
                   ),
                   _IconNorm(
+                    context,
                     Icons.attach_money_outlined,
                     "${widget.house!.price} \$",
                     "Price a Day",
@@ -232,34 +261,63 @@ class _ApartmentDetailsPageState extends State<ApartmentDetailsPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  _Iconpress(Icons.chat_outlined, "contact", () {}),
-                  _Iconpress(Icons.location_on_outlined, "location", () {}),
-                  _Iconpress(Icons.star_border, "Reviews", () {}),
+                  _Iconpress(context, Icons.chat_outlined, "contact", () {}),
+                  _Iconpress(
+                    context,
+                    Icons.location_on_outlined,
+                    "location",
+                    () {},
+                  ),
+                  _Iconpress(
+                    context,
+                    Icons.star_border,
+                    "Reviews",
+                    () => showRatingDialog(context),
+                  ),
                 ],
               ),
 
               const SizedBox(height: 40),
-              const Padding(
+              Padding(
                 padding: EdgeInsets.only(left: 32.0, bottom: 8.0),
                 child: Text(
                   "Description",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 32.0),
                 child: Text(
                   widget.house!.description!,
-                  style: const TextStyle(fontSize: 16, color: Colors.black87),
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
                 ),
               ),
-              const SizedBox(height: 30),
+              SizedBox(height: 40),
+              Padding(
+                padding: EdgeInsets.only(left: 32.0, bottom: 8.0),
+                child: Text(
+                  "House reputation:",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+                ),
+              ),
+              Rated(currentRating: widget.house!.avg_star ?? '0'),
               (widget.house!.mine == true)
                   ? Padding(
                       padding: const EdgeInsets.only(
-                        bottom: 48.0,
-                        left: 72,
-                        right: 64,
+                        top: 50,
+                        bottom: 50,
+                        left: 32,
                       ),
                       child: Row(
                         children: [
@@ -271,21 +329,34 @@ class _ApartmentDetailsPageState extends State<ApartmentDetailsPage> {
                                   return AlertDialog(
                                     content: Text(
                                       'You are about to delete this house, are you sure?',
+                                      style: TextStyle(
+                                        color: Theme.of(
+                                          context,
+                                        ).colorScheme.primary,
+                                      ),
                                     ),
                                     actions: [
                                       TextButton(
-                                        child: const Text(
+                                        child: Text(
                                           'cancel',
-                                          style: TextStyle(color: KPurple),
+                                          style: TextStyle(
+                                            color: Theme.of(
+                                              context,
+                                            ).colorScheme.secondary,
+                                          ),
                                         ),
                                         onPressed: () {
                                           Navigator.pop(context);
                                         },
                                       ),
                                       TextButton(
-                                        child: const Text(
+                                        child: Text(
                                           'ok',
-                                          style: TextStyle(color: KPurple),
+                                          style: TextStyle(
+                                            color: Theme.of(
+                                              context,
+                                            ).colorScheme.secondary,
+                                          ),
                                         ),
                                         onPressed: () async {
                                           setState(() {
@@ -319,19 +390,18 @@ class _ApartmentDetailsPageState extends State<ApartmentDetailsPage> {
                                 borderRadius: BorderRadius.circular(12),
                               ),
                             ),
-                            child: const Text(
+                            child: Text(
                               "Delete",
                               style: TextStyle(
-                                color: Colors.white,
+                                color: Theme.of(context).colorScheme.onPrimary,
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
                           ),
-                          SizedBox(width: 80),
+                          SizedBox(width: 20),
                           ElevatedButton(
                             onPressed: () async {
-                              List<File> images = [];
                               setState(() {
                                 isLoading = true;
                               });
@@ -353,16 +423,39 @@ class _ApartmentDetailsPageState extends State<ApartmentDetailsPage> {
                               );
                             },
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.black,
+                              backgroundColor: Theme.of(
+                                context,
+                              ).colorScheme.primary,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(12),
                               ),
                             ),
 
-                            child: const Text(
+                            child: Text(
                               "Edit",
                               style: TextStyle(
-                                color: Colors.white,
+                                color: Theme.of(context).colorScheme.onPrimary,
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                          SizedBox(width: 20),
+                          ElevatedButton(
+                            onPressed: () async {},
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Theme.of(
+                                context,
+                              ).colorScheme.secondary,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                            ),
+
+                            child: Text(
+                              "requests",
+                              style: TextStyle(
+                                color: Theme.of(context).colorScheme.onPrimary,
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
                               ),
@@ -371,37 +464,133 @@ class _ApartmentDetailsPageState extends State<ApartmentDetailsPage> {
                         ],
                       ),
                     )
-                  : const SizedBox(height: 40),
+                  : Padding(
+                      padding: const EdgeInsets.all(50.0),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, calendar_book.id);
+                        },
+                        style: ElevatedButton.styleFrom(
+                          fixedSize: Size(150, 60),
+                          backgroundColor: Theme.of(
+                            context,
+                          ).colorScheme.primary,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                        ),
+                        child: Text(
+                          'Book now',
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.onPrimary,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
             ],
           ),
         ),
       ),
     );
   }
+
+  void showRatingDialog(BuildContext context) {
+    double currentRating = 0;
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(
+          "Rate this property",
+          style: TextStyle(
+            fontSize: 18,
+            color: Theme.of(context).colorScheme.primary,
+          ),
+        ),
+        content: RatingBar.builder(
+          initialRating: 0,
+          minRating: 0,
+          allowHalfRating: false,
+          itemCount: 5,
+          itemSize: 32,
+          itemBuilder: (context, _) =>
+              Icon(Icons.star, color: Theme.of(context).colorScheme.secondary),
+          onRatingUpdate: (rating) {
+            currentRating = rating;
+          },
+        ),
+        actions: [
+          ElevatedButton(
+            onPressed: () async {
+              await sendRating(
+                context: context,
+                house: widget.house!,
+                stars: currentRating.toString(),
+              );
+            },
+            child: Text(
+              "Ok",
+              style: TextStyle(color: Theme.of(context).colorScheme.secondary),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }
 
-Widget _IconNorm(IconData icon, String value, String iconName) {
+Widget _IconNorm(
+  BuildContext context,
+  IconData icon,
+  String value,
+  String iconName,
+) {
   return Column(
     children: [
-      Icon(icon, size: 40, color: Colors.black),
+      Icon(icon, size: 40, color: Theme.of(context).colorScheme.primary),
       const SizedBox(height: 5),
-      Text(value, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-      Text(iconName, style: TextStyle(fontSize: 14, color: Colors.grey)),
+      Text(
+        value,
+        style: TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.bold,
+          color: Theme.of(context).colorScheme.primary,
+        ),
+      ),
+      Text(
+        iconName,
+        style: TextStyle(
+          fontSize: 14,
+          color: Theme.of(context).colorScheme.onSurface,
+        ),
+      ),
       const SizedBox(height: 5),
     ],
   );
 }
 
-Widget _Iconpress(IconData icon, String label, VoidCallback onPressed) {
+Widget _Iconpress(
+  BuildContext context,
+  icon,
+  String label,
+  VoidCallback onPressed,
+) {
   return Column(
     children: [
       IconButton(
         icon: Icon(icon),
         iconSize: 40,
-        color: Colors.black,
+        color: Theme.of(context).colorScheme.primary,
         onPressed: onPressed,
       ),
-      Text(label, style: const TextStyle(fontSize: 14, color: Colors.grey)),
+      Text(
+        label,
+        style: TextStyle(
+          fontSize: 14,
+          color: Theme.of(context).colorScheme.onSurface,
+        ),
+      ),
     ],
   );
 }

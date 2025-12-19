@@ -32,15 +32,18 @@ class _MyHousesState extends State<MyHouses> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       mainAxisSize: MainAxisSize.max,
                       children: [
-                        const Icon(
+                        Icon(
                           Icons.home_work_outlined,
                           size: 64,
-                          color: Colors.grey,
+                          color: Theme.of(context).colorScheme.onSurface,
                         ),
                         const SizedBox(height: 16),
-                        const Text(
+                        Text(
                           'No houses found',
-                          style: TextStyle(fontSize: 16, color: Colors.grey),
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Theme.of(context).colorScheme.onSurface,
+                          ),
                         ),
                         const SizedBox(height: 16),
                       ],
@@ -55,8 +58,11 @@ class _MyHousesState extends State<MyHouses> {
               bottom: 40,
               right: 50,
               child: FloatingActionButton(
-                backgroundColor: Colors.black,
-                child: Icon(Icons.add),
+                backgroundColor: Theme.of(context).colorScheme.primary,
+                child: Icon(
+                  Icons.add,
+                  color: Theme.of(context).colorScheme.onPrimary,
+                ),
                 onPressed: () {
                   Navigator.pushNamed(context, AddAppartmentPage.id);
                 },

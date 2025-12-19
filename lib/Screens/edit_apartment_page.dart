@@ -146,7 +146,10 @@ class _EditAppartmentPageState extends State<EditApartmentPage> {
                       padding: const EdgeInsets.only(left: 32.0),
                       child: Text(
                         "Property Photos",
-                        style: TextStyle(fontSize: 20),
+                        style: TextStyle(
+                          fontSize: 20,
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
                       ),
                     ),
                     SizedBox(height: 10),
@@ -183,7 +186,10 @@ class _EditAppartmentPageState extends State<EditApartmentPage> {
                       padding: const EdgeInsets.only(left: 32.0),
                       child: Text(
                         "Property details",
-                        style: TextStyle(fontSize: 20),
+                        style: TextStyle(
+                          fontSize: 20,
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
                       ),
                     ),
                     SizedBox(height: 10),
@@ -321,8 +327,8 @@ class _EditAppartmentPageState extends State<EditApartmentPage> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 48.0),
                       child: CostumButton(
-                        textColor: Colors.white,
-                        buttonColor: Colors.black,
+                        textColor: Theme.of(context).colorScheme.onPrimary,
+                        buttonColor: Theme.of(context).colorScheme.primary,
                         text: "Update",
                         onTap: () async {
                           setState(() {

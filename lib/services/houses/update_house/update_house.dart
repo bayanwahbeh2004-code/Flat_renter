@@ -44,13 +44,20 @@ Future<bool> updateHouse({
         context,
         child: Text(
           'Your account was deleted by the admin or session was over.',
+          style: TextStyle(color: Theme.of(context).colorScheme.primary),
         ),
       );
     }
     if (response.statusCode != 200) {
       if (body.containsKey('message')) {
         dynamic message = body["message"];
-        showDialoge(context, child: Text(message.toString()));
+        showDialoge(
+          context,
+          child: Text(
+            message,
+            style: TextStyle(color: Theme.of(context).colorScheme.primary),
+          ),
+        );
       }
       return false;
     } else {
@@ -60,7 +67,8 @@ Future<bool> updateHouse({
     showDialoge(
       context,
       child: Text(
-        "something went wrong, please check your interntet connection. ${e.toString()}",
+        "something went wrong, please check your interntet connection.",
+        style: TextStyle(color: Theme.of(context).colorScheme.primary),
       ),
     );
     return true;

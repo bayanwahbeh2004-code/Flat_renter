@@ -28,18 +28,18 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor:Theme.of(context).appBarTheme.backgroundColor,
       body: Form(
         key: formKey,
         child: ListView(
           children: [
             const SizedBox(height: 40),
-            const Padding(
-              padding: EdgeInsets.only(left: 25.0),
+            Padding(
+              padding: const EdgeInsets.only(left: 25.0),
               child: Text(
                 "Personal information",
                 style: TextStyle(
-                  color: Colors.white,
+                  color: Theme.of(context).colorScheme.onSurface,
                   fontSize: 28,
                   fontFamily: "Platypi",
                 ),
@@ -127,8 +127,10 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                         text: "Birth date",
                         height: 50,
                         width: 225,
-                        buttonColor: Colors.white,
-                        textColor: Colors.black,
+                        buttonColor: Theme.of(context).colorScheme.primary,
+                        textColor: Theme.of(context).brightness == Brightness.dark
+                    ? Colors.black
+                    : Colors.white,
                         onTap: () async {
                           birthdate = await showDatePicker(
                             context: context,
@@ -154,8 +156,10 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                         text: "Next",
                         height: 50,
                         width: 225,
-                        buttonColor: Colors.black,
-                        textColor: Colors.white,
+                        buttonColor: Theme.of(context).colorScheme.primary,
+                        textColor:  Theme.of(context).brightness == Brightness.dark
+                    ? Colors.black
+                    : Colors.white,
                         onTap: () {
                           if (formKey.currentState!.validate() &&
                               birthdate != null &&

@@ -13,7 +13,7 @@ class Filter {
       maxLivingRoom,
       minBedroom,
       maxBedroom,
-      description;
+      description, rating_order;
   bool isEmpty() {
     return title == null &&
         city == null &&
@@ -28,10 +28,11 @@ class Filter {
         maxLivingRoom == null &&
         minBedroom == null &&
         maxBedroom == null &&
-        description == null;
+        description == null&& rating_order==null;
   }
 
   Filter({
+    this.rating_order,
     this.city,
     this.title,
     this.category,

@@ -18,11 +18,14 @@ Future<void> removeFromFavourite({
       url: url,
       token: await AuthService.getToken(),
     );
-     if (response.statusCode == 401) {
+    if (response.statusCode == 401) {
       Navigator.popAndPushNamed(context, WelcomePage.id);
       showDialoge(
         context,
-        child: Text('Your account was deleted by the admin or session was over.'),
+        child: Text(
+          'Your account was deleted by the admin or session was over.',
+          style: TextStyle(color: Theme.of(context).colorScheme.primary),
+        ),
       );
     }
   } catch (e) {
@@ -31,6 +34,7 @@ Future<void> removeFromFavourite({
       context,
       child: Text(
         "something went wrong, please double check your data and your internet connection",
+        style: TextStyle(color: Theme.of(context).colorScheme.primary),
       ),
     );
   }

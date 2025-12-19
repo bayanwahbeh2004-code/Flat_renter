@@ -37,7 +37,10 @@ Future<Apartment> addHouse({
       Navigator.popAndPushNamed(context, WelcomePage.id);
       showDialoge(
         context,
-        child: Text('Your account was deleted by the admin or session was over.'),
+        child: Text(
+          'Your account was deleted by the admin or session was over.',
+          style: TextStyle(color: Theme.of(context).colorScheme.primary),
+        ),
       );
     }
     if (response.statusCode != 201 && response.statusCode != 200) {
@@ -60,6 +63,7 @@ Future<Apartment> addHouse({
       context,
       child: Text(
         "something went wrong, please check your interntet connection.",
+        style: TextStyle(color: Theme.of(context).colorScheme.primary),
       ),
     );
     return Apartment();

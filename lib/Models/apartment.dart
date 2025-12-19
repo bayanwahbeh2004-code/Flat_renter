@@ -12,11 +12,12 @@ class Apartment {
       price,
       area,
       governorate,
-      city;
+      city, avg_star;
   List<String>? images = [];
   String? mainImage;
   bool? isFavourite, mine;
   Apartment({
+    this.avg_star,
     this.id,
     this.mainImage,
     this.description,
@@ -49,6 +50,7 @@ class Apartment {
       description: data['descreption'],
       city: data['city'],
       governorate: data['governorate'],
+      avg_star:data['avg_star']
     );
   }
 }

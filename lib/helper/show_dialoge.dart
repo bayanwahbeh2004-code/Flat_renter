@@ -14,7 +14,12 @@ void showDialoge(
         actions: [
           if (ok)
             TextButton(
-              child: const Text('OK', style: TextStyle(color: KPurple)),
+              child: Text(
+                'OK',
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.secondary,
+                ),
+              ),
               onPressed: () {
                 Navigator.of(context).pop();
               },

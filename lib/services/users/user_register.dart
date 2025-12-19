@@ -37,12 +37,23 @@ Future<void> UserRegister({
         Map<String, dynamic> message = body["errors"];
         String show = "";
         message.forEach((key, value) => show = show + value[0].toString());
-        showDialoge(context, child: Text(show));
+        showDialoge(
+          context,
+          child: Text(
+            show,
+            style: TextStyle(color: Theme.of(context).colorScheme.primary),
+          ),
+        );
       }
     } else {
-      print('registered successfully');
       String message = body["message"];
-      showDialoge(context, child: Text(message));
+      showDialoge(
+        context,
+        child: Text(
+          message,
+          style: TextStyle(color: Theme.of(context).colorScheme.primary),
+        ),
+      );
       Login(account: data, context: context);
     }
   } catch (e) {
@@ -52,6 +63,7 @@ Future<void> UserRegister({
       context,
       child: Text(
         "something went wrong, please check your interntet connection",
+        style: TextStyle(color: Theme.of(context).colorScheme.primary),
       ),
     );
   }

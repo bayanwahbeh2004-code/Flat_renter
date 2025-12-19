@@ -8,8 +8,4 @@ class ThemeProvider extends ChangeNotifier {
     themeData = theme;
     notifyListeners();
   }
-
-  void toggleTheme(ThemeData theme) {
-    themeData = theme;
-  }
 }

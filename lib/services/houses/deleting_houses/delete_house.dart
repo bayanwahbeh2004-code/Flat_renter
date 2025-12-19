@@ -23,11 +23,12 @@ Future<bool> deleteHouse({
       token: await AuthService.getToken(),
     );
     if (response.statusCode == 401) {
-     Navigator.popAndPushNamed(context, WelcomePage.id);
+      Navigator.popAndPushNamed(context, WelcomePage.id);
       showDialoge(
         context,
         child: Text(
           'Your account was deleted by the admin or session was over.',
+          style: TextStyle(color: Theme.of(context).colorScheme.primary),
         ),
       );
       return false;
@@ -43,6 +44,7 @@ Future<bool> deleteHouse({
       context,
       child: Text(
         "something went wrong, please double check your data and your internet connection.",
+        style: TextStyle(color: Theme.of(context).colorScheme.primary),
       ),
     );
     return false;

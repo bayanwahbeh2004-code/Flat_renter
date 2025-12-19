@@ -28,11 +28,12 @@ Future<bool> addImages({
     var responseBody = await response.stream.bytesToString();
     var body = json.decode(responseBody);
     if (response.statusCode == 401) {
-       Navigator.popAndPushNamed(context, WelcomePage.id);
+      Navigator.popAndPushNamed(context, WelcomePage.id);
       showDialoge(
         context,
         child: Text(
           'Your account was deleted by the admin or session was over.',
+          style: TextStyle(color: Theme.of(context).colorScheme.primary),
         ),
       );
       return false;
@@ -57,7 +58,8 @@ Future<bool> addImages({
     showDialoge(
       context,
       child: Text(
-        "something went wrong, please check your interntet connection. ${e.toString()}",
+        "something went wrong, please check your interntet connection.",
+        style: TextStyle(color: Theme.of(context).colorScheme.primary),
       ),
     );
     return false;

@@ -9,8 +9,11 @@ class GoBackButton extends StatelessWidget {
         padding: const EdgeInsets.only(left: 16.0),
         child: CircleAvatar(
           radius: 25,
-          backgroundColor: Color.fromARGB(255, 236, 234, 234),
-          child: Icon(Icons.arrow_back, color: Colors.black),
+          backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+          child: Icon(
+            Icons.arrow_back,
+            color: Theme.of(context).colorScheme.primary,
+          ),
         ),
       ),
     );

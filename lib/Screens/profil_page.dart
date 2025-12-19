@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:baytech/Constants.dart';
 import 'package:baytech/Models/User.dart';
 import 'package:baytech/Theme/theme.dart';
@@ -27,19 +29,25 @@ class _ProfileInformaState extends State<ProfileInforma> {
   Widget build(BuildContext context) {
     user = ModalRoute.of(context)!.settings.arguments as User;
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios, color: Kmdry),
+          icon: Icon(
+            Icons.arrow_back_ios,
+            color: Theme.of(context).colorScheme.primary,
+          ),
           onPressed: () {
             Navigator.pop(context);
           },
         ),
-        title: const Text(
+        title: Text(
           "Settings",
-          style: TextStyle(color: Kmdry, fontWeight: FontWeight.bold),
+          style: TextStyle(
+            color: Theme.of(context).colorScheme.primary,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         centerTitle: true,
       ),
@@ -48,15 +56,14 @@ class _ProfileInformaState extends State<ProfileInforma> {
         child: ListView(
           padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0),
           children: <Widget>[
-            _ProfileHeader(
+            _ProfMen(
               user!.firstName! + " " + user!.secondName!,
               KbaseUrlImage + user!.profilePicturePath!,
-              widget.onEditTap ?? () {},
             ),
 
             const SizedBox(height: 20),
 
-            _buildMenuItem(
+            _buildMenit(
               icon: Icons.person_outline,
               title: "Profile",
               onTap: () {
@@ -73,11 +80,19 @@ class _ProfileInformaState extends State<ProfileInforma> {
                             children: [
                               Text(
                                 "User name:",
-                                style: TextStyle(fontSize: 16, color: KPurple),
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Theme.of(
+                                    context,
+                                  ).colorScheme.secondary,
+                                ),
                               ),
                               Text(
                                 user!.firstName! + " " + user!.secondName!,
-                                style: TextStyle(fontSize: 16),
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Theme.of(context).colorScheme.primary,
+                                ),
                               ),
                             ],
                           ),
@@ -87,11 +102,19 @@ class _ProfileInformaState extends State<ProfileInforma> {
                             children: [
                               Text(
                                 "phone number:",
-                                style: TextStyle(fontSize: 16, color: KPurple),
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Theme.of(
+                                    context,
+                                  ).colorScheme.secondary,
+                                ),
                               ),
                               Text(
                                 user!.phoneNumber!,
-                                style: TextStyle(fontSize: 16),
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Theme.of(context).colorScheme.primary,
+                                ),
                               ),
                             ],
                           ),
@@ -109,12 +132,19 @@ class _ProfileInformaState extends State<ProfileInforma> {
                                   "Birth date:",
                                   style: TextStyle(
                                     fontSize: 16,
-                                    color: KPurple,
+                                    color: Theme.of(
+                                      context,
+                                    ).colorScheme.secondary,
                                   ),
                                 ),
                                 Text(
                                   user!.birthday!,
-                                  style: TextStyle(fontSize: 16),
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    color: Theme.of(
+                                      context,
+                                    ).colorScheme.primary,
+                                  ),
                                 ),
                               ],
                             ),
@@ -125,11 +155,19 @@ class _ProfileInformaState extends State<ProfileInforma> {
                             children: [
                               Text(
                                 "User id:",
-                                style: TextStyle(fontSize: 16, color: KPurple),
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Theme.of(
+                                    context,
+                                  ).colorScheme.secondary,
+                                ),
                               ),
                               Text(
                                 user!.id.toString()!,
-                                style: TextStyle(fontSize: 16),
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Theme.of(context).colorScheme.primary,
+                                ),
                               ),
                             ],
                           ),
@@ -139,12 +177,14 @@ class _ProfileInformaState extends State<ProfileInforma> {
                       SizedBox(height: 30),
                       Text(
                         "ID card:",
-                        style: TextStyle(color: KPurple, fontSize: 16),
-                      ),
-                      Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(16),
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.primary,
+                          fontSize: 16,
                         ),
+                      ),
+                      SizedBox(height: 10),
+                      ClipRRect(
+                        borderRadius: BorderRadiusGeometry.circular(8),
                         child: Image.network(
                           KbaseUrlImage + user!.indentityCardPath!,
                           width: 600,
@@ -157,7 +197,7 @@ class _ProfileInformaState extends State<ProfileInforma> {
                 );
               },
             ),
-            _buildMenuItem(
+            _buildMenit(
               icon: Icons.light_mode_outlined,
               title: "App Theme",
               onTap: () {
@@ -167,25 +207,25 @@ class _ProfileInformaState extends State<ProfileInforma> {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      _buildMenuItem(
+                      _buildMenit(
                         icon: Icons.sunny,
                         title: "light theme",
                         onTap: () {
                           Provider.of<ThemeProvider>(
                             context,
                             listen: false,
-                          ).toggleTheme(lightmode);
+                          ).set(lightmode);
                           Navigator.pop(context);
                         },
                       ),
-                      _buildMenuItem(
+                      _buildMenit(
                         icon: Icons.dark_mode,
                         title: "dark theme",
                         onTap: () {
                           Provider.of<ThemeProvider>(
                             context,
                             listen: false,
-                          ).toggleTheme(darkmode);
+                          ).set(darkmode);
                           Navigator.pop(context);
                         },
                       ),
@@ -194,12 +234,8 @@ class _ProfileInformaState extends State<ProfileInforma> {
                 );
               },
             ),
-            _buildMenuItem(
-              icon: Icons.language,
-              title: "Language",
-              onTap: () {},
-            ),
-            _buildMenuItem(
+            _buildMenit(icon: Icons.language, title: "Language", onTap: () {}),
+            _buildMenit(
               icon: Icons.payments_outlined,
               title: "Payment",
               onTap: () async {
@@ -214,27 +250,37 @@ class _ProfileInformaState extends State<ProfileInforma> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(Icons.attach_money_outlined, color: KPurple),
+                          Icon(
+                            Icons.attach_money_outlined,
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
                           SizedBox(height: 50),
                           Text(
                             " Your balance:",
-                            style: TextStyle(color: KPurple),
+                            style: TextStyle(
+                              color: Theme.of(context).colorScheme.primary,
+                            ),
                           ),
                         ],
                       ),
 
-                      Text(data.account ?? '0'),
+                      Text(
+                        data.account ?? '0',
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.secondary,
+                        ),
+                      ),
                     ],
                   ),
                 );
               },
             ),
-            _buildMenuItem(
+            _buildMenit(
               icon: Icons.support_agent_outlined,
               title: "Support",
               onTap: () {},
             ),
-            _buildMenuItem(
+            _buildMenit(
               icon: Icons.info_outline,
               title: "about us",
               onTap: () {
@@ -255,13 +301,23 @@ class _ProfileInformaState extends State<ProfileInforma> {
                             radius: 50,
                           ),
                           SizedBox(width: 20),
-                          Text("bayan wehbeh"),
+                          Text(
+                            "bayan wehbeh",
+                            style: TextStyle(
+                              color: Theme.of(context).colorScheme.primary,
+                            ),
+                          ),
                         ],
                       ),
                       SizedBox(height: 20),
                       Row(
                         children: [
-                          Text("amina ainia"),
+                          Text(
+                            "amina ainia",
+                            style: TextStyle(
+                              color: Theme.of(context).colorScheme.primary,
+                            ),
+                          ),
                           SizedBox(width: 20),
                           CircleAvatar(
                             backgroundImage: AssetImage(
@@ -276,18 +332,28 @@ class _ProfileInformaState extends State<ProfileInforma> {
                         children: [
                           CircleAvatar(
                             backgroundImage: AssetImage(
-                              "assets/images/bayan wehbeh.png",
+                              "assets/images/team/bayan wehbeh.png",
                             ),
                             radius: 50,
                           ),
                           SizedBox(width: 20),
-                          Text("alaa helal"),
+                          Text(
+                            "alaa helal",
+                            style: TextStyle(
+                              color: Theme.of(context).colorScheme.primary,
+                            ),
+                          ),
                         ],
                       ),
                       SizedBox(height: 20),
                       Row(
                         children: [
-                          Text("sarah sedekah"),
+                          Text(
+                            "sarah sedekah",
+                            style: TextStyle(
+                              color: Theme.of(context).colorScheme.primary,
+                            ),
+                          ),
                           SizedBox(width: 20),
                           CircleAvatar(
                             backgroundImage: AssetImage(
@@ -302,12 +368,17 @@ class _ProfileInformaState extends State<ProfileInforma> {
                         children: [
                           CircleAvatar(
                             backgroundImage: AssetImage(
-                              "assets/team/images/bayan_kheder.png",
+                              "assets/images/team/bayan_kheder.png",
                             ),
                             radius: 50,
                           ),
                           SizedBox(width: 20),
-                          Text("bayan al-kheder"),
+                          Text(
+                            "bayan al-kheder",
+                            style: TextStyle(
+                              color: Theme.of(context).colorScheme.primary,
+                            ),
+                          ),
                         ],
                       ),
                     ],
@@ -350,7 +421,7 @@ class _ProfileInformaState extends State<ProfileInforma> {
     );
   }
 
-  Widget _ProfileHeader(String name, String imageUrl, VoidCallback onEditTap) {
+  Widget _ProfMen(String name, String imageUrl) {
     return Column(
       children: [
         Stack(
@@ -359,57 +430,46 @@ class _ProfileInformaState extends State<ProfileInforma> {
             CircleAvatar(
               radius: 50,
               backgroundImage: NetworkImage(imageUrl),
-              backgroundColor: Koption,
-            ),
-            GestureDetector(
-              onTap: onEditTap,
-              child: Padding(
-                padding: const EdgeInsets.only(bottom: 5.0, right: 5.0),
-                child: Container(
-                  padding: const EdgeInsets.all(4),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    shape: BoxShape.circle,
-                    border: Border.all(color: Koption, width: 1),
-                  ),
-                  child: const Icon(
-                    Icons.edit_outlined,
-                    size: 18,
-                    color: Kmdry,
-                  ),
-                ),
-              ),
+              backgroundColor: Theme.of(context).colorScheme.onSurface,
             ),
           ],
         ),
         const SizedBox(height: 10),
         Text(
           name,
-          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: Theme.of(context).colorScheme.primary,
+          ),
         ),
       ],
     );
   }
 
-  Widget _buildMenuItem({
+  Widget _buildMenit({
     required IconData icon,
     required String title,
     required VoidCallback onTap,
   }) {
     return ListTile(
-      leading: Icon(icon, color: Kmdry, size: 22),
+      leading: Icon(
+        icon,
+        color: Theme.of(context).colorScheme.primary,
+        size: 22,
+      ),
       title: Text(
         title,
-        style: const TextStyle(
+        style: TextStyle(
           fontSize: 16,
-          color: Kmdry,
+          color: Theme.of(context).colorScheme.primary,
           fontWeight: FontWeight.normal,
         ),
       ),
-      trailing: const Icon(
+      trailing: Icon(
         Icons.arrow_forward_ios,
         size: 16,
-        color: Colors.grey,
+        color: Theme.of(context).colorScheme.primary,
       ),
       onTap: onTap,
       contentPadding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 0),
@@ -421,7 +481,7 @@ class _ProfileInformaState extends State<ProfileInforma> {
     required String title,
     required VoidCallback onTap,
   }) {
-    Color textColor = Kmdry;
+    Color textColor = Theme.of(context).colorScheme.primary;
 
     return ListTile(
       leading: Icon(icon, color: textColor, size: 22),
@@ -433,7 +493,11 @@ class _ProfileInformaState extends State<ProfileInforma> {
           fontWeight: FontWeight.w500,
         ),
       ),
-      trailing: const Icon(Icons.arrow_forward_ios, size: 16, color: Koption),
+      trailing: Icon(
+        Icons.arrow_forward_ios,
+        size: 16,
+        color: Theme.of(context).colorScheme.primary,
+      ),
       onTap: onTap,
       contentPadding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 0),
     );

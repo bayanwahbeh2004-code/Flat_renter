@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:baytech/Models/apartment.dart';
 import 'package:baytech/components/adding_custom_text_field.dart';
 import 'package:baytech/components/costum_button.dart';
@@ -7,12 +6,8 @@ import 'package:baytech/components/custom_drop_down_button.dart';
 import 'package:baytech/components/go_back_button.dart';
 import 'package:baytech/components/upload_image.dart';
 import 'package:baytech/helper/build_drop_down_list.dart';
-import 'package:baytech/helper/show_dialoge.dart';
 import 'package:baytech/providers/my_houses_provider.dart';
-import 'package:baytech/services/houses/adding_houses/add_house.dart';
-import 'package:baytech/services/houses/adding_houses/add_images.dart';
 import 'package:baytech/services/houses/adding_houses/store_house.dart';
-import 'package:baytech/services/houses/deleting_houses/delete_house.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:provider/provider.dart';
@@ -139,7 +134,7 @@ class _AddAppartmentPageState extends State<AddAppartmentPage> {
                   ),
                   SizedBox(height: 10),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
                     child: CityGovernorate(
                       onChanged: (gov, city) {
                         apartment.city = city;
@@ -152,7 +147,10 @@ class _AddAppartmentPageState extends State<AddAppartmentPage> {
                     padding: const EdgeInsets.only(left: 32.0),
                     child: Text(
                       "Property Photos",
-                      style: TextStyle(fontSize: 20),
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
                     ),
                   ),
                   SizedBox(height: 10),
@@ -184,7 +182,10 @@ class _AddAppartmentPageState extends State<AddAppartmentPage> {
                     padding: const EdgeInsets.only(left: 32.0),
                     child: Text(
                       "Property details",
-                      style: TextStyle(fontSize: 20),
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
                     ),
                   ),
                   SizedBox(height: 10),
@@ -313,7 +314,7 @@ class _AddAppartmentPageState extends State<AddAppartmentPage> {
                           apartment.description = data;
                         },
                         width: 400,
-                        hintText: "description..",
+                        hintText: "description",
                         controller: descriptionController,
                       ),
                     ),
@@ -322,8 +323,8 @@ class _AddAppartmentPageState extends State<AddAppartmentPage> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 48.0),
                     child: CostumButton(
-                      textColor: Colors.white,
-                      buttonColor: Colors.black,
+                      textColor: Theme.of(context).colorScheme.onPrimary,
+                      buttonColor: Theme.of(context).colorScheme.primary,
                       text: "Post",
                       onTap: () async {
                         if (!formKey.currentState!.validate()) {

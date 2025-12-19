@@ -101,7 +101,6 @@ class _CityGovernorateState extends State<CityGovernorate> {
     return Row(
       children: [
         const Icon(Icons.location_on_outlined),
-        const SizedBox(width: 8),
         CustomDropDownButton(
           hintText: widget.hintgov ?? 'Governorate',
           dropDownValues: const [
@@ -142,7 +141,6 @@ class _CityGovernorateState extends State<CityGovernorate> {
 
         const SizedBox(width: 20),
         const Icon(Icons.location_on_outlined),
-        const SizedBox(width: 8),
 
         if (_loadingCities)
           const Padding(

@@ -9,7 +9,7 @@ class Favourites extends StatefulWidget {
 }
 
 class _FavouritesState extends State<Favourites> {
-   @override
+  @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -17,26 +17,29 @@ class _FavouritesState extends State<Favourites> {
       provider.setFavourites(context);
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Consumer<FavouritesProvider>(
-      builder: (context, FavouritesProvider, child) =>
-       Container(
+      builder: (context, FavouritesProvider, child) => Container(
         height: 500,
         child: FavouritesProvider.favourites.isEmpty
             ? Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Icon(
+                    Icon(
                       Icons.home_work_outlined,
                       size: 64,
-                      color: Colors.grey,
+                      color: Theme.of(context).colorScheme.onSurface,
                     ),
                     const SizedBox(height: 16),
-                    const Text(
+                    Text(
                       'No houses found',
-                      style: TextStyle(fontSize: 16, color: Colors.grey),
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Theme.of(context).colorScheme.onSurface,
+                      ),
                     ),
                     const SizedBox(height: 16),
                   ],

@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:baytech/Constants.dart';
 import 'package:baytech/Models/apartment.dart';
-import 'package:baytech/Screens/Login_Page.dart';
 import 'package:baytech/Screens/Welcome_Page.dart';
 import 'package:baytech/auth.dart';
 import 'package:baytech/helper/api.dart';
@@ -9,11 +8,12 @@ import 'package:baytech/helper/show_dialoge.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 
-Future<void> addToFavourites({
+Future<void> sendRating({
   required BuildContext context,
   required Apartment house,
+  required String stars,
 }) async {
-  String url = "${KbaseUrl}house/${house.id}/favorite";
+  String url = "${KbaseUrl}storeEvaluation/${house.id}?star=$stars";
   try {
     Response response = await Api().post(
       url: url,
@@ -26,7 +26,6 @@ Future<void> addToFavourites({
         context,
         child: Text(
           'Your account was deleted by the admin or session was over.',
-          style: TextStyle(color: Theme.of(context).colorScheme.primary),
         ),
       );
     }
@@ -38,9 +37,24 @@ Future<void> addToFavourites({
           show = message;
         else
           message.forEach((key, value) => show = show + value[0].toString());
-        showDialoge(context, child: Text(show));
+        showDialoge(
+          context,
+          child: Text(
+            show,
+            style: TextStyle(color: Theme.of(context).colorScheme.primary),
+          ),
+        );
       }
       return;
+    } else {
+      String message = body['message'];
+      showDialoge(
+        context,
+        child: Text(
+          message,
+          style: TextStyle(color: Theme.of(context).colorScheme.primary),
+        ),
+      );
     }
   } catch (e) {
     print(e.toString());

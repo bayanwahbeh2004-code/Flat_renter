@@ -29,7 +29,8 @@ Future<List<Apartment>> Filtering({
       "&max_bathrooms=${filter.maxBathroom ?? ''}" +
       "&min_livingrooms=${filter.minLivingRoom ?? ''}" +
       "&max_livingrooms=${filter.maxLivingRoom ?? ''}" +
-      "&search=${filter.description ?? ''}";
+      "&search=${filter.description ?? ''}" +
+      "&order=${filter.rating_order ?? 'desc'}";
   try {
     Response response = await Api().get(
       url: url,
@@ -41,6 +42,7 @@ Future<List<Apartment>> Filtering({
         context,
         child: Text(
           'Your account was deleted by the admin or session was over.',
+          style: TextStyle(color: Theme.of(context).colorScheme.primary),
         ),
       );
       return [];
@@ -48,7 +50,6 @@ Future<List<Apartment>> Filtering({
       List<Apartment> houses = [];
       List<dynamic> data = jsonDecode(response.body)['data'];
       data.forEach((item) => houses.add(Apartment.fromJson(item['House'])));
-
       return houses;
     } else {
       return [];
@@ -59,6 +60,7 @@ Future<List<Apartment>> Filtering({
       context,
       child: Text(
         "something went wrong. please check your internet connection.",
+        style: TextStyle(color: Theme.of(context).colorScheme.primary),
       ),
     );
     return [];

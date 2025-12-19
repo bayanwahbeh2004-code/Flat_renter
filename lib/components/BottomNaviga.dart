@@ -11,15 +11,15 @@ class BottomNativigation extends StatelessWidget {
   final int selectbottom;
   @override
   Widget build(BuildContext context) {
-    final Color selscted = KPurple;
-    final Color notselscted = ktextColor;
+    final Color selscted = Theme.of(context).colorScheme.secondary;
+    final Color notselscted = Theme.of(context).colorScheme.onSurface;
     return BottomAppBar(
       elevation: 0,
       child: Container(
         height: 70,
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Theme.of(context).scaffoldBackgroundColor,
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(20),
             topRight: Radius.circular(20),

@@ -34,11 +34,11 @@ class _CostumTextFeildState extends State<CostumTextFeild> {
       },
       decoration: InputDecoration(
         filled: true,
-        fillColor: Colors.grey[100],
+        fillColor: Theme.of(context).colorScheme.primaryContainer,
         contentPadding: EdgeInsets.only(bottom: 18, left: 15, top: 18),
         labelText: widget.hintText,
         labelStyle: TextStyle(
-          color: const Color.fromARGB(255, 106, 105, 105),
+          color: Theme.of(context).colorScheme.onPrimaryContainer,
           fontSize: 14,
         ),
         suffix: widget.obscure != null
@@ -62,7 +62,7 @@ class _CostumTextFeildState extends State<CostumTextFeild> {
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(32),
         ),
-      )
+      ),
     );
   }
 }
