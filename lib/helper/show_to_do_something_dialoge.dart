@@ -1,5 +1,4 @@
 import 'package:baytech/Constants.dart';
-import 'package:baytech/helper/show_dialoge.dart';
 import 'package:flutter/material.dart';
 
 void showToDoSomeThingDialoge(
@@ -7,31 +6,44 @@ void showToDoSomeThingDialoge(
   required String message,
   Future<dynamic> Function()? toDo,
   bool cancel = false,
-  required String whereTo,
+  String? whereTo,
 }) {
   showDialog(
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
-        content: Text(message),
+        content: Text(
+          message,
+          style: TextStyle(color: Theme.of(context).colorScheme.primary),
+        ),
         actions: [
           if (cancel)
             TextButton(
-              child: const Text('cancel', style: TextStyle(color: KPurple)),
+              child: Text(
+                'cancel',
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.secondary,
+                ),
+              ),
               onPressed: () {
                 Navigator.pop(context);
               },
             ),
           TextButton(
-            child: const Text('ok', style: TextStyle(color: KPurple)),
+            child: Text(
+              'ok',
+              style: TextStyle(color: Theme.of(context).colorScheme.secondary),
+            ),
             onPressed: () async {
               bool ok = false;
+              Navigator.pop(context);
               if (toDo != null) {
                 await toDo();
                 ok = true;
               }
               if (ok) {
-                Navigator.popAndPushNamed(context, whereTo);
+                if (whereTo != null)
+                  Navigator.popAndPushNamed(context, whereTo);
               }
             },
           ),

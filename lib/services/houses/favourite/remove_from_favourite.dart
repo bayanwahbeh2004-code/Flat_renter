@@ -1,6 +1,5 @@
 import 'package:baytech/Constants.dart';
 import 'package:baytech/Models/apartment.dart';
-import 'package:baytech/Screens/Login_Page.dart';
 import 'package:baytech/Screens/Welcome_Page.dart';
 import 'package:baytech/auth.dart';
 import 'package:baytech/helper/api.dart';

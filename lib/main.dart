@@ -11,14 +11,16 @@ import 'package:baytech/Screens/add_appartment_page.dart';
 import 'package:baytech/Screens/chat_page.dart';
 import 'package:baytech/Screens/etate_page/estate_page.dart';
 import 'package:baytech/Screens/profil_page.dart';
+import 'package:baytech/Screens/requests_page.dart';
 import 'package:baytech/Screens/viewAppartment.dart';
 import 'package:baytech/Theme/theme_proider.dart';
 import 'package:baytech/Screens/calendar_booking_page.dart';
 import 'package:baytech/components/notification.dart';
-import 'package:baytech/helper/RitingWidget.dart';
 import 'package:baytech/providers/Filter_provider.dart';
 import 'package:baytech/providers/cities_provider.dart';
 import 'package:baytech/providers/favourites_provider.dart';
+import 'package:baytech/providers/landLordRequestsProvider.dart';
+import 'package:baytech/providers/myBookingsProvider.dart';
 import 'package:baytech/providers/my_houses_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:baytech/Screens/KeyinAnimation.dart';
@@ -37,6 +39,11 @@ void main() async {
         ),
         ChangeNotifierProvider(create: (_) => MyHousesProvider(), lazy: false),
         ChangeNotifierProvider(create: (_) => CitiesProvider()),
+        ChangeNotifierProvider(create: (_) => BookingsProvider(), lazy: false),
+        ChangeNotifierProvider(
+          create: (_) => landLordRequestsProvider(),
+          lazy: false,
+        ),
       ],
       child: Baytech(),
     ),
@@ -68,6 +75,7 @@ class Baytech extends StatelessWidget {
         Filteringpage.id: (context) => Filteringpage(),
         ApartmentDetailsPage.id: (context) => ApartmentDetailsPage(),
         calendar_book.id: (context) => calendar_book(),
+        RequestsPage.id: (context) => RequestsPage(),
       },
     );
   }

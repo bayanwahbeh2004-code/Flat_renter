@@ -26,16 +26,16 @@ ThemeData darkmode = ThemeData(
   brightness: Brightness.dark,
   scaffoldBackgroundColor: const Color.fromARGB(255, 28, 31, 34),
   appBarTheme: const AppBarTheme(
-    backgroundColor: const Color.fromARGB(255, 44, 56, 69),
+    backgroundColor: const Color.fromARGB(255, 28, 31, 34),
     foregroundColor: Colors.white,
     elevation: 0,
   ),
 
   colorScheme: ColorScheme.dark(
-    primary: Colors.white,
+    primary: Color(0xfff8eef8),
     onPrimary: Colors.black,
     secondary: const Color.fromARGB(255, 199, 120, 199),
-    onSecondary: Colors.white,
+    onSecondary: Color(0xfff8eef8),
     primaryContainer: Colors.grey,
     onPrimaryContainer: Colors.grey[800],
     onSurface: const Color.fromARGB(255, 193, 193, 193),

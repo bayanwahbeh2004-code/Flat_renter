@@ -65,6 +65,7 @@ class _LoginState extends State<LoginPage> {
                       children: [
                         SizedBox(height: 70),
                         CostumTextFeild(
+                          color: Koption,
                           textInputType: TextInputType.number,
                           hintText: "Phone number",
                           onchanged: (data) {
@@ -73,6 +74,7 @@ class _LoginState extends State<LoginPage> {
                         ),
                         SizedBox(height: 25),
                         CostumTextFeild(
+                          color: Koption,
                           hintText: "Password",
                           obscure: true,
                           onchanged: (data) {
@@ -106,7 +108,10 @@ class _LoginState extends State<LoginPage> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text("Don't have an account? "),
+                            Text(
+                              "Don't have an account? ",
+                              style: TextStyle(color: Colors.black),
+                            ),
                             GestureDetector(
                               onTap: () {
                                 Navigator.popAndPushNamed(

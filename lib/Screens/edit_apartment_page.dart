@@ -119,6 +119,7 @@ class _EditAppartmentPageState extends State<EditApartmentPage> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 32.0),
                       child: UploadImage(
+                        light: Theme.of(context).brightness == Brightness.light,
                         height: 250,
                         width: 250,
                         image: widget.mainImage,

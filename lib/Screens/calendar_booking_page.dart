@@ -1,3 +1,7 @@
+import 'package:baytech/Models/apartment.dart';
+import 'package:baytech/Models/book.dart';
+import 'package:baytech/services/houses/bookings/renter/book_request.dart';
+import 'package:baytech/services/houses/bookings/renter/update_booking.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -11,12 +15,10 @@ class calendar_book extends StatefulWidget {
 }
 
 class _calendar_bookState extends State<calendar_book> {
-  final List<DateTime> _resevdays = [
-    DateTime.utc(2025, 12, 20),
-    DateTime.utc(2025, 12, 21),
-    DateTime.utc(2025, 12, 21),
-    DateTime.utc(2026, 1, 1),
-  ];
+  List<DateTime> resevdays = [];
+  Apartment house = Apartment();
+  bool booking = true;
+  Book book = Book();
   DateTime _focused_day = DateTime.now();
   DateTime? _select_day;
   DateTime? _range_StartDay;
@@ -31,9 +33,23 @@ class _calendar_bookState extends State<calendar_book> {
     _range_EndDay = null;
   }
 
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final args = ModalRoute.of(context)?.settings.arguments;
+    if (args != null && args is Map<String, dynamic>) {
+      setState(() {
+        book = args['book'] ?? book;
+        booking = args['booking'] ?? true;
+        resevdays = args['bookedDays'] ?? resevdays;
+        house = args['house'] ?? house;
+      });
+    }
+  }
+
   bool _Day_isBooked(DateTime day) {
     final theday = DateTime.utc(day.year, day.month, day.day);
-    return _resevdays.any((reserved) => isSameDay(theday, reserved));
+    return resevdays.any((reserved) => isSameDay(theday, reserved));
   }
 
   bool _range_isBooked(DateTime start, DateTime end) {
@@ -79,7 +95,46 @@ class _calendar_bookState extends State<calendar_book> {
     }
   }
 
-  void _ACBooking() {
+  void _ACBooking() async {
+    if (_select_day != null) {
+      await bookHouseRequest(
+        context: context,
+        start: _select_day!,
+        end: _select_day!,
+        house: house,
+      );
+    } else if (_range_StartDay != null && _range_EndDay != null) {
+      await bookHouseRequest(
+        context: context,
+        start: _range_StartDay!,
+        end: _range_EndDay!,
+        house: house,
+      );
+    }
+    setState(() {
+      _select_day = null;
+      _range_StartDay = null;
+      _range_EndDay = null;
+      _rangeSelectionMode = RangeSelectionMode.toggledOn;
+    });
+  }
+
+  void _AC2Booking() async {
+    if (_select_day != null) {
+      await (
+        context: context,
+        start: _select_day!,
+        end: _select_day!,
+        house: house,
+      );
+    } else if (_range_StartDay != null && _range_EndDay != null) {
+      await updateBooking(
+        context: context,
+        start: _range_StartDay!,
+        end: _range_EndDay!,
+        book: book,
+      );
+    }
     setState(() {
       _select_day = null;
       _range_StartDay = null;
@@ -92,7 +147,7 @@ class _calendar_bookState extends State<calendar_book> {
   Widget build(BuildContext context) {
     String path = Theme.of(context).brightness == Brightness.light
         ? 'assets/animation/homeLight.json'
-        : 'dark theme ';
+        : 'assets/animation/Home Dark.json';
     final bool selectionMode =
         _select_day != null ||
         (_range_StartDay != null && _range_EndDay != null);
@@ -101,7 +156,7 @@ class _calendar_bookState extends State<calendar_book> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Lottie.asset(path, width: 300, height: 250, repeat: true),
+            Lottie.asset(path, width: 300, height: 300, repeat: true),
             TableCalendar(
               focusedDay: _focused_day,
               firstDay: DateTime.utc(2024, 1, 1),
@@ -118,7 +173,7 @@ class _calendar_bookState extends State<calendar_book> {
               onDisabledDayTapped: (day) {},
               calendarStyle: CalendarStyle(
                 disabledTextStyle: TextStyle(
-                  color: Colors.red,
+                  color: Theme.of(context).colorScheme.secondary,
                   decoration: TextDecoration.lineThrough,
                 ),
                 rangeHighlightColor: const Color.fromARGB(255, 210, 194, 239),
@@ -138,13 +193,13 @@ class _calendar_bookState extends State<calendar_book> {
               calendarFormat: CalendarFormat.month,
               headerStyle: HeaderStyle(formatButtonVisible: false),
             ),
-            const SizedBox(height: 12),
+            const SizedBox(height: 10),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Text(
                 "Press and hold for a single day book.",
                 style: TextStyle(
-                  fontSize: 16,
+                  fontSize: 14,
                   color: Theme.of(context).colorScheme.primary,
                   fontWeight: FontWeight.w500,
                 ),
@@ -152,23 +207,41 @@ class _calendar_bookState extends State<calendar_book> {
               ),
             ),
             const SizedBox(height: 30),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: ElevatedButton(
-                onPressed: selectionMode ? _ACBooking : null,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Theme.of(context).colorScheme.primary,
-                  minimumSize: const Size(300, 60),
-                ),
-                child: Text(
-                  'Book Now',
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: Theme.of(context).colorScheme.onPrimary,
+            booking == true
+                ? Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    child: ElevatedButton(
+                      onPressed: selectionMode ? _ACBooking : null,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Theme.of(context).colorScheme.primary,
+                        minimumSize: const Size(300, 60),
+                      ),
+                      child: Text(
+                        'Book Now',
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: Theme.of(context).colorScheme.onPrimary,
+                        ),
+                      ),
+                    ),
+                  )
+                : Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    child: ElevatedButton(
+                      onPressed: selectionMode ? _AC2Booking : null,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Theme.of(context).colorScheme.primary,
+                        minimumSize: const Size(300, 60),
+                      ),
+                      child: Text(
+                        'Update booking',
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: Theme.of(context).colorScheme.onPrimary,
+                        ),
+                      ),
+                    ),
                   ),
-                ),
-              ),
-            ),
           ],
         ),
       ),

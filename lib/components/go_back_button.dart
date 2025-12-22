@@ -10,10 +10,7 @@ class GoBackButton extends StatelessWidget {
         child: CircleAvatar(
           radius: 25,
           backgroundColor: Theme.of(context).colorScheme.primaryContainer,
-          child: Icon(
-            Icons.arrow_back,
-            color: Theme.of(context).colorScheme.primary,
-          ),
+          child: Icon(Icons.arrow_back, color: Colors.black),
         ),
       ),
     );

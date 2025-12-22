@@ -50,7 +50,6 @@ Future<void> Login({
         Navigator.popAndPushNamed(context, HomeScreen.id);
       else
         Navigator.popAndPushNamed(context, WaitingPage.id);
-      print(AuthService.getToken());
     }
   } catch (e) {
     print(e.toString());

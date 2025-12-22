@@ -9,12 +9,13 @@ class UploadImage extends StatefulWidget {
   final String? type;
   final File? image;
   final Function(File) onPick;
-
+  bool light;
   UploadImage({
     required this.height,
     required this.width,
     required this.image,
     required this.onPick,
+    required this.light,
     this.type,
   });
 
@@ -36,7 +37,7 @@ class _UploadImageState extends State<UploadImage> {
         padding: const EdgeInsets.all(8.0),
         child: widget.image == null
             ? Image.asset(
-                KuploadImage,
+                widget.light == true ? KuploadImage : KuploadImageDark,
                 height: widget.height,
                 width: widget.width,
               )

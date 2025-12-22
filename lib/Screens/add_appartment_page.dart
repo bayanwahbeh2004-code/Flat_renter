@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:baytech/Models/apartment.dart';
+import 'package:baytech/Theme/theme_proider.dart';
 import 'package:baytech/components/adding_custom_text_field.dart';
 import 'package:baytech/components/costum_button.dart';
 import 'package:baytech/components/custom_drop_down_button.dart';
@@ -122,6 +123,7 @@ class _AddAppartmentPageState extends State<AddAppartmentPage> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 32.0),
                     child: UploadImage(
+                      light: Theme.of(context).brightness == Brightness.light,
                       height: 250,
                       width: 250,
                       image: mainImage,
@@ -163,6 +165,9 @@ class _AddAppartmentPageState extends State<AddAppartmentPage> {
                         itemCount: images.length,
                         itemBuilder: (context, index) {
                           return UploadImage(
+                            light:
+                                Theme.of(context).brightness ==
+                                Brightness.light,
                             height: 150,
                             width: 150,
                             image: images[index],

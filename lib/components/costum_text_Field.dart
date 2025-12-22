@@ -6,10 +6,12 @@ class CostumTextFeild extends StatefulWidget {
   bool? obscure;
   TextInputType? textInputType;
   TextEditingController? controller;
+  Color? color;
   Function(String)? onchanged;
   CostumTextFeild({
     required this.hintText,
     this.textInputType,
+    this.color,
     this.obscure,
     this.onchanged,
     this.controller,
@@ -23,6 +25,7 @@ class _CostumTextFeildState extends State<CostumTextFeild> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      style: TextStyle(color: Theme.of(context).colorScheme.primary),
       keyboardType: widget.textInputType,
       onChanged: widget.onchanged,
       obscureText: widget.obscure ?? false,
@@ -34,12 +37,20 @@ class _CostumTextFeildState extends State<CostumTextFeild> {
       },
       decoration: InputDecoration(
         filled: true,
-        fillColor: Theme.of(context).colorScheme.primaryContainer,
+        fillColor:
+            widget.color ?? Theme.of(context).colorScheme.primaryContainer,
         contentPadding: EdgeInsets.only(bottom: 18, left: 15, top: 18),
         labelText: widget.hintText,
         labelStyle: TextStyle(
           color: Theme.of(context).colorScheme.onPrimaryContainer,
           fontSize: 14,
+        ),
+        hintStyle: TextStyle(
+          color: Theme.of(context).colorScheme.onPrimaryContainer,
+          fontSize: 14,
+        ),
+        suffixStyle: TextStyle(
+          color: Theme.of(context).colorScheme.onPrimaryContainer,
         ),
         suffix: widget.obscure != null
             ? Padding(

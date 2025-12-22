@@ -69,6 +69,7 @@ class _SignupPageState extends State<SignupPage> {
                       children: [
                         SizedBox(height: 70),
                         CostumTextFeild(
+                          color: Koption,
                           textInputType: TextInputType.number,
                           hintText: "Phone number",
                           onchanged: (data) {
@@ -77,6 +78,7 @@ class _SignupPageState extends State<SignupPage> {
                         ),
                         SizedBox(height: 25),
                         CostumTextFeild(
+                          color: Koption,
                           hintText: "Password",
                           obscure: true,
                           onchanged: (data) {
@@ -120,7 +122,10 @@ class _SignupPageState extends State<SignupPage> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text("Alredy have an account? "),
+                            Text(
+                              "Alredy have an account? ",
+                              style: TextStyle(color: Colors.black),
+                            ),
                             GestureDetector(
                               onTap: () {
                                 Navigator.popAndPushNamed(

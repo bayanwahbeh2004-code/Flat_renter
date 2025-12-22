@@ -28,7 +28,7 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:Theme.of(context).appBarTheme.backgroundColor,
+      backgroundColor: Colors.black,
       body: Form(
         key: formKey,
         child: ListView(
@@ -39,7 +39,7 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
               child: Text(
                 "Personal information",
                 style: TextStyle(
-                  color: Theme.of(context).colorScheme.onSurface,
+                  color: Colors.white,
                   fontSize: 28,
                   fontFamily: "Platypi",
                 ),
@@ -58,13 +58,13 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                   ),
                 ),
 
-                // ================= Content =================
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 28.0),
                   child: Column(
                     children: [
                       const SizedBox(height: 70),
                       CostumTextFeild(
+                        color: Koption,
                         hintText: "Enter your first name",
                         onchanged: (data) {
                           account.firstName = data;
@@ -72,6 +72,7 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                       ),
                       const SizedBox(height: 25),
                       CostumTextFeild(
+                        color: Koption,
                         hintText: "Enter your last name",
                         onchanged: (data) {
                           account.secondName = data;
@@ -83,15 +84,22 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                           Row(
                             children: const [
                               SizedBox(width: 15),
-                              Text("Identity card"),
+                              Text(
+                                "Identity card",
+                                style: TextStyle(color: Colors.black),
+                              ),
                               SizedBox(width: 100),
-                              Text("Profile picture"),
+                              Text(
+                                "Profile picture",
+                                style: TextStyle(color: Colors.black),
+                              ),
                             ],
                           ),
                           const SizedBox(height: 10),
                           Row(
                             children: [
                               UploadImage(
+                                light: true,
                                 height: 180,
                                 width: 150,
                                 image: identityCard,
@@ -106,6 +114,7 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                               const SizedBox(width: 20),
 
                               UploadImage(
+                                light: true,
                                 height: 180,
                                 width: 150,
                                 image: profilePicture,
@@ -127,10 +136,8 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                         text: "Birth date",
                         height: 50,
                         width: 225,
-                        buttonColor: Theme.of(context).colorScheme.primary,
-                        textColor: Theme.of(context).brightness == Brightness.dark
-                    ? Colors.black
-                    : Colors.white,
+                        buttonColor: Colors.white,
+                        textColor: Colors.black,
                         onTap: () async {
                           birthdate = await showDatePicker(
                             context: context,
@@ -156,10 +163,8 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                         text: "Next",
                         height: 50,
                         width: 225,
-                        buttonColor: Theme.of(context).colorScheme.primary,
-                        textColor:  Theme.of(context).brightness == Brightness.dark
-                    ? Colors.black
-                    : Colors.white,
+                        buttonColor: Colors.black,
+                        textColor: Colors.white,
                         onTap: () {
                           if (formKey.currentState!.validate() &&
                               birthdate != null &&
@@ -181,23 +186,33 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                           } else if (identityCard == null) {
                             showDialoge(
                               context,
-                              child: Text("Please upload your identity card"),
+                              child: Text(
+                                "Please upload your identity card",
+                                style: TextStyle(color: Colors.black),
+                              ),
                             );
                           } else if (profilePicture == null) {
                             showDialoge(
                               context,
-                              child: Text("Please upload your profile picture"),
+                              child: Text(
+                                "Please upload your profile picture",
+                                style: TextStyle(color: Colors.black),
+                              ),
                             );
                           } else if (birthdate == null) {
                             showDialoge(
                               context,
-                              child: Text("Please select your birth date"),
+                              child: Text(
+                                "Please select your birth date",
+                                style: TextStyle(color: Colors.black),
+                              ),
                             );
                           } else {
                             showDialoge(
                               context,
                               child: Text(
                                 "Something went wrong, check your internet connection.",
+                                style: TextStyle(color: Colors.black),
                               ),
                             );
                           }
@@ -209,17 +224,17 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Text("Already have an account? "),
+                          const Text(
+                            "Already have an account? ",
+                            style: TextStyle(color: Colors.black),
+                          ),
                           GestureDetector(
                             onTap: () {
                               Navigator.pushNamed(context, LoginPage.id);
                             },
                             child: const Text(
                               "log in",
-                              style: TextStyle(
-                                color: KPurple,
-                                fontSize: 18,
-                              ),
+                              style: TextStyle(color: KPurple, fontSize: 18),
                             ),
                           ),
                         ],

@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:baytech/Constants.dart';
+import 'package:baytech/Models/book.dart';
 import 'package:baytech/Screens/Welcome_Page.dart';
 import 'package:baytech/auth.dart';
 import 'package:baytech/helper/Api.dart';
@@ -7,33 +8,36 @@ import 'package:baytech/helper/show_dialoge.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 
-Future<void> deleteRequest({required BuildContext context}) async {
-  String url = KbaseUrl + "requestDelete";
+Future<void> cancelBooking({
+  required BuildContext context,
+  required Book book,
+}) async {
+  String url = "${KbaseUrl}cancelBooking/${book.id}";
   try {
     Response response = await Api().put(
       url: url,
       token: await AuthService.getToken(),
     );
-    if (response.statusCode == 403) {
+    Map<String, dynamic> body = jsonDecode(response.body);
+    if (response.statusCode == 401) {
+      Navigator.popAndPushNamed(context, WelcomePage.id);
       showDialoge(
         context,
         child: Text(
-          "Your account was deleted by the admin",
+          'Your account was deleted by the admin or session was over.',
           style: TextStyle(color: Theme.of(context).colorScheme.primary),
         ),
       );
-      Navigator.popAndPushNamed(context, WelcomePage.id);
-      return;
+    } else {
+      String message = body['message'];
+      showDialoge(
+        context,
+        child: Text(
+          message,
+          style: TextStyle(color: Theme.of(context).colorScheme.primary),
+        ),
+      );
     }
-    Map<String, dynamic> body = jsonDecode(response.body);
-    String message = body["message"];
-    showDialoge(
-      context,
-      child: Text(
-        message,
-        style: TextStyle(color: Theme.of(context).colorScheme.primary),
-      ),
-    );
   } catch (e) {
     print(e.toString());
     showDialoge(

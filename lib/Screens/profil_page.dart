@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:baytech/Constants.dart';
 import 'package:baytech/Models/User.dart';
 import 'package:baytech/Theme/theme.dart';
@@ -14,9 +12,6 @@ import 'package:provider/provider.dart';
 
 class ProfileInforma extends StatefulWidget {
   static String id = "prof_page";
-  final VoidCallback? onEditTap;
-
-  ProfileInforma({this.onEditTap});
 
   @override
   State<ProfileInforma> createState() => _ProfileInformaState();
@@ -88,7 +83,7 @@ class _ProfileInformaState extends State<ProfileInforma> {
                                 ),
                               ),
                               Text(
-                                user!.firstName! + " " + user!.secondName!,
+                                "${user!.firstName!} ${user!.secondName!}",
                                 style: TextStyle(
                                   fontSize: 16,
                                   color: Theme.of(context).colorScheme.primary,

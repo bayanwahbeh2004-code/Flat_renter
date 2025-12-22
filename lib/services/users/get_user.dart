@@ -21,7 +21,10 @@ Future<User> getUser({required BuildContext context}) async {
       Navigator.popAndPushNamed(context, WelcomePage.id);
       showDialoge(
         context,
-        child: Text("Your account was deleted by the admin"),
+        child: Text(
+          "Your account was deleted by the admin",
+          style: TextStyle(color: Theme.of(context).colorScheme.primary),
+        ),
       );
       return User();
     } else {

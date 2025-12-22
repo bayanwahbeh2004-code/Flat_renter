@@ -1,26 +1,24 @@
 import 'dart:convert';
-
 import 'package:baytech/Constants.dart';
 import 'package:baytech/Models/apartment.dart';
-import 'package:baytech/Screens/Login_Page.dart';
+import 'package:baytech/Models/book.dart';
 import 'package:baytech/Screens/Welcome_Page.dart';
 import 'package:baytech/auth.dart';
-import 'package:baytech/helper/api.dart';
+import 'package:baytech/helper/Api.dart';
 import 'package:baytech/helper/show_dialoge.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 
-Future<bool> deleteImages({
+Future<List<Book>> getBookingsRequests({
   required BuildContext context,
-  required Apartment house,
+  required Apartment house
 }) async {
-  String url = "${KbaseUrl}destroyImage/${house.id}";
+  String url = "${KbaseUrl}BookingRequests/${house.id}";
   try {
-    Response response = await Api().del(
+    Response response = await Api().get(
       url: url,
       token: await AuthService.getToken(),
     );
-    print(response.statusCode);
     if (response.statusCode == 401) {
       Navigator.popAndPushNamed(context, WelcomePage.id);
       showDialoge(
@@ -30,21 +28,26 @@ Future<bool> deleteImages({
           style: TextStyle(color: Theme.of(context).colorScheme.primary),
         ),
       );
-      return false;
-    } else if (response.statusCode == 200 || response.statusCode == 201) {
-      return true;
+      return [];
+    } else if (response.statusCode == 200) {
+      List<dynamic> data = jsonDecode(response.body)['data']??[];
+      List<Book> myBookings = [];
+      data.forEach((item) {
+        myBookings.add(Book.fromJson(item));
+      });
+      return myBookings;
     } else {
-      return false;
+      return [];
     }
   } catch (e) {
     print(e.toString());
     showDialoge(
       context,
       child: Text(
-        "something went wrong, please double check your internet connection.",
+        "something went wrong, please check your internet connection.",
         style: TextStyle(color: Theme.of(context).colorScheme.primary),
       ),
     );
-    return false;
   }
+  return [];
 }

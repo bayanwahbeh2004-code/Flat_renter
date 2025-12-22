@@ -3,11 +3,13 @@ import 'package:baytech/Constants.dart';
 import 'package:baytech/Models/apartment.dart';
 import 'package:baytech/Screens/edit_apartment_page.dart';
 import 'package:baytech/Screens/calendar_booking_page.dart';
+import 'package:baytech/Screens/requests_page.dart';
 import 'package:baytech/components/go_back_button.dart';
 import 'package:baytech/components/heart_icon.dart';
 import 'package:baytech/helper/File_from_url.dart';
 import 'package:baytech/helper/RatedWidget.dart';
 import 'package:baytech/providers/my_houses_provider.dart';
+import 'package:baytech/services/houses/bookings/renter/getBookedDays.dart';
 import 'package:baytech/services/houses/deleting_houses/delete_house.dart';
 import 'package:baytech/services/houses/send_rating.dart';
 import 'package:flutter/material.dart';
@@ -442,7 +444,13 @@ class _ApartmentDetailsPageState extends State<ApartmentDetailsPage> {
                           ),
                           SizedBox(width: 20),
                           ElevatedButton(
-                            onPressed: () async {},
+                            onPressed: () async {
+                              Navigator.pushNamed(
+                                context,
+                                RequestsPage.id,
+                                arguments: widget.house,
+                              );
+                            },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Theme.of(
                                 context,
@@ -467,8 +475,25 @@ class _ApartmentDetailsPageState extends State<ApartmentDetailsPage> {
                   : Padding(
                       padding: const EdgeInsets.all(50.0),
                       child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.pushNamed(context, calendar_book.id);
+                        onPressed: () async {
+                          setState(() {
+                            isLoading = true;
+                          });
+                          List<DateTime>? BookedDays = await getBookedDays(
+                            context: context,
+                            house: widget.house!,
+                          );
+                          setState(() {
+                            isLoading = false;
+                          });
+                          Navigator.pushNamed(
+                            context,
+                            calendar_book.id,
+                            arguments: {
+                              'bookedDays': BookedDays,
+                              'house': widget.house,
+                            },
+                          );
                         },
                         style: ElevatedButton.styleFrom(
                           fixedSize: Size(150, 60),

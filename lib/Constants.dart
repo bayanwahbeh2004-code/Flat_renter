@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 const Klogo = "assets/images/logo.png";
 const KuploadImage = "assets/images/upload image.png";
+const KuploadImageDark = "assets/images/uploadImageDark.png";
 const KProfile = "assets/images/Kprofile.jpg";
 const KPictureId = "assets/images/KPicturewId.png";
 

@@ -1,25 +1,26 @@
 import 'dart:convert';
+import 'dart:ui';
+
 import 'package:baytech/Constants.dart';
 import 'package:baytech/Models/apartment.dart';
 import 'package:baytech/Screens/Welcome_Page.dart';
 import 'package:baytech/auth.dart';
-import 'package:baytech/helper/api.dart';
+import 'package:baytech/helper/Api.dart';
 import 'package:baytech/helper/show_dialoge.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
+import 'package:table_calendar/table_calendar.dart';
 
-Future<void> sendRating({
+Future<List<DateTime>?> getBookedDays({
   required BuildContext context,
   required Apartment house,
-  required String stars,
 }) async {
-  String url = "${KbaseUrl}storeEvaluation/${house.id}?star=$stars";
+  String url = "${KbaseUrl}getBookForHouse/${house.id}";
   try {
-    Response response = await Api().post(
+    Response response = await Api().get(
       url: url,
       token: await AuthService.getToken(),
     );
-    Map<String, dynamic> body = jsonDecode(response.body);
     if (response.statusCode == 401) {
       Navigator.popAndPushNamed(context, WelcomePage.id);
       showDialoge(
@@ -29,33 +30,22 @@ Future<void> sendRating({
           style: TextStyle(color: Theme.of(context).colorScheme.primary),
         ),
       );
-    }
-    if (response.statusCode != 201 && response.statusCode != 200) {
-      if (body.containsKey("errors")) {
-        dynamic message = body["errors"];
-        String show = "";
-        if (message is String)
-          show = message;
-        else
-          message.forEach((key, value) => show = show + value[0].toString());
-        showDialoge(
-          context,
-          child: Text(
-            show,
-            style: TextStyle(color: Theme.of(context).colorScheme.primary),
-          ),
-        );
+      return null;
+    } else if (response.statusCode == 200) {
+      List<dynamic> data = jsonDecode(response.body)['data'];
+      List<DateTime> days = [];
+      if (data.isNotEmpty) {
+        for (var key in data) {
+          DateTime startDate = DateTime.parse(key['Book']['start_date']);
+          DateTime endDate = DateTime.parse(key['Book']['end_date']);
+          DateTime current = startDate;
+          while (current.isBefore(endDate) || isSameDay(current, endDate)) {
+            days.add(DateTime.utc(current.year, current.month, current.day));
+            current = current.add(const Duration(days: 1));
+          }
+        }
       }
-      return;
-    } else {
-      String message = body['message'];
-      showDialoge(
-        context,
-        child: Text(
-          message,
-          style: TextStyle(color: Theme.of(context).colorScheme.primary),
-        ),
-      );
+      return days;
     }
   } catch (e) {
     print(e.toString());
@@ -67,4 +57,5 @@ Future<void> sendRating({
       ),
     );
   }
+  return null;
 }
