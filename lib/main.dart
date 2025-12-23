@@ -16,18 +16,23 @@ import 'package:baytech/Screens/viewAppartment.dart';
 import 'package:baytech/Theme/theme_proider.dart';
 import 'package:baytech/Screens/calendar_booking_page.dart';
 import 'package:baytech/components/notification.dart';
+import 'package:baytech/firebase_options.dart';
 import 'package:baytech/providers/Filter_provider.dart';
 import 'package:baytech/providers/cities_provider.dart';
 import 'package:baytech/providers/favourites_provider.dart';
 import 'package:baytech/providers/landLordRequestsProvider.dart';
 import 'package:baytech/providers/myBookingsProvider.dart';
 import 'package:baytech/providers/my_houses_provider.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:baytech/Screens/KeyinAnimation.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+  options: DefaultFirebaseOptions.currentPlatform,
+);
   runApp(
     MultiProvider(
       providers: [

@@ -29,7 +29,12 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   cached_network_image: ^3.4.1
+  cloud_firestore: ^6.1.1
   cupertino_icons: ^1.0.8
+  delightful_toast: ^1.1.0
+  firebase_core: ^4.3.0
+  firebase_messaging: ^16.1.0
+  firebase_storage: ^13.0.5
   flutter:
     sdk: flutter
   flutter_rating_bar: ^4.0.1
