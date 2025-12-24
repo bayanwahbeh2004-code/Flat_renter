@@ -30,9 +30,7 @@ import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-  options: DefaultFirebaseOptions.currentPlatform,
-);
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(
     MultiProvider(
       providers: [
@@ -74,7 +72,7 @@ class Baytech extends StatelessWidget {
         HomeScreen.id: (context) => HomeScreen(),
         NotificationScreen.id: (context) => NotificationScreen(),
         BookingsPage.id: (context) => BookingsPage(),
-        ChatsPage.id: (context) => ChatsPage(),
+        ChatPage.id: (context) => ChatPage(),
         YourEstatesPage.id: (context) => YourEstatesPage(),
         ProfileInforma.id: (context) => ProfileInforma(),
         Filteringpage.id: (context) => Filteringpage(),
