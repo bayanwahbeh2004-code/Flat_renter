@@ -5,22 +5,34 @@ import 'package:baytech/Screens/home_page/home_app.dart';
 import 'package:baytech/Screens/Waiting_Page.dart';
 import 'package:baytech/helper/api.dart';
 import 'package:baytech/helper/show_dialoge.dart';
+import 'package:baytech/services/PushNotificationService.dart';
 import 'package:baytech/services/users/get_user.dart';
 import 'package:baytech/services/users/user_active.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:baytech/auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 Future<void> Login({
   required User account,
   required BuildContext context,
 }) async {
   String url = KbaseUrl + "login";
+  String? fcm_token = await Pushnotificationservices.init();
+  print(account.password);
+  print(account.phoneNumber);
+  print(fcm_token);
   try {
     Response response = await Api().post(
       url: url,
-      body: {"phone": account.phoneNumber, "password": account.password},
+      body: {
+        "phone": account.phoneNumber??'',
+        "password": account.password??'',
+        "fcm_token": fcm_token??'',
+      },
     );
+
     Map<String, dynamic> body = jsonDecode(response.body);
     if (response.statusCode != 201 && response.statusCode != 200) {
       String message = body["message"];

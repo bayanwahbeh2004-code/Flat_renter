@@ -1,4 +1,3 @@
-import 'package:baytech/Constants.dart';
 import 'package:flutter/material.dart';
 
 class AddingCustomTextField extends StatefulWidget {
@@ -51,7 +50,7 @@ class _AddingCustomTextFieldState extends State<AddingCustomTextField> {
             contentPadding: EdgeInsets.all(8),
             hintText: widget.hintText,
             hintStyle: TextStyle(
-              color: Theme.of(context).colorScheme.primaryContainer,
+              color: Theme.of(context).colorScheme.onSurface,
               fontSize: 14,
             ),
             maintainHintSize: true,

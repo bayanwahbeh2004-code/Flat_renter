@@ -5,4 +5,11 @@ class Message {
     required this.message,
     required this.myID,
   });
+   factory Message.fromJson(jsonData) {
+    return Message(
+      message: jsonData['message'],
+      myID: jsonData['myID'],
+      destinationId: jsonData['destinationId'],
+    );
+  }
 }

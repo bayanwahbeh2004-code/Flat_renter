@@ -8,7 +8,6 @@ import 'package:baytech/Screens/Signup_page.dart';
 import 'package:baytech/Screens/Waiting_Page.dart';
 import 'package:baytech/Screens/Welcome_Page.dart';
 import 'package:baytech/Screens/add_appartment_page.dart';
-import 'package:baytech/Screens/chat_page.dart';
 import 'package:baytech/Screens/etate_page/estate_page.dart';
 import 'package:baytech/Screens/profil_page.dart';
 import 'package:baytech/Screens/requests_page.dart';
@@ -59,7 +58,7 @@ class Baytech extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: Provider.of<ThemeProvider>(context).themeData,
-      initialRoute: HomeScreen.id,
+      initialRoute: KeyinAnimation.id,
       routes: {
         KeyinAnimation.id: (context) => const KeyinAnimation(),
         WelcomePage.id: (context) => const WelcomePage(),
@@ -72,7 +71,6 @@ class Baytech extends StatelessWidget {
         HomeScreen.id: (context) => HomeScreen(),
         NotificationScreen.id: (context) => NotificationScreen(),
         BookingsPage.id: (context) => BookingsPage(),
-        ChatPage.id: (context) => ChatPage(),
         YourEstatesPage.id: (context) => YourEstatesPage(),
         ProfileInforma.id: (context) => ProfileInforma(),
         Filteringpage.id: (context) => Filteringpage(),

@@ -138,9 +138,8 @@ class _BookingsPageState extends State<BookingsPage> {
           child: SizedBox(
             height: 130,
             child: BookCard(
-              // FIXED: Use index instead of .first
               book: bookings.myBookings[index],
-              isCurrent: selectButton == "current bookings",
+              isCancelled: selectButton == "cancelled bookings",
             ),
           ),
         );

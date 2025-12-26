@@ -21,12 +21,24 @@ class CustomDropDownButton extends StatelessWidget {
     return DropdownButton<String>(
       value: value, // Directly use the value
       items: uniqueValues.map((item) {
-        return DropdownMenuItem<String>(value: item, child: Text(item));
+        return DropdownMenuItem<String>(
+          value: item,
+          child: Text(
+            item,
+            style: TextStyle(color: Theme.of(context).colorScheme.primary),
+          ),
+        );
       }).toList(),
-      hint: Text(hintText),
+      hint: Text(
+        hintText,
+        style: TextStyle(color: Theme.of(context).colorScheme.primary),
+      ),
       onChanged: onChanged,
       isExpanded: false,
-      underline: Container(height: 1, color: Theme.of(context).colorScheme.onSurface,),
+      underline: Container(
+        height: 1,
+        color: Theme.of(context).colorScheme.onSurface,
+      ),
     );
   }
 }

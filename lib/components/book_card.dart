@@ -13,8 +13,8 @@ import 'package:provider/provider.dart';
 
 class BookCard extends StatefulWidget {
   Book book;
-  bool isCurrent;
-  BookCard({required this.book, required this.isCurrent});
+  bool isCancelled;
+  BookCard({required this.book, required this.isCancelled});
 
   @override
   State<BookCard> createState() => _BookCardState();
@@ -91,7 +91,7 @@ class _BookCardState extends State<BookCard> {
                       ],
                     ),
                   ),
-                  widget.isCurrent == true
+                  widget.isCancelled != true
                       ? Padding(
                           padding: const EdgeInsets.symmetric(vertical: 12.0),
                           child: Column(
