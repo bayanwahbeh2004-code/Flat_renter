@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:baytech/Models/User.dart';
+
 class Apartment {
   String? id,
       title,
@@ -12,10 +14,12 @@ class Apartment {
       price,
       area,
       governorate,
-      city, avg_star;
+      city,
+      avg_star;
   List<String>? images = [];
   String? mainImage;
   bool? isFavourite, mine;
+  User? user;
   Apartment({
     this.avg_star,
     this.id,
@@ -34,6 +38,7 @@ class Apartment {
     this.price,
     this.city,
     this.governorate,
+    this.user
   });
   factory Apartment.fromJson(data) {
     return Apartment(
@@ -50,7 +55,8 @@ class Apartment {
       description: data['descreption'],
       city: data['city'],
       governorate: data['governorate'],
-      avg_star:data['avg_star']
+      avg_star: data['avg_star'],
+      user: User.fromjson(data['User'])
     );
   }
 }

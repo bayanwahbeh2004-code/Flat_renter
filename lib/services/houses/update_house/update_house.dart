@@ -48,13 +48,19 @@ Future<bool> updateHouse({
         ),
       );
     }
+    print(response.statusCode);
     if (response.statusCode != 200) {
-      if (body.containsKey('message')) {
-        dynamic message = body["message"];
+      if (body.containsKey("errors")) {
+        dynamic message = body["errors"];
+        String show = "";
+        if (message is String)
+          show = message;
+        else
+          message.forEach((key, value) => show = show + value[0].toString());
         showDialoge(
           context,
           child: Text(
-            message,
+            show,
             style: TextStyle(color: Theme.of(context).colorScheme.primary),
           ),
         );

@@ -93,7 +93,13 @@ class _BookCardState extends State<landLordRequestsCard> {
                       },
                       child: Text("accept"),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor:Theme.of(context).scaffoldBackgroundColor
+                        backgroundColor: Theme.of(
+                          context,
+                        ).scaffoldBackgroundColor,
+                        side: BorderSide(
+                          color: Theme.of(context).colorScheme.primary,
+                          width: 1.0,
+                        ),
                       ),
                     ),
                     ElevatedButton(
@@ -112,7 +118,7 @@ class _BookCardState extends State<landLordRequestsCard> {
                       },
                       child: Text("reject"),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.red,
+                        backgroundColor: const Color.fromARGB(255, 203, 68, 68),
                       ),
                     ),
                   ],

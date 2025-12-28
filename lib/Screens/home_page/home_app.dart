@@ -1,5 +1,6 @@
 import 'package:baytech/Models/User.dart';
 import 'package:baytech/Screens/Bookings.dart';
+import 'package:baytech/Screens/chat_List.dart';
 import 'package:baytech/Screens/etate_page/estate_page.dart';
 import 'package:baytech/Screens/home_page/home_content.dart';
 import 'package:baytech/Screens/profil_page.dart';
@@ -26,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
       HomeContent(),
       BookingsPage(),
       YourEstatesPage(),
-      //ChatPage(),
+      ChatListScreen(),
     ];
   }
 

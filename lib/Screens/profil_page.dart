@@ -82,11 +82,20 @@ class _ProfileInformaState extends State<ProfileInforma> {
                                   ).colorScheme.secondary,
                                 ),
                               ),
-                              Text(
-                                "${user!.firstName!} ${user!.secondName!}",
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  color: Theme.of(context).colorScheme.primary,
+                              Container(
+                                width: 120,
+                                child: SingleChildScrollView(
+                                  scrollDirection: Axis.horizontal,
+                                  child: Text(
+                                    softWrap: false,
+                                    "${user!.firstName!} ${user!.secondName!}",
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      color: Theme.of(
+                                        context,
+                                      ).colorScheme.primary,
+                                    ),
+                                  ),
                                 ),
                               ),
                             ],
@@ -119,7 +128,7 @@ class _ProfileInformaState extends State<ProfileInforma> {
                       Row(
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(left: 8.0),
+                            padding: const EdgeInsets.only(left: 95.0),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -145,27 +154,6 @@ class _ProfileInformaState extends State<ProfileInforma> {
                             ),
                           ),
                           SizedBox(width: 65),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                "User id:",
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  color: Theme.of(
-                                    context,
-                                  ).colorScheme.secondary,
-                                ),
-                              ),
-                              Text(
-                                user!.id.toString()!,
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  color: Theme.of(context).colorScheme.primary,
-                                ),
-                              ),
-                            ],
-                          ),
                         ],
                       ),
 
@@ -173,7 +161,7 @@ class _ProfileInformaState extends State<ProfileInforma> {
                       Text(
                         "ID card:",
                         style: TextStyle(
-                          color: Theme.of(context).colorScheme.primary,
+                          color: Theme.of(context).colorScheme.secondary,
                           fontSize: 16,
                         ),
                       ),

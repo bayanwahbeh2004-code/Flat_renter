@@ -1,15 +1,25 @@
 class Message {
-  String message, myID, destinationId;
+  final String senderID;
+  final String senderEmail;
+  final String receiverID;
+  final String message;
+  final String timestamp;
+
   Message({
-    required this.destinationId,
+    required this.senderID,
+    required this.senderEmail,
+    required this.receiverID,
     required this.message,
-    required this.myID,
+    required this.timestamp,
   });
-   factory Message.fromJson(jsonData) {
-    return Message(
-      message: jsonData['message'],
-      myID: jsonData['myID'],
-      destinationId: jsonData['destinationId'],
-    );
+  //convert to a map
+  Map<String, dynamic> toMap() {
+    return {
+      'senderID': senderID,
+      'senderEmail': receiverID,
+      'receiverID': receiverID,
+      'message': message,
+      'timestamp': timestamp,
+    };
   }
 }

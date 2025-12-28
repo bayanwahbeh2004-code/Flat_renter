@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:baytech/Constants.dart';
 import 'package:baytech/Models/User.dart';
 import 'package:baytech/Screens/Login_Page.dart';
@@ -108,6 +107,7 @@ class _SignupPageState extends State<SignupPage> {
                                 context: context,
                                 confirmPassword: confirmPassword!,
                               );
+
                               setState(() {
                                 isLoading = false;
                               });

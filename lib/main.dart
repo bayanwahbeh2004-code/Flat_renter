@@ -22,6 +22,7 @@ import 'package:baytech/providers/favourites_provider.dart';
 import 'package:baytech/providers/landLordRequestsProvider.dart';
 import 'package:baytech/providers/myBookingsProvider.dart';
 import 'package:baytech/providers/my_houses_provider.dart';
+import 'package:baytech/services/LocalNotificationServices.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:baytech/Screens/KeyinAnimation.dart';
@@ -29,7 +30,9 @@ import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await Firebase.initializeApp(
+       options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(
     MultiProvider(
       providers: [
@@ -56,6 +59,7 @@ class Baytech extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      navigatorKey: LocalNotificationService.navigatorKey,
       debugShowCheckedModeBanner: false,
       theme: Provider.of<ThemeProvider>(context).themeData,
       initialRoute: KeyinAnimation.id,

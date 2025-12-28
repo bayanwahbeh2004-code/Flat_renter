@@ -73,14 +73,18 @@ class _AppartmentProfileImageState extends State<AppartmentProfileImage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     // Title
-                    Text(
-                      widget.house.title ?? '',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: widget.width * 0.08,
-                        fontWeight: FontWeight.bold,
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Text(
+                        softWrap: false,
+                        widget.house.title ?? '',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: widget.width * 0.08,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        textAlign: TextAlign.center,
                       ),
-                      textAlign: TextAlign.center,
                     ),
                     SizedBox(height: 5),
                     Row(
@@ -90,11 +94,18 @@ class _AppartmentProfileImageState extends State<AppartmentProfileImage> {
                           color: Colors.white,
                           size: widget.heigth * 0.04,
                         ),
-                        Text(
-                          '${widget.house.governorate!}, ${widget.house.city!}',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: widget.width * 0.06,
+                        Container(
+                          width: 140,
+                          child: SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Text(
+                              softWrap: false,
+                              '${widget.house.governorate!}, ${widget.house.city!}',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: widget.width * 0.06,
+                              ),
+                            ),
                           ),
                         ),
                       ],

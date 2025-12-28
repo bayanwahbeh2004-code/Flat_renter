@@ -30,6 +30,23 @@ class _RequestsPageState extends State<RequestsPage> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      loadrequests();
+    });
+  }
+
+  Future<void> loadrequests() async {
+    final provider = Provider.of<landLordRequestsProvider>(
+      context,
+      listen: false,
+    );
+    await provider.setBookings(widget.house!, context);
+    await provider.setUpdate(widget.house!, context);
+  }
+
+  @override
   Widget build(BuildContext context) {
     widget.house = ModalRoute.of(context)!.settings.arguments as Apartment;
     return Consumer<landLordRequestsProvider>(

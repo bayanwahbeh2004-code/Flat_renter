@@ -42,16 +42,14 @@ class _CostumTextFeildState extends State<CostumTextFeild> {
         contentPadding: EdgeInsets.only(bottom: 18, left: 15, top: 18),
         labelText: widget.hintText,
         labelStyle: TextStyle(
-          color: Theme.of(context).colorScheme.onPrimaryContainer,
+          color: Theme.of(context).colorScheme.primary,
           fontSize: 14,
         ),
         hintStyle: TextStyle(
-          color: Theme.of(context).colorScheme.onPrimaryContainer,
+          color: Theme.of(context).colorScheme.primary,
           fontSize: 14,
         ),
-        suffixStyle: TextStyle(
-          color: Theme.of(context).colorScheme.onPrimaryContainer,
-        ),
+        suffixStyle: TextStyle(color: Theme.of(context).colorScheme.primary),
         suffix: widget.obscure != null
             ? Padding(
                 padding: const EdgeInsets.only(right: 20.0),

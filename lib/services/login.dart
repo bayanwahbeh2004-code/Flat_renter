@@ -6,6 +6,7 @@ import 'package:baytech/Screens/Waiting_Page.dart';
 import 'package:baytech/helper/api.dart';
 import 'package:baytech/helper/show_dialoge.dart';
 import 'package:baytech/services/PushNotificationService.dart';
+import 'package:baytech/services/auth_service.dart';
 import 'package:baytech/services/users/get_user.dart';
 import 'package:baytech/services/users/user_active.dart';
 import 'package:flutter/material.dart';
@@ -20,19 +21,15 @@ Future<void> Login({
 }) async {
   String url = KbaseUrl + "login";
   String? fcm_token = await Pushnotificationservices.init();
-  print(account.password);
-  print(account.phoneNumber);
-  print(fcm_token);
   try {
     Response response = await Api().post(
       url: url,
       body: {
-        "phone": account.phoneNumber??'',
-        "password": account.password??'',
-        "fcm_token": fcm_token??'',
+        "phone": account.phoneNumber ?? '',
+        "password": account.password ?? '',
+        "fcm_token": fcm_token ?? '',
       },
     );
-
     Map<String, dynamic> body = jsonDecode(response.body);
     if (response.statusCode != 201 && response.statusCode != 200) {
       String message = body["message"];
@@ -44,10 +41,11 @@ Future<void> Login({
         ),
       );
     } else {
+      User user = User.fromjson(body['User']);
       AuthService.saveToken(body['Token']);
       print(body['Token']);
       bool active = await userStatus(context: context);
-      if ((await getUser(context: context)).role == 'admin') {
+      if (user.role == 'admin') {
         showDialoge(
           context,
           child: Text(
@@ -55,9 +53,13 @@ Future<void> Login({
             style: TextStyle(color: Theme.of(context).colorScheme.primary),
           ),
         );
-        return;
       }
-
+        await AuthServiceFirebase().autoCreateFirebaseAccount(
+          laravelUserId: user.id!,
+          name: "${user.firstName} ${user.secondName}",
+          profilePicture: user.profilePicturePath ?? '',
+          phoneNumber: user.phoneNumber!,
+        );
       if (active)
         Navigator.popAndPushNamed(context, HomeScreen.id);
       else

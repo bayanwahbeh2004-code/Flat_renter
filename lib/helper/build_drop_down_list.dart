@@ -139,7 +139,7 @@ class _CityGovernorateState extends State<CityGovernorate> {
           },
         ),
 
-        const SizedBox(width: 20),
+        const SizedBox(width: 10),
         const Icon(Icons.location_on_outlined),
 
         if (_loadingCities)

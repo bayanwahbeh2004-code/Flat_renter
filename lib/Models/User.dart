@@ -31,20 +31,19 @@ class User {
     this.profilePicture,
     this.profilePicturePath,
   });
-  factory User.fromjson(data) {
-    dynamic user = data['User'];
+  factory User.fromjson(user) {
     return User(
       id: user['id'],
-      firstName: user['first_name'],
-      secondName: user['last_name'],
-      phoneNumber: user['phone'],
-      birthday: user['date_of_birth'],
-      indentityCardPath: user['Personal_identity_photo'],
-      profilePicturePath: user['personal_photo'],
-      password: user['password'],
-      role: user['role'],
-      active: user['active'],
-      account: user['account'],
+      firstName: user['first_name'] ?? '',
+      secondName: user['last_name'] ?? '',
+      phoneNumber: user['phone'] ?? '',
+      birthday: user['date_of_birth'] ?? '',
+      indentityCardPath: user['Personal_identity_photo'] ?? '',
+      profilePicturePath: user['personal_photo'] ?? '',
+      password: user['password'] ?? '',
+      role: user['role'] ?? '',
+      active: user['active'] ?? '',
+      account: user['account'] ?? '',
     );
   }
 }

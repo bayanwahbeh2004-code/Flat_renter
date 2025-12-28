@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:baytech/Constants.dart';
 import 'package:baytech/Models/apartment.dart';
+import 'package:baytech/Screens/chat_page.dart';
 import 'package:baytech/Screens/edit_apartment_page.dart';
 import 'package:baytech/Screens/calendar_booking_page.dart';
 import 'package:baytech/Screens/requests_page.dart';
@@ -9,9 +10,11 @@ import 'package:baytech/components/heart_icon.dart';
 import 'package:baytech/helper/File_from_url.dart';
 import 'package:baytech/helper/RatedWidget.dart';
 import 'package:baytech/providers/my_houses_provider.dart';
+import 'package:baytech/services/chat_services.dart';
 import 'package:baytech/services/houses/bookings/renter/getBookedDays.dart';
 import 'package:baytech/services/houses/deleting_houses/delete_house.dart';
 import 'package:baytech/services/houses/send_rating.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -30,6 +33,47 @@ class ApartmentDetailsPage extends StatefulWidget {
 
 class _ApartmentDetailsPageState extends State<ApartmentDetailsPage> {
   bool isLoading = false;
+  final ChatService _chatService = ChatService();
+  void _startChat() {
+    // Check if user is logged in
+    if (FirebaseAuth.instance.currentUser == null) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('Please login to chat')));
+      return;
+    }
+
+    // Create chat ID
+    final userId = FirebaseAuth.instance.currentUser!.uid;
+    final chatId = 'chat_${userId}_${widget.house!.id}';
+
+    // Start chat
+    _chatService.startChat(
+      apartmentId: widget.house!.id!,
+      apartmentTitle: widget.house!.title!,
+      landlordName:
+          widget.house!.user!.firstName! +
+              " " +
+              widget.house!.user!.secondName! ??
+          'Landlord',
+    );
+
+    // Navigate to chat
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ChatScreen(
+          chatId: chatId,
+          landlordName:
+              widget.house!.user!.firstName! +
+                  " " +
+                  widget.house!.user!.secondName! ??
+              'Landlord',
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     widget.house = ModalRoute.of(context)!.settings.arguments as Apartment;
@@ -54,12 +98,19 @@ class _ApartmentDetailsPageState extends State<ApartmentDetailsPage> {
                   Spacer(flex: 1),
                   Padding(
                     padding: const EdgeInsets.only(left: 32.0),
-                    child: Text(
-                      widget.house!.title!,
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                        color: Theme.of(context).colorScheme.primary,
+                    child: Container(
+                      width: 200,
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Text(
+                          softWrap: false,
+                          widget.house!.title!,
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
+                        ),
                       ),
                     ),
                   ),
@@ -116,11 +167,18 @@ class _ApartmentDetailsPageState extends State<ApartmentDetailsPage> {
                       color: Theme.of(context).colorScheme.onSurface,
                     ),
                     const SizedBox(width: 5),
-                    Text(
-                      widget.house!.governorate!,
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: Theme.of(context).colorScheme.onSurface,
+                    Container(
+                      width: 130,
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Text(
+                          softWrap: false,
+                          widget.house!.governorate!,
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Theme.of(context).colorScheme.onSurface,
+                          ),
+                        ),
                       ),
                     ),
                     const SizedBox(width: 30),
@@ -129,11 +187,18 @@ class _ApartmentDetailsPageState extends State<ApartmentDetailsPage> {
                       color: Theme.of(context).colorScheme.onSurface,
                     ),
                     const SizedBox(width: 5),
-                    Text(
-                      widget.house!.city!,
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: Theme.of(context).colorScheme.onSurface,
+                    Container(
+                      width: 128,
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Text(
+                          softWrap: false,
+                          widget.house!.city!,
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Theme.of(context).colorScheme.onSurface,
+                          ),
+                        ),
                       ),
                     ),
                   ],
@@ -263,7 +328,15 @@ class _ApartmentDetailsPageState extends State<ApartmentDetailsPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  _Iconpress(context, Icons.chat_outlined, "contact", () {}),
+                  if (widget.house!.mine != true)
+                    _Iconpress(
+                      context,
+                      Icons.chat_outlined,
+                      "contact",
+                      () async {
+                        _startChat;
+                      },
+                    ),
                   _Iconpress(
                     context,
                     Icons.location_on_outlined,
@@ -293,11 +366,13 @@ class _ApartmentDetailsPageState extends State<ApartmentDetailsPage> {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 32.0),
-                child: Text(
-                  widget.house!.description!,
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Theme.of(context).colorScheme.primary,
+                child: SingleChildScrollView(
+                  child: Text(
+                    widget.house!.description!,
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
                   ),
                 ),
               ),
@@ -575,12 +650,21 @@ Widget _IconNorm(
     children: [
       Icon(icon, size: 40, color: Theme.of(context).colorScheme.primary),
       const SizedBox(height: 5),
-      Text(
-        value,
-        style: TextStyle(
-          fontSize: 16,
-          fontWeight: FontWeight.bold,
-          color: Theme.of(context).colorScheme.primary,
+      Container(
+        width: 80,
+        child: Center(
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Text(
+              softWrap: false,
+              value,
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: Theme.of(context).colorScheme.primary,
+              ),
+            ),
+          ),
         ),
       ),
       Text(
@@ -610,6 +694,7 @@ Widget _Iconpress(
         onPressed: onPressed,
       ),
       Text(
+        softWrap: false,
         label,
         style: TextStyle(
           fontSize: 14,

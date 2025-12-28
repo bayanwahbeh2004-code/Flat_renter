@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.flutter_application_1"  // Changed to match Firebase
+    namespace = "com.example.flutter_application_1"
     compileSdk = flutter.compileSdkVersion.toInt()
     ndkVersion = flutter.ndkVersion
 
@@ -17,11 +17,11 @@ android {
     }
 
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
 
     defaultConfig {
-        applicationId = "com.example.flutter_application_1"  // Changed to match Firebase
+        applicationId = "com.example.flutter_application_1"
         minSdk = flutter.minSdkVersion.toInt()
         targetSdk = flutter.targetSdkVersion.toInt()
         versionCode = 1
@@ -41,5 +41,14 @@ flutter {
 }
 
 dependencies {
-    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.5")
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.4")
+    implementation(platform("com.google.firebase:firebase-bom:32.7.4"))
+    implementation("com.google.firebase:firebase-analytics")
+}
+
+configurations.all {
+    resolutionStrategy {
+        force("com.squareup.okhttp:okhttp:2.7.5")
+        force("com.squareup.okio:okio:1.17.5")
+    }
 }
