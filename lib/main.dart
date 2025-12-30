@@ -16,26 +16,28 @@ import 'package:baytech/Theme/theme_proider.dart';
 import 'package:baytech/Screens/calendar_booking_page.dart';
 import 'package:baytech/components/notification.dart';
 import 'package:baytech/firebase_options.dart';
+import 'package:baytech/generated/l10n.dart';
 import 'package:baytech/providers/Filter_provider.dart';
 import 'package:baytech/providers/cities_provider.dart';
 import 'package:baytech/providers/favourites_provider.dart';
 import 'package:baytech/providers/landLordRequestsProvider.dart';
+import 'package:baytech/providers/language_provider.dart';
 import 'package:baytech/providers/myBookingsProvider.dart';
 import 'package:baytech/providers/my_houses_provider.dart';
 import 'package:baytech/services/LocalNotificationServices.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:baytech/Screens/KeyinAnimation.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-       options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(
     MultiProvider(
       providers: [
+        ChangeNotifierProvider(create: (_) => LocaleProvider()),
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
         ChangeNotifierProvider(create: (_) => FilterProvider(), lazy: false),
         ChangeNotifierProvider(
@@ -59,6 +61,13 @@ class Baytech extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      localizationsDelegates: const [
+        S.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: S.delegate.supportedLocales,
       navigatorKey: LocalNotificationService.navigatorKey,
       debugShowCheckedModeBanner: false,
       theme: Provider.of<ThemeProvider>(context).themeData,
