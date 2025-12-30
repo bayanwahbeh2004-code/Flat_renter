@@ -1,4 +1,5 @@
 import 'package:baytech/Constants.dart';
+import 'package:baytech/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
 class BottomNativigation extends StatelessWidget {
@@ -39,7 +40,7 @@ class BottomNativigation extends StatelessWidget {
             _buildItem(
               context,
               Icons.home,
-              'Home',
+              S.of(context).home,
               0,
               selscted,
               notselscted,
@@ -48,7 +49,7 @@ class BottomNativigation extends StatelessWidget {
             _buildItem(
               context,
               Icons.calendar_month,
-              'Bookings',
+              S.of(context).Bookings,
               1,
               selscted,
               notselscted,
@@ -57,7 +58,7 @@ class BottomNativigation extends StatelessWidget {
             _buildItem(
               context,
               Icons.house_outlined,
-              'Your estate',
+              S.of(context).Your_estate,
               2,
               selscted,
               notselscted,
@@ -66,7 +67,7 @@ class BottomNativigation extends StatelessWidget {
             _buildItem(
               context,
               Icons.chat_bubble_outline,
-              'Chats',
+              S.of(context).Chats,
               3,
               selscted,
               notselscted,
