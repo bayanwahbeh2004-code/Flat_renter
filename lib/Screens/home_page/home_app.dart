@@ -43,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        
+
         elevation: 0,
         backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
         actions: [

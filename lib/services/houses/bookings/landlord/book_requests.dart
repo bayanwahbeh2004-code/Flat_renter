@@ -4,6 +4,7 @@ import 'package:baytech/Models/apartment.dart';
 import 'package:baytech/Models/book.dart';
 import 'package:baytech/Screens/Welcome_Page.dart';
 import 'package:baytech/auth.dart';
+import 'package:baytech/generated/l10n.dart';
 import 'package:baytech/helper/Api.dart';
 import 'package:baytech/helper/show_dialoge.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +12,7 @@ import 'package:http/http.dart';
 
 Future<List<Book>> getBookingsRequests({
   required BuildContext context,
-  required Apartment house
+  required Apartment house,
 }) async {
   String url = "${KbaseUrl}BookingRequests/${house.id}";
   try {
@@ -24,13 +25,13 @@ Future<List<Book>> getBookingsRequests({
       showDialoge(
         context,
         child: Text(
-          'Your account was deleted by the admin or session was over.',
+          S.of(context).sess_error,
           style: TextStyle(color: Theme.of(context).colorScheme.primary),
         ),
       );
       return [];
     } else if (response.statusCode == 200) {
-      List<dynamic> data = jsonDecode(response.body)['data']??[];
+      List<dynamic> data = jsonDecode(response.body)['data'] ?? [];
       List<Book> myBookings = [];
       data.forEach((item) {
         myBookings.add(Book.fromJson(item));
@@ -44,7 +45,7 @@ Future<List<Book>> getBookingsRequests({
     showDialoge(
       context,
       child: Text(
-        "something went wrong, please check your internet connection.",
+        S.of(context).err_connection,
         style: TextStyle(color: Theme.of(context).colorScheme.primary),
       ),
     );

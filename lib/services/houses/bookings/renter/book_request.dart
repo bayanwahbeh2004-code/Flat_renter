@@ -3,6 +3,7 @@ import 'package:baytech/Constants.dart';
 import 'package:baytech/Models/apartment.dart';
 import 'package:baytech/Screens/Welcome_Page.dart';
 import 'package:baytech/auth.dart';
+import 'package:baytech/generated/l10n.dart';
 import 'package:baytech/helper/api.dart';
 import 'package:baytech/helper/show_dialoge.dart';
 import 'package:flutter/material.dart';
@@ -30,8 +31,8 @@ Future<void> bookHouseRequest({
       showDialoge(
         context,
         child: Text(
-          'Your account was deleted by the admin or session was over.',
-           style: TextStyle(color: Theme.of(context).colorScheme.primary),
+          S.of(context).sess_error,
+          style: TextStyle(color: Theme.of(context).colorScheme.primary),
         ),
       );
     } else if (response.statusCode != 201) {
@@ -52,7 +53,7 @@ Future<void> bookHouseRequest({
       showDialoge(
         context,
         child: Text(
-          "Booking request with total cost of \$${price} was successfully made.\nwaiting for landlord aproval.",
+          S.of(context).booking_success(price),
           style: TextStyle(color: Theme.of(context).colorScheme.primary),
         ),
       );
@@ -62,7 +63,7 @@ Future<void> bookHouseRequest({
     showDialoge(
       context,
       child: Text(
-        "something went wrong, please check your internet connection.",
+        S.of(context).err_connection,
         style: TextStyle(color: Theme.of(context).colorScheme.primary),
       ),
     );

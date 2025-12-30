@@ -4,6 +4,7 @@ import 'package:baytech/Screens/Personal_Info_Page.dart';
 import 'package:baytech/components/SemiCircle.dart';
 import 'package:baytech/components/costum_button.dart';
 import 'package:baytech/components/costum_text_Field.dart';
+import 'package:baytech/generated/l10n.dart';
 import 'package:baytech/services/auth_service.dart';
 import 'package:baytech/services/login.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -38,7 +39,7 @@ class _LoginState extends State<LoginPage> {
                   Padding(
                     padding: const EdgeInsets.only(left: 50.0),
                     child: Text(
-                      "Log in",
+                      S.of(context).login_title.toString(),
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 32,
@@ -68,7 +69,7 @@ class _LoginState extends State<LoginPage> {
                         CostumTextFeild(
                           color: Koption,
                           textInputType: TextInputType.number,
-                          hintText: "Phone number",
+                          hintText: S.of(context).phone_number_hint.toString(),
                           onchanged: (data) {
                             phoneNumber = data;
                           },
@@ -76,7 +77,7 @@ class _LoginState extends State<LoginPage> {
                         SizedBox(height: 25),
                         CostumTextFeild(
                           color: Koption,
-                          hintText: "Password",
+                          hintText: S.of(context).password_hint.toString(),
                           obscure: true,
                           onchanged: (data) {
                             password = data;
@@ -84,7 +85,7 @@ class _LoginState extends State<LoginPage> {
                         ),
                         SizedBox(height: 25),
                         CostumButton(
-                          text: "Log in",
+                          text: S.of(context).login_title.toString(),
                           onTap: () async {
                             setState(() {
                               isLoading = true;
@@ -110,7 +111,7 @@ class _LoginState extends State<LoginPage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              "Don't have an account? ",
+                              S.of(context).dont_have_account.toString(),
                               style: TextStyle(color: Colors.black),
                             ),
                             GestureDetector(
@@ -121,7 +122,7 @@ class _LoginState extends State<LoginPage> {
                                 );
                               },
                               child: Text(
-                                "sign up",
+                                S.of(context).sign_up.toString(),
                                 style: TextStyle(color: KPurple, fontSize: 18),
                               ),
                             ),

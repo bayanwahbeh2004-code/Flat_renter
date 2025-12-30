@@ -5,8 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 class ChatService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  
-  // 1. Start chat with landlord
+
   Future<void> startChat({
     required String apartmentId,
     required String apartmentTitle,
@@ -14,11 +13,9 @@ class ChatService {
   }) async {
     final user = _auth.currentUser;
     if (user == null) return;
-    
-    // Create unique chat ID
+
     String chatId = 'chat_${user.uid}_${apartmentId}';
-    
-    // Save chat in user's chat list
+
     await _firestore
         .collection('user_chats')
         .doc(user.uid)
@@ -33,17 +30,12 @@ class ChatService {
           'lastMessageTime': FieldValue.serverTimestamp(),
           'createdAt': FieldValue.serverTimestamp(),
         });
-    
-    // Also save for landlord (if we had landlord's user ID)
-    // For now, just save for current user
   }
-  
-  // 2. Send message
+
   Future<void> sendMessage(String chatId, String message) async {
     final user = _auth.currentUser;
     if (user == null) return;
-    
-    // Save message
+
     await _firestore
         .collection('chats')
         .doc(chatId)
@@ -53,8 +45,7 @@ class ChatService {
           'message': message,
           'timestamp': FieldValue.serverTimestamp(),
         });
-    
-    // Update last message
+
     await _firestore
         .collection('user_chats')
         .doc(user.uid)
@@ -65,12 +56,11 @@ class ChatService {
           'lastMessageTime': FieldValue.serverTimestamp(),
         });
   }
-  
-  // 3. Get my chat list
+
   Stream<QuerySnapshot> getMyChats() {
     final user = _auth.currentUser;
     if (user == null) return const Stream.empty();
-    
+
     return _firestore
         .collection('user_chats')
         .doc(user.uid)
@@ -78,8 +68,7 @@ class ChatService {
         .orderBy('lastMessageTime', descending: true)
         .snapshots();
   }
-  
-  // 4. Get messages for a chat
+
   Stream<QuerySnapshot> getMessages(String chatId) {
     return _firestore
         .collection('chats')
