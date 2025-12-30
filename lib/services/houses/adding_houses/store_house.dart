@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:baytech/Models/apartment.dart';
+import 'package:baytech/generated/l10n.dart';
 import 'package:baytech/helper/show_dialoge.dart';
 import 'package:baytech/services/houses/adding_houses/add_house.dart';
 import 'package:baytech/services/houses/adding_houses/add_images.dart';
@@ -28,7 +29,7 @@ Future<bool> storeHouse({
       showDialoge(
         context,
         child: Text(
-          'Property photos field is required, please upload at least one picture',
+          S.of(context).photo_fail,
           style: TextStyle(color: Theme.of(context).colorScheme.primary),
         ),
       );

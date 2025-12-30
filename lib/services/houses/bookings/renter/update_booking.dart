@@ -3,6 +3,7 @@ import 'package:baytech/Constants.dart';
 import 'package:baytech/Models/book.dart';
 import 'package:baytech/Screens/Welcome_Page.dart';
 import 'package:baytech/auth.dart';
+import 'package:baytech/generated/l10n.dart';
 import 'package:baytech/helper/Api.dart';
 import 'package:baytech/helper/show_dialoge.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +30,7 @@ Future<void> updateBooking({
       showDialoge(
         context,
         child: Text(
-          'Your account was deleted by the admin or session was over.',
+          S.of(context).sess_error,
           style: TextStyle(color: Theme.of(context).colorScheme.primary),
         ),
       );
@@ -38,7 +39,7 @@ Future<void> updateBooking({
       showDialoge(
         context,
         child: Text(
-          "update was successfully made. waiting for the landlord aproval.",
+          S.of(context).success,
           style: TextStyle(color: Theme.of(context).colorScheme.primary),
         ),
       );
@@ -64,7 +65,7 @@ Future<void> updateBooking({
     showDialoge(
       context,
       child: Text(
-        "something went wrong, please double check your data and your internet connection.",
+        S.of(context).err_connection,
         style: TextStyle(color: Theme.of(context).colorScheme.primary),
       ),
     );

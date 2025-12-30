@@ -1,6 +1,7 @@
 import 'package:baytech/Models/apartment.dart';
 import 'package:baytech/Models/book.dart';
 import 'package:baytech/components/landLord_requests.dart';
+import 'package:baytech/generated/l10n.dart';
 import 'package:baytech/providers/landLordRequestsProvider.dart';
 import 'package:baytech/providers/myBookingsProvider.dart';
 import 'package:baytech/services/houses/bookings/landlord/accept_booking.dart';
@@ -66,7 +67,7 @@ class _RequestsPageState extends State<RequestsPage> {
                       SizedBox(width: 5),
                       _buildminuRep(
                         context,
-                        'House booking requests',
+                        S.of(context).house_booking_requests,
                         isSelected: selectButton == 'House booking requests',
                         onTap: () async {
                           selectButNow('House booking requests');
@@ -76,7 +77,7 @@ class _RequestsPageState extends State<RequestsPage> {
                       const SizedBox(width: 15),
                       _buildminuRep(
                         context,
-                        'Update booking requests',
+                        S.of(context).update_booking_requests,
                         isSelected: selectButton == 'Update booking requests',
                         onTap: () async {
                           selectButNow('Update booking requests');

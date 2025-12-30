@@ -7,6 +7,7 @@ import 'package:baytech/Screens/calendar_booking_page.dart';
 import 'package:baytech/Screens/requests_page.dart';
 import 'package:baytech/components/go_back_button.dart';
 import 'package:baytech/components/heart_icon.dart';
+import 'package:baytech/generated/l10n.dart';
 import 'package:baytech/helper/File_from_url.dart';
 import 'package:baytech/helper/RatedWidget.dart';
 import 'package:baytech/providers/my_houses_provider.dart';
@@ -39,7 +40,7 @@ class _ApartmentDetailsPageState extends State<ApartmentDetailsPage> {
     if (FirebaseAuth.instance.currentUser == null) {
       ScaffoldMessenger.of(
         context,
-      ).showSnackBar(SnackBar(content: Text('Please login to chat')));
+      ).showSnackBar(SnackBar(content: Text(S.of(context).login_to_chat_msg)));
       return;
     }
 
@@ -208,7 +209,7 @@ class _ApartmentDetailsPageState extends State<ApartmentDetailsPage> {
               Padding(
                 padding: EdgeInsets.only(left: 32.0),
                 child: Text(
-                  "Property Photos",
+                  S.of(context).property_photos,
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w600,
@@ -268,7 +269,7 @@ class _ApartmentDetailsPageState extends State<ApartmentDetailsPage> {
               Padding(
                 padding: EdgeInsets.only(left: 32.0),
                 child: Text(
-                  "Property details",
+                  S.of(context).property_details,
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w600,
@@ -284,19 +285,19 @@ class _ApartmentDetailsPageState extends State<ApartmentDetailsPage> {
                     context,
                     Icons.bed_outlined,
                     widget.house!.bedrooms!.toString(),
-                    "Bedrooms",
+                    S.of(context).bedrooms_hint,
                   ),
                   _IconNorm(
                     context,
                     Icons.bathtub_outlined,
                     widget.house!.bathrooms!.toString(),
-                    "Bathrooms",
+                    S.of(context).bathrooms_hint,
                   ),
                   _IconNorm(
                     context,
                     Icons.apartment_outlined,
                     widget.house!.livingRooms!.toString(),
-                    "Living Rooms",
+                    S.of(context).living_rooms_hint,
                   ),
                 ],
               ),
@@ -308,19 +309,19 @@ class _ApartmentDetailsPageState extends State<ApartmentDetailsPage> {
                     context,
                     Icons.question_mark_outlined,
                     widget.house!.category!,
-                    "Category",
+                    S.of(context).category_hint,
                   ),
                   _IconNorm(
                     context,
                     Icons.villa_outlined,
                     "${widget.house!.area}m²",
-                    "Area",
+                    S.of(context).area_hint,
                   ),
                   _IconNorm(
                     context,
                     Icons.attach_money_outlined,
                     "${widget.house!.price} \$",
-                    "Price a Day",
+                    S.of(context).price_hint,
                   ),
                 ],
               ),
@@ -332,7 +333,7 @@ class _ApartmentDetailsPageState extends State<ApartmentDetailsPage> {
                     _Iconpress(
                       context,
                       Icons.chat_outlined,
-                      "contact",
+                      S.of(context).contact,
                       () async {
                         _startChat;
                       },
@@ -340,13 +341,13 @@ class _ApartmentDetailsPageState extends State<ApartmentDetailsPage> {
                   _Iconpress(
                     context,
                     Icons.location_on_outlined,
-                    "location",
+                    S.of(context).location,
                     () {},
                   ),
                   _Iconpress(
                     context,
                     Icons.star_border,
-                    "Reviews",
+                    S.of(context).Reviews,
                     () => showRatingDialog(context),
                   ),
                 ],
@@ -356,7 +357,7 @@ class _ApartmentDetailsPageState extends State<ApartmentDetailsPage> {
               Padding(
                 padding: EdgeInsets.only(left: 32.0, bottom: 8.0),
                 child: Text(
-                  "Description",
+                  S.of(context).description_hint,
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w600,
@@ -380,7 +381,7 @@ class _ApartmentDetailsPageState extends State<ApartmentDetailsPage> {
               Padding(
                 padding: EdgeInsets.only(left: 32.0, bottom: 8.0),
                 child: Text(
-                  "House reputation:",
+                  S.of(context).house_reputation,
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w600,
@@ -405,7 +406,7 @@ class _ApartmentDetailsPageState extends State<ApartmentDetailsPage> {
                                 builder: (BuildContext context) {
                                   return AlertDialog(
                                     content: Text(
-                                      'You are about to delete this house, are you sure?',
+                                      S.of(context).delet_house,
                                       style: TextStyle(
                                         color: Theme.of(
                                           context,
@@ -415,7 +416,7 @@ class _ApartmentDetailsPageState extends State<ApartmentDetailsPage> {
                                     actions: [
                                       TextButton(
                                         child: Text(
-                                          'cancel',
+                                          S.of(context).cancel,
                                           style: TextStyle(
                                             color: Theme.of(
                                               context,
@@ -428,7 +429,7 @@ class _ApartmentDetailsPageState extends State<ApartmentDetailsPage> {
                                       ),
                                       TextButton(
                                         child: Text(
-                                          'ok',
+                                          S.of(context).ok,
                                           style: TextStyle(
                                             color: Theme.of(
                                               context,
@@ -468,7 +469,7 @@ class _ApartmentDetailsPageState extends State<ApartmentDetailsPage> {
                               ),
                             ),
                             child: Text(
-                              "Delete",
+                              S.of(context).delete,
                               style: TextStyle(
                                 color: Theme.of(context).colorScheme.onPrimary,
                                 fontSize: 18,
@@ -509,7 +510,7 @@ class _ApartmentDetailsPageState extends State<ApartmentDetailsPage> {
                             ),
 
                             child: Text(
-                              "Edit",
+                              S.of(context).edit,
                               style: TextStyle(
                                 color: Theme.of(context).colorScheme.onPrimary,
                                 fontSize: 18,
@@ -536,7 +537,7 @@ class _ApartmentDetailsPageState extends State<ApartmentDetailsPage> {
                             ),
 
                             child: Text(
-                              "requests",
+                              S.of(context).request,
                               style: TextStyle(
                                 color: Theme.of(context).colorScheme.onPrimary,
                                 fontSize: 18,
@@ -580,7 +581,7 @@ class _ApartmentDetailsPageState extends State<ApartmentDetailsPage> {
                           ),
                         ),
                         child: Text(
-                          'Book now',
+                          S.of(context).book_now,
                           style: TextStyle(
                             color: Theme.of(context).colorScheme.onPrimary,
                             fontSize: 18,
@@ -602,7 +603,7 @@ class _ApartmentDetailsPageState extends State<ApartmentDetailsPage> {
       context: context,
       builder: (context) => AlertDialog(
         title: Text(
-          "Rate this property",
+          S.of(context).rate,
           style: TextStyle(
             fontSize: 18,
             color: Theme.of(context).colorScheme.primary,
@@ -630,7 +631,7 @@ class _ApartmentDetailsPageState extends State<ApartmentDetailsPage> {
               );
             },
             child: Text(
-              "Ok",
+              S.of(context).ok,
               style: TextStyle(color: Theme.of(context).colorScheme.secondary),
             ),
           ),

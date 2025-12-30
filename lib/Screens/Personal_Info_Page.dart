@@ -8,6 +8,7 @@ import 'package:baytech/components/SemiCircle.dart';
 import 'package:baytech/components/costum_button.dart';
 import 'package:baytech/components/costum_text_Field.dart';
 import 'package:baytech/components/upload_image.dart';
+import 'package:baytech/generated/l10n.dart';
 import 'package:baytech/helper/show_dialoge.dart';
 import 'package:flutter/material.dart';
 
@@ -37,7 +38,7 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
             Padding(
               padding: const EdgeInsets.only(left: 25.0),
               child: Text(
-                "Personal information",
+                S.of(context).personal_info_title.toString(),
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 28,
@@ -65,7 +66,7 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                       const SizedBox(height: 70),
                       CostumTextFeild(
                         color: Koption,
-                        hintText: "Enter your first name",
+                        hintText: S.of(context).first_name_hint.toString(),
                         onchanged: (data) {
                           account.firstName = data;
                         },
@@ -73,7 +74,7 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                       const SizedBox(height: 25),
                       CostumTextFeild(
                         color: Koption,
-                        hintText: "Enter your last name",
+                        hintText: S.of(context).last_name_hint.toString(),
                         onchanged: (data) {
                           account.secondName = data;
                         },
@@ -82,10 +83,10 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                       Column(
                         children: [
                           Row(
-                            children: const [
-                              SizedBox(width: 15),
+                            children: [
+                              const SizedBox(width: 15),
                               Text(
-                                "Identity card",
+                                S.of(context).identity_card_label.toString(),
                                 style: TextStyle(color: Colors.black),
                               ),
                               SizedBox(width: 100),

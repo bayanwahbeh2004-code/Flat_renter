@@ -1,5 +1,6 @@
 import 'package:baytech/Screens/etate_page/favurites.dart';
 import 'package:baytech/Screens/etate_page/my_houses.dart';
+import 'package:baytech/generated/l10n.dart';
 
 import 'package:flutter/material.dart';
 
@@ -33,14 +34,14 @@ class _YourEstatesPageState extends State<YourEstatesPage> {
               children: [
                 _buildminuRep(
                   context,
-                  'My houses',
+                  S.of(context).my_houses,
                   isSelected: selectButton == 'My houses',
                   onTap: () => selectButNow('My houses'),
                 ),
                 SizedBox(width: 10),
                 _buildminuRep(
                   context,
-                  'Favourites',
+                  S.of(context).favourites,
                   isSelected: selectButton == 'Favourites',
                   onTap: () => selectButNow('Favourites'),
                 ),

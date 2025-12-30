@@ -1,5 +1,6 @@
 // screens/chat_list_screen.dart
 import 'package:baytech/Screens/chat_page.dart';
+import 'package:baytech/generated/l10n.dart';
 import 'package:baytech/services/chat_services.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -18,7 +19,7 @@ class ChatListScreen extends StatelessWidget {
             return Center(child: CircularProgressIndicator());
           }
           if (snapshot.data!.docs.isEmpty) {
-            return Center(child: Text('No chats yet'));
+            return Center(child: Text(S.of(context).no_chats));
           }
           final chats = snapshot.data!.docs;
           return ListView.builder(
@@ -27,7 +28,9 @@ class ChatListScreen extends StatelessWidget {
               final chat = chats[index].data() as Map<String, dynamic>;
               return ListTile(
                 leading: CircleAvatar(child: Icon(Icons.person)),
-                title: Text(chat['landlordName'] ?? 'Landlord'),
+                title: Text(
+                  chat['landlordName'] ?? S.of(context).default_landlord,
+                ),
                 subtitle: Text(chat['apartmentTitle']),
                 trailing: Text(
                   _formatTime(chat['lastMessageTime']),

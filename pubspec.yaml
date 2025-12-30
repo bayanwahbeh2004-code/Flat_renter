@@ -59,3 +59,5 @@ flutter:
     - family: Platypi
       fonts:
         - asset: assets/fonts/Platypi-VariableFont_wght.ttf
+flutter_intl:
+  enabled: true

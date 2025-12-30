@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:baytech/Screens/home_page/home_app.dart';
 import 'package:baytech/components/SemiCircle.dart';
+import 'package:baytech/generated/l10n.dart';
 import 'package:baytech/services/users/user_active.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -54,9 +55,9 @@ class _WaitingPageState extends State<WaitingPage> {
       body: ListView(
         children: [
           const SizedBox(height: 80),
-          const Center(
+          Center(
             child: Text(
-              "Please wait until\nyour account\ncreation is approved",
+              S.of(context).wait_approval_msg,
               style: TextStyle(
                 fontSize: 30,
                 color: Colors.white,

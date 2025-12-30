@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:baytech/Constants.dart';
 import 'package:baytech/Screens/Welcome_Page.dart';
 import 'package:baytech/auth.dart';
+import 'package:baytech/generated/l10n.dart';
 import 'package:baytech/helper/Api.dart';
 import 'package:baytech/helper/show_dialoge.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +19,7 @@ Future<void> deleteRequest({required BuildContext context}) async {
       showDialoge(
         context,
         child: Text(
-          "Your account was deleted by the admin",
+          S.of(context).account_deleted_admin,
           style: TextStyle(color: Theme.of(context).colorScheme.primary),
         ),
       );
@@ -39,7 +40,7 @@ Future<void> deleteRequest({required BuildContext context}) async {
     showDialoge(
       context,
       child: Text(
-        "something went wrong, please double check your data and your internet connection.",
+        S.of(context).err_generic,
         style: TextStyle(color: Theme.of(context).colorScheme.primary),
       ),
     );

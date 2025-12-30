@@ -3,6 +3,7 @@ import 'package:baytech/Models/User.dart';
 import 'package:baytech/Theme/theme.dart';
 import 'package:baytech/Theme/theme_proider.dart';
 import 'package:baytech/helper/show_dialoge.dart';
+import 'package:baytech/providers/language_provider.dart';
 import 'package:baytech/services/logout.dart';
 import 'package:baytech/services/users/delete_account_request.dart';
 import 'package:baytech/services/users/get_user.dart';
@@ -217,7 +218,43 @@ class _ProfileInformaState extends State<ProfileInforma> {
                 );
               },
             ),
-            _buildMenit(icon: Icons.language, title: "Language", onTap: () {}),
+            _buildMenit(
+              icon: Icons.language,
+              title: "Language",
+              onTap: () {
+                showDialoge(
+                  context,
+                  ok: false,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      _buildMenit(
+                        icon: Icons.language,
+                        title: "English",
+                        onTap: () {
+                          Provider.of<LocaleProvider>(
+                            context,
+                            listen: false,
+                          ).setLocale(const Locale('en'));
+                          Navigator.pop(context);
+                        },
+                      ),
+                      _buildMenit(
+                        icon: Icons.language,
+                        title: "العربية",
+                        onTap: () {
+                          Provider.of<LocaleProvider>(
+                            context,
+                            listen: false,
+                          ).setLocale(const Locale('ar'));
+                          Navigator.pop(context);
+                        },
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
             _buildMenit(
               icon: Icons.payments_outlined,
               title: "Payment",

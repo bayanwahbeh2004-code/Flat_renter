@@ -2,6 +2,7 @@ import 'package:baytech/Models/Filter.dart';
 import 'package:baytech/components/costum_button.dart';
 import 'package:baytech/components/costum_text_Field.dart';
 import 'package:baytech/components/custom_drop_down_button.dart';
+import 'package:baytech/generated/l10n.dart';
 import 'package:baytech/helper/build_drop_down_list.dart';
 import 'package:baytech/providers/Filter_provider.dart';
 import 'package:flutter/material.dart';
@@ -67,7 +68,7 @@ class _FilteringpageState extends State<Filteringpage> {
                               children: [
                                 SizedBox(height: 40),
                                 Text(
-                                  "Price:",
+                                  S.of(context).price_label.toString(),
                                   style: TextStyle(
                                     color: Theme.of(
                                       context,
@@ -76,7 +77,7 @@ class _FilteringpageState extends State<Filteringpage> {
                                 ),
                                 SizedBox(height: 70),
                                 Text(
-                                  "Area:",
+                                  S.of(context).area_label.toString(),
                                   style: TextStyle(
                                     color: Theme.of(
                                       context,
@@ -85,7 +86,7 @@ class _FilteringpageState extends State<Filteringpage> {
                                 ),
                                 SizedBox(height: 70),
                                 Text(
-                                  "Bathrooms:",
+                                  S.of(context).bathrooms_label.toString(),
                                   style: TextStyle(
                                     color: Theme.of(
                                       context,
@@ -94,7 +95,7 @@ class _FilteringpageState extends State<Filteringpage> {
                                 ),
                                 SizedBox(height: 70),
                                 Text(
-                                  "Livingrooms:",
+                                  S.of(context).livingrooms_label.toString(),
                                   style: TextStyle(
                                     color: Theme.of(
                                       context,
@@ -103,7 +104,7 @@ class _FilteringpageState extends State<Filteringpage> {
                                 ),
                                 SizedBox(height: 70),
                                 Text(
-                                  "Bedrooms:",
+                                  S.of(context).bedrooms_label.toString(),
                                   style: TextStyle(
                                     color: Theme.of(
                                       context,
@@ -112,7 +113,7 @@ class _FilteringpageState extends State<Filteringpage> {
                                 ),
                                 SizedBox(height: 70),
                                 Text(
-                                  "description:",
+                                  S.of(context).description_hint.toString(),
                                   style: TextStyle(
                                     color: Theme.of(
                                       context,
@@ -135,7 +136,10 @@ class _FilteringpageState extends State<Filteringpage> {
                                   children: [
                                     Expanded(
                                       child: CostumTextFeild(
-                                        hintText: "Min",
+                                        hintText: S
+                                            .of(context)
+                                            .min_hint
+                                            .toString(),
                                         onchanged: (minPrice) {
                                           filter.minPrice = minPrice;
                                         },
@@ -145,7 +149,10 @@ class _FilteringpageState extends State<Filteringpage> {
                                     const SizedBox(width: 10),
                                     Expanded(
                                       child: CostumTextFeild(
-                                        hintText: "Max",
+                                        hintText: S
+                                            .of(context)
+                                            .max_hint
+                                            .toString(),
                                         onchanged: (maxPrice) {
                                           filter.maxPrice = maxPrice;
                                         },
@@ -161,7 +168,10 @@ class _FilteringpageState extends State<Filteringpage> {
                                   children: [
                                     Expanded(
                                       child: CostumTextFeild(
-                                        hintText: "Min",
+                                        hintText: S
+                                            .of(context)
+                                            .min_hint
+                                            .toString(),
                                         onchanged: (minarea) {
                                           filter.minarea = minarea;
                                         },
@@ -171,7 +181,10 @@ class _FilteringpageState extends State<Filteringpage> {
                                     const SizedBox(width: 10),
                                     Expanded(
                                       child: CostumTextFeild(
-                                        hintText: "Max",
+                                        hintText: S
+                                            .of(context)
+                                            .max_hint
+                                            .toString(),
                                         onchanged: (maxarea) {
                                           filter.maxarea = maxarea;
                                         },
@@ -187,7 +200,10 @@ class _FilteringpageState extends State<Filteringpage> {
                                   children: [
                                     Expanded(
                                       child: CostumTextFeild(
-                                        hintText: "Min",
+                                        hintText: S
+                                            .of(context)
+                                            .min_hint
+                                            .toString(),
                                         onchanged: (minBathroom) {
                                           filter.minBathroom = minBathroom;
                                         },
@@ -197,7 +213,10 @@ class _FilteringpageState extends State<Filteringpage> {
                                     const SizedBox(width: 10),
                                     Expanded(
                                       child: CostumTextFeild(
-                                        hintText: "Max",
+                                        hintText: S
+                                            .of(context)
+                                            .max_hint
+                                            .toString(),
                                         onchanged: (maxBathroom) {
                                           filter.maxBathroom = maxBathroom;
                                         },
@@ -213,7 +232,10 @@ class _FilteringpageState extends State<Filteringpage> {
                                   children: [
                                     Expanded(
                                       child: CostumTextFeild(
-                                        hintText: "Min",
+                                        hintText: S
+                                            .of(context)
+                                            .min_hint
+                                            .toString(),
                                         onchanged: (minLivingRoom) {
                                           filter.minLivingRoom = minLivingRoom;
                                         },
@@ -223,7 +245,10 @@ class _FilteringpageState extends State<Filteringpage> {
                                     const SizedBox(width: 10),
                                     Expanded(
                                       child: CostumTextFeild(
-                                        hintText: "Max",
+                                        hintText: S
+                                            .of(context)
+                                            .max_hint
+                                            .toString(),
                                         onchanged: (maxLivingRoom) {
                                           filter.maxLivingRoom = maxLivingRoom;
                                         },
@@ -239,7 +264,10 @@ class _FilteringpageState extends State<Filteringpage> {
                                   children: [
                                     Expanded(
                                       child: CostumTextFeild(
-                                        hintText: "Min",
+                                        hintText: S
+                                            .of(context)
+                                            .min_hint
+                                            .toString(),
                                         onchanged: (minBedroom) {
                                           filter.minBedroom = minBedroom;
                                         },
@@ -249,7 +277,10 @@ class _FilteringpageState extends State<Filteringpage> {
                                     const SizedBox(width: 10),
                                     Expanded(
                                       child: CostumTextFeild(
-                                        hintText: "Max",
+                                        hintText: S
+                                            .of(context)
+                                            .max_hint
+                                            .toString(),
                                         onchanged: (maxBedroom) {
                                           filter.maxBedroom = maxBedroom;
                                         },
@@ -260,7 +291,10 @@ class _FilteringpageState extends State<Filteringpage> {
                                 ),
                                 const SizedBox(height: 30),
                                 CostumTextFeild(
-                                  hintText: "description",
+                                  hintText: S
+                                      .of(context)
+                                      .description_hint
+                                      .toString(),
                                   onchanged: (description) {
                                     filter.description = description;
                                   },
@@ -277,7 +311,7 @@ class _FilteringpageState extends State<Filteringpage> {
               ),
               SizedBox(height: 20),
               CostumButton(
-                text: "search",
+                text: S.of(context).search_button.toString(),
                 onTap: () async {
                   filterProvider.clearFilter();
                   await filterProvider.setFilter(filter, context);

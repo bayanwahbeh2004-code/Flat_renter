@@ -1,3 +1,4 @@
+import 'package:baytech/generated/l10n.dart';
 import 'package:baytech/helper/build_grid.dart';
 import 'package:baytech/providers/favourites_provider.dart';
 import 'package:flutter/material.dart';
@@ -35,7 +36,7 @@ class _FavouritesState extends State<Favourites> {
                     ),
                     const SizedBox(height: 16),
                     Text(
-                      'No houses found',
+                      S.of(context).no_houses_found,
                       style: TextStyle(
                         fontSize: 16,
                         color: Theme.of(context).colorScheme.onSurface,
