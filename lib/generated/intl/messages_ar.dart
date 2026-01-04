@@ -210,7 +210,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "request": MessageLookupByLibrary.simpleMessage("الطلبات"),
     "request_suc": MessageLookupByLibrary.simpleMessage("تم رفض الطلب بنجاح."),
     "room": MessageLookupByLibrary.simpleMessage("غرفة"),
-    "sarah": MessageLookupByLibrary.simpleMessage("سارة صديقة"),
+    "sarah": MessageLookupByLibrary.simpleMessage("ساره صدّيقه"),
     "search_button": MessageLookupByLibrary.simpleMessage("بحث"),
     "search_hint": MessageLookupByLibrary.simpleMessage("بحث..."),
     "select_category": MessageLookupByLibrary.simpleMessage("يرجى اختيار فئة"),
