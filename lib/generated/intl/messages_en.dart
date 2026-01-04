@@ -20,10 +20,10 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
-  static String m0(amount) => "Benefit: \$${amount}";
+  static String m0(amount) => "Benefit: ${amount}\$";
 
   static String m1(price) =>
-      "Booking request with total cost of \$${price} was successfully made.\nwaiting for landlord approval.";
+      "Booking request with total cost of ${price}\$ was successfully made.\nwaiting for landlord approval.";
 
   static String m2(start) => "From: ${start}";
 
@@ -38,6 +38,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "Chats": MessageLookupByLibrary.simpleMessage("Chats"),
     "Reviews": MessageLookupByLibrary.simpleMessage("Reviews"),
     "Your_estate": MessageLookupByLibrary.simpleMessage("Your estate"),
+    "about_us": MessageLookupByLibrary.simpleMessage("About us"),
     "accept": MessageLookupByLibrary.simpleMessage("Accept"),
     "account_deleted_admin": MessageLookupByLibrary.simpleMessage(
       "Your account was deleted by the admin",
@@ -51,28 +52,30 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "apartment": MessageLookupByLibrary.simpleMessage("Apartment"),
     "apartment_title_hint": MessageLookupByLibrary.simpleMessage(
-      "apartment title..",
+      "Apartment title..",
     ),
-    "area_hint": MessageLookupByLibrary.simpleMessage("area"),
+    "app_theme": MessageLookupByLibrary.simpleMessage("App Theme"),
+    "area_hint": MessageLookupByLibrary.simpleMessage("Area"),
     "area_label": MessageLookupByLibrary.simpleMessage("Area:"),
     "ascending_order": MessageLookupByLibrary.simpleMessage("Ascending order"),
-    "bathrooms_hint": MessageLookupByLibrary.simpleMessage("bathrooms"),
+    "bathrooms_hint": MessageLookupByLibrary.simpleMessage("Bathrooms"),
     "bathrooms_label": MessageLookupByLibrary.simpleMessage("Bathrooms:"),
-    "bedrooms_hint": MessageLookupByLibrary.simpleMessage("bedrooms"),
+    "bedrooms_hint": MessageLookupByLibrary.simpleMessage("Bedrooms"),
     "bedrooms_label": MessageLookupByLibrary.simpleMessage("Bedrooms:"),
     "benefit": m0,
     "birth_date_btn": MessageLookupByLibrary.simpleMessage("Birth date"),
+    "birth_date_label": MessageLookupByLibrary.simpleMessage("Birth date:"),
     "book_now": MessageLookupByLibrary.simpleMessage("Book Now"),
     "booking_success": m1,
     "calendar_instruction": MessageLookupByLibrary.simpleMessage(
       "Press and hold for a single day book.",
     ),
-    "cancel": MessageLookupByLibrary.simpleMessage("cancel"),
+    "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
     "cancel_booking_msg": MessageLookupByLibrary.simpleMessage(
       "You are about to cancel this booking, are you sure?",
     ),
     "cancelled": MessageLookupByLibrary.simpleMessage("Cancelled bookings"),
-    "category_hint": MessageLookupByLibrary.simpleMessage("category"),
+    "category_hint": MessageLookupByLibrary.simpleMessage("Category"),
     "chat_hint": MessageLookupByLibrary.simpleMessage("Type a message..."),
     "clear_filters": MessageLookupByLibrary.simpleMessage("Clear Filters"),
     "confirm_accept": MessageLookupByLibrary.simpleMessage(
@@ -84,18 +87,20 @@ class MessageLookup extends MessageLookupByLibrary {
     "confirm_reject": MessageLookupByLibrary.simpleMessage(
       "You\'re about to reject this request, are you sure?",
     ),
-    "contact": MessageLookupByLibrary.simpleMessage("contact"),
+    "contact": MessageLookupByLibrary.simpleMessage("Contact"),
     "currentbb": MessageLookupByLibrary.simpleMessage("Current bookings"),
-    "currenthaf": MessageLookupByLibrary.simpleMessage("current"),
+    "currenthaf": MessageLookupByLibrary.simpleMessage("Current"),
+    "dark_theme": MessageLookupByLibrary.simpleMessage("Dark theme"),
     "default_landlord": MessageLookupByLibrary.simpleMessage("Landlord"),
     "delet_house": MessageLookupByLibrary.simpleMessage(
       "You are about to delete this house, are you sure?",
     ),
     "delete": MessageLookupByLibrary.simpleMessage("Delete"),
+    "delete_account": MessageLookupByLibrary.simpleMessage("Delete account"),
     "descending_order": MessageLookupByLibrary.simpleMessage(
       "Descending order",
     ),
-    "description_hint": MessageLookupByLibrary.simpleMessage("description"),
+    "description_hint": MessageLookupByLibrary.simpleMessage("Description"),
     "dont_have_account": MessageLookupByLibrary.simpleMessage(
       "Don\'t have an account ",
     ),
@@ -117,7 +122,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Please upload your profile picture",
     ),
     "error_in": MessageLookupByLibrary.simpleMessage(
-      "something went wrong, please check your internet connection.",
+      "Something went wrong, please check your internet connection.",
     ),
     "error_title": MessageLookupByLibrary.simpleMessage("Error"),
     "favourites": MessageLookupByLibrary.simpleMessage("Favourites"),
@@ -136,22 +141,26 @@ class MessageLookup extends MessageLookupByLibrary {
     "house_reputation": MessageLookupByLibrary.simpleMessage(
       "House reputation",
     ),
+    "id_card_label": MessageLookupByLibrary.simpleMessage("ID card:"),
     "identity_card_label": MessageLookupByLibrary.simpleMessage(
       "Identity card",
     ),
+    "language": MessageLookupByLibrary.simpleMessage("Language"),
     "last_name_hint": MessageLookupByLibrary.simpleMessage(
       "Enter your last name",
     ),
-    "living_rooms_hint": MessageLookupByLibrary.simpleMessage("living rooms"),
+    "light_theme": MessageLookupByLibrary.simpleMessage("Light theme"),
+    "living_rooms_hint": MessageLookupByLibrary.simpleMessage("Living rooms"),
     "livingrooms_label": MessageLookupByLibrary.simpleMessage("Livingrooms:"),
     "load_failed": MessageLookupByLibrary.simpleMessage(
       "Failed to load notifications",
     ),
-    "location": MessageLookupByLibrary.simpleMessage("location"),
+    "location": MessageLookupByLibrary.simpleMessage("Location"),
     "login_title": MessageLookupByLibrary.simpleMessage("Log in"),
     "login_to_chat_msg": MessageLookupByLibrary.simpleMessage(
       "Please login to chat",
     ),
+    "logout": MessageLookupByLibrary.simpleMessage("Log out"),
     "max_hint": MessageLookupByLibrary.simpleMessage("Max"),
     "min_hint": MessageLookupByLibrary.simpleMessage("Min"),
     "my_houses": MessageLookupByLibrary.simpleMessage("My houses"),
@@ -184,17 +193,20 @@ class MessageLookup extends MessageLookupByLibrary {
     "ok": MessageLookupByLibrary.simpleMessage("OK"),
     "others": MessageLookupByLibrary.simpleMessage("Others"),
     "password_hint": MessageLookupByLibrary.simpleMessage("Password"),
+    "payment": MessageLookupByLibrary.simpleMessage("Payment"),
     "pending": MessageLookupByLibrary.simpleMessage("Pending bookings"),
     "personal_info_title": MessageLookupByLibrary.simpleMessage(
       "Personal information",
     ),
     "phone_number_hint": MessageLookupByLibrary.simpleMessage("Phone number"),
+    "phone_number_label": MessageLookupByLibrary.simpleMessage("Phone number:"),
     "photo_fail": MessageLookupByLibrary.simpleMessage(
       "Property photos field is required, please upload at least one picture",
     ),
     "post_button": MessageLookupByLibrary.simpleMessage("Post"),
-    "price_hint": MessageLookupByLibrary.simpleMessage("price a day"),
+    "price_hint": MessageLookupByLibrary.simpleMessage("Price a day"),
     "price_label": MessageLookupByLibrary.simpleMessage("Price:"),
+    "profile": MessageLookupByLibrary.simpleMessage("Profile"),
     "profile_picture_label": MessageLookupByLibrary.simpleMessage(
       "Profile picture",
     ),
@@ -205,14 +217,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "rate": MessageLookupByLibrary.simpleMessage("Rate this property"),
     "reject": MessageLookupByLibrary.simpleMessage("Reject"),
     "reputation_filter_hint": MessageLookupByLibrary.simpleMessage(
-      "reputation-based filter",
+      "Reputation-based filter",
     ),
-    "request": MessageLookupByLibrary.simpleMessage("requests"),
+    "request": MessageLookupByLibrary.simpleMessage("Requests"),
     "request_suc": MessageLookupByLibrary.simpleMessage(
       "Request was successfully rejected.",
     ),
     "room": MessageLookupByLibrary.simpleMessage("Room"),
-    "search_button": MessageLookupByLibrary.simpleMessage("search"),
+    "search_button": MessageLookupByLibrary.simpleMessage("Search"),
     "search_hint": MessageLookupByLibrary.simpleMessage("Search..."),
     "select_category": MessageLookupByLibrary.simpleMessage(
       "Please select a category",
@@ -226,11 +238,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "session_error": MessageLookupByLibrary.simpleMessage(
       "Your account was deleted by the admin or session has expired.",
     ),
-    "sign_up": MessageLookupByLibrary.simpleMessage("sign up"),
+    "settings": MessageLookupByLibrary.simpleMessage("Settings"),
+    "sign_up": MessageLookupByLibrary.simpleMessage("Sign up"),
     "success": MessageLookupByLibrary.simpleMessage(
-      "update was successfully made. waiting for the landlord aproval.",
+      "Update was successfully made. Waiting for the landlord approval.",
     ),
     "suite": MessageLookupByLibrary.simpleMessage("Suite"),
+    "support": MessageLookupByLibrary.simpleMessage("Support"),
     "to_date": m3,
     "try_again": MessageLookupByLibrary.simpleMessage("Try Again"),
     "type_message_hint": MessageLookupByLibrary.simpleMessage(
@@ -241,6 +255,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Update booking requests",
     ),
     "uptd": MessageLookupByLibrary.simpleMessage("Update"),
+    "user_name_label": MessageLookupByLibrary.simpleMessage("User name:"),
     "villa": MessageLookupByLibrary.simpleMessage("Villa"),
     "wait_approval_msg": MessageLookupByLibrary.simpleMessage(
       "Please wait until\nyour account\ncreation is approved",
@@ -252,6 +267,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Where comfort meets convenience",
     ),
     "welcome_title": MessageLookupByLibrary.simpleMessage("WELCOME"),
+    "your_balance": MessageLookupByLibrary.simpleMessage("Your balance:"),
     "your_estates_title": MessageLookupByLibrary.simpleMessage("Your Estates"),
   };
 }
