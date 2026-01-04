@@ -1,5 +1,6 @@
 import 'package:baytech/Models/apartment.dart';
 import 'package:baytech/Models/book.dart';
+import 'package:baytech/helper/show_to_do_something_dialoge.dart';
 import 'package:baytech/services/houses/bookings/renter/book_request.dart';
 import 'package:baytech/services/houses/bookings/renter/update_booking.dart';
 import 'package:flutter/material.dart';
@@ -104,11 +105,19 @@ class _calendar_bookState extends State<calendar_book> {
         house: house,
       );
     } else if (_range_StartDay != null && _range_EndDay != null) {
-      await bookHouseRequest(
-        context: context,
-        start: _range_StartDay!,
-        end: _range_EndDay!,
-        house: house,
+      showToDoSomeThingDialoge(
+        context,
+        message:
+            "you are going to send a booking request for this house, are you sure?",
+        cancel: true,
+        toDo: () async {
+          await bookHouseRequest(
+            context: context,
+            start: _range_StartDay!,
+            end: _range_EndDay!,
+            house: house,
+          );
+        },
       );
     }
     setState(() {
@@ -128,11 +137,19 @@ class _calendar_bookState extends State<calendar_book> {
         house: house,
       );
     } else if (_range_StartDay != null && _range_EndDay != null) {
-      await updateBooking(
-        context: context,
-        start: _range_StartDay!,
-        end: _range_EndDay!,
-        book: book,
+       showToDoSomeThingDialoge(
+        context,
+        message:
+            "you are going to send an update request for this house, are you sure?",
+        cancel: true,
+        toDo: () async {
+          await updateBooking(
+            context: context,
+            start: _range_StartDay!,
+            end: _range_EndDay!,
+            book: book,
+          );
+        },
       );
     }
     setState(() {
