@@ -3,6 +3,7 @@ import 'package:baytech/Screens/Login_Page.dart';
 import 'package:baytech/Screens/Personal_Info_Page.dart';
 import 'package:baytech/components/SemiCircle.dart';
 import 'package:baytech/components/costum_button.dart';
+import 'package:baytech/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
 class WelcomePage extends StatelessWidget {
@@ -35,7 +36,7 @@ class WelcomePage extends StatelessWidget {
                   children: [
                     SizedBox(height: 50),
                     Text(
-                      "WELCOME",
+                      S.of(context).welcome_title,
                       style: TextStyle(
                         fontSize: 36,
                         color: Color(0xff545454),
@@ -44,17 +45,17 @@ class WelcomePage extends StatelessWidget {
                     ),
                     SizedBox(height: 10),
                     Text(
-                      "Find your next space, feel at home",
+                      S.of(context).welcome_sub1,
                       style: TextStyle(color: ktextColor, fontSize: 16),
                     ),
                     SizedBox(height: 5),
                     Text(
-                      "Where comfort meets convenience",
+                      S.of(context).welcome_sub2,
                       style: TextStyle(color: ktextColor, fontSize: 16),
                     ),
                     SizedBox(height: 20),
                     CostumButton(
-                      text: "Log in",
+                      text: S.of(context).login_title,
                       onTap: () {
                         Navigator.popAndPushNamed(context, LoginPage.id);
                       },
@@ -65,7 +66,7 @@ class WelcomePage extends StatelessWidget {
                     ),
                     SizedBox(height: 20),
                     CostumButton(
-                      text: "Sign up",
+                      text: S.of(context).sign_up,
                       onTap: () {
                         Navigator.popAndPushNamed(context, PersonalInfoPage.id);
                       },

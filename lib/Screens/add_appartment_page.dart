@@ -6,6 +6,7 @@ import 'package:baytech/components/costum_button.dart';
 import 'package:baytech/components/custom_drop_down_button.dart';
 import 'package:baytech/components/go_back_button.dart';
 import 'package:baytech/components/upload_image.dart';
+import 'package:baytech/generated/l10n.dart';
 import 'package:baytech/helper/build_drop_down_list.dart';
 import 'package:baytech/providers/my_houses_provider.dart';
 import 'package:baytech/services/houses/adding_houses/store_house.dart';
@@ -111,7 +112,7 @@ class _AddAppartmentPageState extends State<AddAppartmentPage> {
                       SizedBox(width: 70),
                       AddingCustomTextField(
                         width: 250,
-                        hintText: "apartment title..",
+                        hintText: S.of(context).apartment_title_hint,
                         controller: titleController,
                         onchanged: (data) {
                           apartment.title = data;
@@ -148,7 +149,7 @@ class _AddAppartmentPageState extends State<AddAppartmentPage> {
                   Padding(
                     padding: const EdgeInsets.only(left: 32.0),
                     child: Text(
-                      "Property Photos",
+                      S.of(context).property_photos,
                       style: TextStyle(
                         fontSize: 20,
                         color: Theme.of(context).colorScheme.primary,
@@ -186,7 +187,7 @@ class _AddAppartmentPageState extends State<AddAppartmentPage> {
                   Padding(
                     padding: const EdgeInsets.only(left: 32.0),
                     child: Text(
-                      "Property details",
+                      S.of(context).property_details,
                       style: TextStyle(
                         fontSize: 20,
                         color: Theme.of(context).colorScheme.primary,
@@ -207,7 +208,7 @@ class _AddAppartmentPageState extends State<AddAppartmentPage> {
                               apartment.bedrooms = data;
                             },
                             width: 100,
-                            hintText: "bedrooms",
+                            hintText: S.of(context).bedrooms_hint,
                             controller: bedroomsController,
                           ),
                         ],
@@ -223,7 +224,7 @@ class _AddAppartmentPageState extends State<AddAppartmentPage> {
                               apartment.bathrooms = data;
                             },
                             width: 100,
-                            hintText: "bathrooms",
+                            hintText: S.of(context).bathrooms_hint,
                             controller: bathroomsController,
                           ),
                         ],
@@ -239,7 +240,7 @@ class _AddAppartmentPageState extends State<AddAppartmentPage> {
                               apartment.livingRooms = data;
                             },
                             width: 120,
-                            hintText: "living rooms",
+                            hintText: S.of(context).living_rooms_hint,
                             controller: livingRoomsController,
                           ),
                         ],
@@ -262,16 +263,16 @@ class _AddAppartmentPageState extends State<AddAppartmentPage> {
                               });
                               apartment.category = item;
                             },
-                            hintText: 'category',
+                            hintText: S.of(context).category_hint,
                             dropDownValues: [
-                              "Hotel",
-                              "Room",
-                              "Duplex",
-                              "Villa",
-                              "Suite",
-                              "Apartment",
-                              "House",
-                              "Others",
+                              S.of(context).hotel.toString(),
+                              S.of(context).room.toString(),
+                              S.of(context).duplex.toString(),
+                              S.of(context).villa.toString(),
+                              S.of(context).suite.toString(),
+                              S.of(context).apartment.toString(),
+                              S.of(context).house.toString(),
+                              S.of(context).others.toString(),
                             ],
                           ),
                         ],
@@ -286,7 +287,7 @@ class _AddAppartmentPageState extends State<AddAppartmentPage> {
                               apartment.area = data;
                             },
                             width: 80,
-                            hintText: "area",
+                            hintText: S.of(context).area_hint,
                             controller: areaController,
                           ),
                         ],
@@ -302,7 +303,7 @@ class _AddAppartmentPageState extends State<AddAppartmentPage> {
                               apartment.price = data;
                             },
                             width: 120,
-                            hintText: "price a day",
+                            hintText: S.of(context).price_hint,
                             controller: priceController,
                           ),
                         ],
@@ -319,7 +320,7 @@ class _AddAppartmentPageState extends State<AddAppartmentPage> {
                           apartment.description = data;
                         },
                         width: 400,
-                        hintText: "description",
+                        hintText: S.of(context).description_hint,
                         controller: descriptionController,
                       ),
                     ),
@@ -330,7 +331,7 @@ class _AddAppartmentPageState extends State<AddAppartmentPage> {
                     child: CostumButton(
                       textColor: Theme.of(context).colorScheme.onPrimary,
                       buttonColor: Theme.of(context).colorScheme.primary,
-                      text: "Post",
+                      text: S.of(context).post_button,
                       onTap: () async {
                         if (!formKey.currentState!.validate()) {
                           return;
@@ -341,12 +342,12 @@ class _AddAppartmentPageState extends State<AddAppartmentPage> {
                           showDialog(
                             context: context,
                             builder: (context) => AlertDialog(
-                              title: Text("Error"),
-                              content: Text("Please select a main image"),
+                              title: Text(S.of(context).error_title),
+                              content: Text(S.of(context).select_main_image),
                               actions: [
                                 TextButton(
                                   onPressed: () => Navigator.pop(context),
-                                  child: Text("OK"),
+                                  child: Text(S.of(context).ok),
                                 ),
                               ],
                             ),
@@ -358,12 +359,12 @@ class _AddAppartmentPageState extends State<AddAppartmentPage> {
                           showDialog(
                             context: context,
                             builder: (context) => AlertDialog(
-                              title: Text("Error"),
-                              content: Text("Please select a category"),
+                              title: Text(S.of(context).error_title),
+                              content: Text(S.of(context).select_category),
                               actions: [
                                 TextButton(
                                   onPressed: () => Navigator.pop(context),
-                                  child: Text("OK"),
+                                  child: Text(S.of(context).ok),
                                 ),
                               ],
                             ),

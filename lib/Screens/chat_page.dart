@@ -1,4 +1,5 @@
 // screens/chat_screen.dart
+import 'package:baytech/generated/l10n.dart';
 import 'package:baytech/services/chat_services.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -7,12 +8,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 class ChatScreen extends StatefulWidget {
   final String chatId;
   final String landlordName;
-  
-  const ChatScreen({
-    required this.chatId,
-    required this.landlordName,
-  });
-  
+
+  const ChatScreen({required this.chatId, required this.landlordName});
+
   @override
   _ChatScreenState createState() => _ChatScreenState();
 }
@@ -21,13 +19,11 @@ class _ChatScreenState extends State<ChatScreen> {
   final ChatService _chatService = ChatService();
   final TextEditingController _messageController = TextEditingController();
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.landlordName),
-      ),
+      appBar: AppBar(title: Text(widget.landlordName)),
       body: Column(
         children: [
           // Messages
@@ -38,17 +34,19 @@ class _ChatScreenState extends State<ChatScreen> {
                 if (!snapshot.hasData) {
                   return Center(child: CircularProgressIndicator());
                 }
-                
+
                 final messages = snapshot.data!.docs;
-                
+
                 return ListView.builder(
                   itemCount: messages.length,
                   itemBuilder: (context, index) {
                     final message = messages[index];
                     final isMe = message['senderId'] == _auth.currentUser?.uid;
-                    
+
                     return Align(
-                      alignment: isMe ? Alignment.centerRight : Alignment.centerLeft,
+                      alignment: isMe
+                          ? Alignment.centerRight
+                          : Alignment.centerLeft,
                       child: Container(
                         margin: EdgeInsets.all(8),
                         padding: EdgeInsets.all(12),
@@ -69,7 +67,7 @@ class _ChatScreenState extends State<ChatScreen> {
               },
             ),
           ),
-          
+
           // Input
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -79,7 +77,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   child: TextField(
                     controller: _messageController,
                     decoration: InputDecoration(
-                      hintText: 'Type a message...',
+                      hintText: S.of(context).chat_hint,
                       border: OutlineInputBorder(),
                     ),
                   ),

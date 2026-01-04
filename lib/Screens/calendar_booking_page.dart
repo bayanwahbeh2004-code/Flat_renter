@@ -1,6 +1,7 @@
 import 'package:baytech/Models/apartment.dart';
 import 'package:baytech/Models/book.dart';
 import 'package:baytech/helper/show_to_do_something_dialoge.dart';
+import 'package:baytech/generated/l10n.dart';
 import 'package:baytech/services/houses/bookings/renter/book_request.dart';
 import 'package:baytech/services/houses/bookings/renter/update_booking.dart';
 import 'package:flutter/material.dart';
@@ -175,6 +176,7 @@ class _calendar_bookState extends State<calendar_book> {
           children: [
             Lottie.asset(path, width: 300, height: 300, repeat: true),
             TableCalendar(
+              locale: Localizations.localeOf(context).languageCode,
               focusedDay: _focused_day,
               firstDay: DateTime.utc(2024, 1, 1),
               lastDay: DateTime.utc(2030, 1, 1),
@@ -214,7 +216,7 @@ class _calendar_bookState extends State<calendar_book> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Text(
-                "Press and hold for a single day book.",
+                S.of(context).calendar_instruction.toString(),
                 style: TextStyle(
                   fontSize: 14,
                   color: Theme.of(context).colorScheme.primary,
@@ -234,7 +236,7 @@ class _calendar_bookState extends State<calendar_book> {
                         minimumSize: const Size(300, 60),
                       ),
                       child: Text(
-                        'Book Now',
+                        S.of(context).book_now.toString(),
                         style: TextStyle(
                           fontSize: 18,
                           color: Theme.of(context).colorScheme.onPrimary,
@@ -251,7 +253,7 @@ class _calendar_bookState extends State<calendar_book> {
                         minimumSize: const Size(300, 60),
                       ),
                       child: Text(
-                        'Update booking',
+                        S.of(context).update_booking,
                         style: TextStyle(
                           fontSize: 18,
                           color: Theme.of(context).colorScheme.onPrimary,

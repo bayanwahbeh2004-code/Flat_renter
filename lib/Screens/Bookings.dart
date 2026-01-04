@@ -1,4 +1,5 @@
 import 'package:baytech/components/book_card.dart';
+import 'package:baytech/generated/l10n.dart';
 import 'package:baytech/providers/myBookingsProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -64,7 +65,7 @@ class _BookingsPageState extends State<BookingsPage> {
                       children: [
                         _buildminuRep(
                           context,
-                          'current bookings',
+                          S.of(context).currentbb.toString(),
                           isSelected: selectButton == 'current bookings',
                           onTap: () async {
                             selectButNow('current bookings');
@@ -74,7 +75,7 @@ class _BookingsPageState extends State<BookingsPage> {
                         const SizedBox(width: 10),
                         _buildminuRep(
                           context,
-                          'pending bookings',
+                          S.of(context).pending,
                           isSelected: selectButton == 'pending bookings',
                           onTap: () async {
                             selectButNow('pending bookings');
@@ -84,7 +85,7 @@ class _BookingsPageState extends State<BookingsPage> {
                         const SizedBox(width: 10),
                         _buildminuRep(
                           context,
-                          'cancelled bookings',
+                          S.of(context).cancelled,
                           isSelected: selectButton == 'cancelled bookings',
                           onTap: () async {
                             selectButNow('cancelled bookings');

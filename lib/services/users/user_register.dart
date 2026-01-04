@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:baytech/Constants.dart';
 import 'package:baytech/Models/User.dart';
+import 'package:baytech/generated/l10n.dart';
 import 'package:baytech/helper/Api.dart';
 import 'package:baytech/helper/show_dialoge.dart';
 import 'package:baytech/services/login.dart';
@@ -62,7 +63,7 @@ Future<void> UserRegister({
     showDialoge(
       context,
       child: Text(
-        "something went wrong, please check your interntet connection",
+        S.of(context).err_connection,
         style: TextStyle(color: Theme.of(context).colorScheme.primary),
       ),
     );

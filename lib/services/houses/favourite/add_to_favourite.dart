@@ -4,6 +4,7 @@ import 'package:baytech/Models/apartment.dart';
 import 'package:baytech/Screens/Login_Page.dart';
 import 'package:baytech/Screens/Welcome_Page.dart';
 import 'package:baytech/auth.dart';
+import 'package:baytech/generated/l10n.dart';
 import 'package:baytech/helper/api.dart';
 import 'package:baytech/helper/show_dialoge.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +26,7 @@ Future<void> addToFavourites({
       showDialoge(
         context,
         child: Text(
-          'Your account was deleted by the admin or session was over.',
+          S.of(context).sess_error,
           style: TextStyle(color: Theme.of(context).colorScheme.primary),
         ),
       );
@@ -53,7 +54,7 @@ Future<void> addToFavourites({
     showDialoge(
       context,
       child: Text(
-        "something went wrong, please check your internet connection.",
+        S.of(context).err_connection,
         style: TextStyle(color: Theme.of(context).colorScheme.primary),
       ),
     );

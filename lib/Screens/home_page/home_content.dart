@@ -1,6 +1,7 @@
 import 'package:baytech/Constants.dart';
 import 'package:baytech/Models/Filter.dart';
 import 'package:baytech/Screens/FilteringPage.dart';
+import 'package:baytech/generated/l10n.dart';
 import 'package:baytech/helper/build_grid.dart';
 import 'package:baytech/providers/Filter_provider.dart';
 import 'package:flutter/material.dart';
@@ -110,7 +111,7 @@ class _HomeContentState extends State<HomeContent> {
                       Padding(
                         padding: EdgeInsets.only(left: 16.0),
                         child: Text(
-                          'Search...',
+                          S.of(context).search_hint,
                           style: TextStyle(
                             color: Theme.of(
                               context,
@@ -130,7 +131,7 @@ class _HomeContentState extends State<HomeContent> {
                             borderRadius: BorderRadius.circular(10),
                           ),
                           child: Text(
-                            'Filtered',
+                            S.of(context).filtered_badge,
                             style: TextStyle(
                               color: Theme.of(context).colorScheme.onSecondary,
                               fontSize: 12,
@@ -192,7 +193,7 @@ class _HomeContentState extends State<HomeContent> {
                             _loadHouses();
                           },
                           icon: const Icon(Icons.clear, size: 16),
-                          label: const Text('Clear Filters'),
+                          label: Text(S.of(context).clear_filters),
                           style: OutlinedButton.styleFrom(
                             foregroundColor: Theme.of(
                               context,
@@ -212,7 +213,7 @@ class _HomeContentState extends State<HomeContent> {
                   children: [
                     _buildMenuButton(
                       context,
-                      'All',
+                      S.of(context).all_category,
                       isSelected:
                           buttonSelected == 'All' &&
                           !filterProvider.hasActiveFilter,
@@ -220,7 +221,7 @@ class _HomeContentState extends State<HomeContent> {
                     ),
                     _buildMenuButton(
                       context,
-                      'Hotel',
+                      S.of(context).hotel,
                       isSelected:
                           buttonSelected == 'Hotel' &&
                           !filterProvider.hasActiveFilter,
@@ -228,7 +229,7 @@ class _HomeContentState extends State<HomeContent> {
                     ),
                     _buildMenuButton(
                       context,
-                      'Room',
+                      S.of(context).room,
                       isSelected:
                           buttonSelected == 'Room' &&
                           !filterProvider.hasActiveFilter,
@@ -236,7 +237,7 @@ class _HomeContentState extends State<HomeContent> {
                     ),
                     _buildMenuButton(
                       context,
-                      'Duplex',
+                      S.of(context).duplex,
                       isSelected:
                           buttonSelected == 'Duplex' &&
                           !filterProvider.hasActiveFilter,
@@ -244,7 +245,7 @@ class _HomeContentState extends State<HomeContent> {
                     ),
                     _buildMenuButton(
                       context,
-                      'Villa',
+                      S.of(context).villa,
                       isSelected:
                           buttonSelected == 'Villa' &&
                           !filterProvider.hasActiveFilter,
@@ -252,7 +253,7 @@ class _HomeContentState extends State<HomeContent> {
                     ),
                     _buildMenuButton(
                       context,
-                      'Suite',
+                      S.of(context).suite,
                       isSelected:
                           buttonSelected == 'Suite' &&
                           !filterProvider.hasActiveFilter,
@@ -260,7 +261,7 @@ class _HomeContentState extends State<HomeContent> {
                     ),
                     _buildMenuButton(
                       context,
-                      'Apartment',
+                      S.of(context).apartment,
                       isSelected:
                           buttonSelected == 'Apartment' &&
                           !filterProvider.hasActiveFilter,
@@ -268,7 +269,7 @@ class _HomeContentState extends State<HomeContent> {
                     ),
                     _buildMenuButton(
                       context,
-                      'House',
+                      S.of(context).house,
                       isSelected:
                           buttonSelected == 'House' &&
                           !filterProvider.hasActiveFilter,
@@ -276,7 +277,7 @@ class _HomeContentState extends State<HomeContent> {
                     ),
                     _buildMenuButton(
                       context,
-                      'Others',
+                      S.of(context).others,
                       isSelected:
                           buttonSelected == 'Others' &&
                           !filterProvider.hasActiveFilter,
@@ -300,8 +301,8 @@ class _HomeContentState extends State<HomeContent> {
                           const SizedBox(height: 16),
                           Text(
                             filterProvider.hasActiveFilter
-                                ? 'No houses found with the current filters'
-                                : 'No houses found for "$buttonSelected"',
+                                ? S.of(context).no_houses_filter
+                                : "${S.of(context).no_houses_category} $buttonSelected",
                             style: TextStyle(
                               fontSize: 16,
                               color: Theme.of(context).colorScheme.onSurface,

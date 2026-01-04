@@ -3,6 +3,7 @@ import 'package:baytech/Constants.dart';
 import 'package:baytech/Models/User.dart';
 import 'package:baytech/Screens/home_page/home_app.dart';
 import 'package:baytech/Screens/Waiting_Page.dart';
+import 'package:baytech/generated/l10n.dart';
 import 'package:baytech/helper/api.dart';
 import 'package:baytech/helper/show_dialoge.dart';
 import 'package:baytech/services/PushNotificationService.dart';
@@ -49,17 +50,17 @@ Future<void> Login({
         showDialoge(
           context,
           child: Text(
-            "this is admin account, create a user account please.",
+            S.of(context).admin_error,
             style: TextStyle(color: Theme.of(context).colorScheme.primary),
           ),
         );
       }
-        await AuthServiceFirebase().autoCreateFirebaseAccount(
-          laravelUserId: user.id!,
-          name: "${user.firstName} ${user.secondName}",
-          profilePicture: user.profilePicturePath ?? '',
-          phoneNumber: user.phoneNumber!,
-        );
+      await AuthServiceFirebase().autoCreateFirebaseAccount(
+        laravelUserId: user.id!,
+        name: "${user.firstName} ${user.secondName}",
+        profilePicture: user.profilePicturePath ?? '',
+        phoneNumber: user.phoneNumber!,
+      );
       if (active)
         Navigator.popAndPushNamed(context, HomeScreen.id);
       else
@@ -71,7 +72,7 @@ Future<void> Login({
     showDialoge(
       context,
       child: Text(
-        "something went wrong, please check your internet connection.",
+        S.of(context).err_connection,
         style: TextStyle(color: Theme.of(context).colorScheme.primary),
       ),
     );

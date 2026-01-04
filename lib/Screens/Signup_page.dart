@@ -4,6 +4,7 @@ import 'package:baytech/Screens/Login_Page.dart';
 import 'package:baytech/components/SemiCircle.dart';
 import 'package:baytech/components/costum_button.dart';
 import 'package:baytech/components/costum_text_Field.dart';
+import 'package:baytech/generated/l10n.dart';
 import 'package:baytech/services/users/user_register.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -40,7 +41,7 @@ class _SignupPageState extends State<SignupPage> {
                   Padding(
                     padding: const EdgeInsets.only(left: 50.0),
                     child: Text(
-                      "Sign up",
+                      S.of(context).sign_up,
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 32,
@@ -70,7 +71,7 @@ class _SignupPageState extends State<SignupPage> {
                         CostumTextFeild(
                           color: Koption,
                           textInputType: TextInputType.number,
-                          hintText: "Phone number",
+                          hintText: S.of(context).phone_number_hint,
                           onchanged: (data) {
                             phoneNumber = data;
                           },
@@ -78,7 +79,7 @@ class _SignupPageState extends State<SignupPage> {
                         SizedBox(height: 25),
                         CostumTextFeild(
                           color: Koption,
-                          hintText: "Password",
+                          hintText: S.of(context).password_hint,
                           obscure: true,
                           onchanged: (data) {
                             password = data;
@@ -86,7 +87,7 @@ class _SignupPageState extends State<SignupPage> {
                         ),
                         SizedBox(height: 25),
                         CostumTextFeild(
-                          hintText: "Confirm password",
+                          hintText: S.of(context).confirm_password_hint,
                           obscure: true,
                           onchanged: (data) {
                             confirmPassword = data;
@@ -94,7 +95,7 @@ class _SignupPageState extends State<SignupPage> {
                         ),
                         SizedBox(height: 25),
                         CostumButton(
-                          text: "Sign up",
+                          text: S.of(context).sign_up,
                           onTap: () async {
                             if (formKey.currentState!.validate()) {
                               setState(() {
@@ -123,7 +124,7 @@ class _SignupPageState extends State<SignupPage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              "Alredy have an account? ",
+                              S.of(context).already_have_account,
                               style: TextStyle(color: Colors.black),
                             ),
                             GestureDetector(
@@ -134,7 +135,7 @@ class _SignupPageState extends State<SignupPage> {
                                 );
                               },
                               child: Text(
-                                "log in",
+                                S.of(context).login_title,
                                 style: TextStyle(color: KPurple, fontSize: 18),
                               ),
                             ),

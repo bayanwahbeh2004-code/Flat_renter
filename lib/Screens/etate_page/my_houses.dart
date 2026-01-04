@@ -1,4 +1,5 @@
 import 'package:baytech/Screens/add_appartment_page.dart';
+import 'package:baytech/generated/l10n.dart';
 import 'package:baytech/helper/build_grid.dart';
 import 'package:baytech/providers/my_houses_provider.dart';
 import 'package:flutter/material.dart';
@@ -39,7 +40,7 @@ class _MyHousesState extends State<MyHouses> {
                         ),
                         const SizedBox(height: 16),
                         Text(
-                          'No houses found',
+                          S.of(context).no_houses_found,
                           style: TextStyle(
                             fontSize: 16,
                             color: Theme.of(context).colorScheme.onSurface,

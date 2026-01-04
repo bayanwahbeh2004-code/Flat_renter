@@ -3,6 +3,7 @@ import 'package:baytech/Constants.dart';
 import 'package:baytech/Models/User.dart';
 import 'package:baytech/Screens/Login_Page.dart';
 import 'package:baytech/auth.dart';
+import 'package:baytech/generated/l10n.dart';
 import 'package:baytech/helper/api.dart';
 import 'package:baytech/helper/show_dialoge.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +34,7 @@ Future<void> Logout({required BuildContext context}) async {
     showDialoge(
       context,
       child: Text(
-        "something went wrong, please check your internet connection.",
+        S.of(context).err_connection,
         style: TextStyle(color: Theme.of(context).colorScheme.primary),
       ),
     );

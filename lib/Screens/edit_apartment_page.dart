@@ -7,6 +7,7 @@ import 'package:baytech/components/costum_button.dart';
 import 'package:baytech/components/custom_drop_down_button.dart';
 import 'package:baytech/components/go_back_button.dart';
 import 'package:baytech/components/upload_image.dart';
+import 'package:baytech/generated/l10n.dart';
 import 'package:baytech/helper/build_drop_down_list.dart';
 import 'package:baytech/helper/show_dialoge.dart';
 import 'package:baytech/providers/my_houses_provider.dart';
@@ -146,7 +147,7 @@ class _EditAppartmentPageState extends State<EditApartmentPage> {
                     Padding(
                       padding: const EdgeInsets.only(left: 32.0),
                       child: Text(
-                        "Property Photos",
+                        S.of(context).property_photos.toString(),
                         style: TextStyle(
                           fontSize: 20,
                           color: Theme.of(context).colorScheme.primary,
@@ -186,7 +187,7 @@ class _EditAppartmentPageState extends State<EditApartmentPage> {
                     Padding(
                       padding: const EdgeInsets.only(left: 32.0),
                       child: Text(
-                        "Property details",
+                        S.of(context).property_details.toString(),
                         style: TextStyle(
                           fontSize: 20,
                           color: Theme.of(context).colorScheme.primary,
@@ -264,14 +265,14 @@ class _EditAppartmentPageState extends State<EditApartmentPage> {
                               },
                               hintText: '${widget.old_house!.category}',
                               dropDownValues: [
-                                "Hotel",
-                                "Room",
-                                "Duplex",
-                                "Villa",
-                                "Suite",
-                                "Apartment",
-                                "House",
-                                "Others",
+                                S.of(context).hotel.toString(),
+                                S.of(context).room.toString(),
+                                S.of(context).duplex.toString(),
+                                S.of(context).villa.toString(),
+                                S.of(context).suite.toString(),
+                                S.of(context).apartment.toString(),
+                                S.of(context).house.toString(),
+                                S.of(context).others.toString(),
                               ],
                             ),
                           ],
@@ -330,7 +331,7 @@ class _EditAppartmentPageState extends State<EditApartmentPage> {
                       child: CostumButton(
                         textColor: Theme.of(context).colorScheme.onPrimary,
                         buttonColor: Theme.of(context).colorScheme.primary,
-                        text: "Update",
+                        text: S.of(context).uptd.toString(),
                         onTap: () async {
                           setState(() {
                             isLoading = true;
