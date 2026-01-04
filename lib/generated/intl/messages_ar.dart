@@ -44,10 +44,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "admin_error": MessageLookupByLibrary.simpleMessage(
       "هذا حساب مسؤول، يرجى إنشاء حساب مستخدم.",
     ),
+    "alaa": MessageLookupByLibrary.simpleMessage("آلاء هلال"),
     "all_category": MessageLookupByLibrary.simpleMessage("الكل"),
     "already_have_account": MessageLookupByLibrary.simpleMessage(
       "لديك حساب بالفعل؟ ",
     ),
+    "amina": MessageLookupByLibrary.simpleMessage("أمينة عينية"),
     "apartment": MessageLookupByLibrary.simpleMessage("شقة"),
     "apartment_title_hint": MessageLookupByLibrary.simpleMessage(
       "عنوان الشقة..",
@@ -58,6 +60,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "ascending_order": MessageLookupByLibrary.simpleMessage("ترتيب تصاعدي"),
     "bathrooms_hint": MessageLookupByLibrary.simpleMessage("الحمامات"),
     "bathrooms_label": MessageLookupByLibrary.simpleMessage("الحمامات:"),
+    "bayan": MessageLookupByLibrary.simpleMessage("بيان وهبة"),
     "bedrooms_hint": MessageLookupByLibrary.simpleMessage("غرف النوم"),
     "bedrooms_label": MessageLookupByLibrary.simpleMessage("غرف النوم:"),
     "benefit": m0,
@@ -135,6 +138,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "house_reputation": MessageLookupByLibrary.simpleMessage("سمعة المنزل"),
     "id_card_label": MessageLookupByLibrary.simpleMessage("بطاقة الهوية:"),
     "identity_card_label": MessageLookupByLibrary.simpleMessage("بطاقة الهوية"),
+    "kheder": MessageLookupByLibrary.simpleMessage("بيان الخضر"),
     "language": MessageLookupByLibrary.simpleMessage("اللغة"),
     "last_name_hint": MessageLookupByLibrary.simpleMessage("أدخل اسمك الأخير"),
     "light_theme": MessageLookupByLibrary.simpleMessage("الوضع الفاتح"),
@@ -206,6 +210,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "request": MessageLookupByLibrary.simpleMessage("الطلبات"),
     "request_suc": MessageLookupByLibrary.simpleMessage("تم رفض الطلب بنجاح."),
     "room": MessageLookupByLibrary.simpleMessage("غرفة"),
+    "sarah": MessageLookupByLibrary.simpleMessage("سارة صديقة"),
     "search_button": MessageLookupByLibrary.simpleMessage("بحث"),
     "search_hint": MessageLookupByLibrary.simpleMessage("بحث..."),
     "select_category": MessageLookupByLibrary.simpleMessage("يرجى اختيار فئة"),

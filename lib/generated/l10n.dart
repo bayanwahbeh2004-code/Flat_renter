@@ -1143,6 +1143,31 @@ class S {
       args: [],
     );
   }
+
+  /// `bayan wehbeh`
+  String get bayan {
+    return Intl.message('bayan wehbeh', name: 'bayan', desc: '', args: []);
+  }
+
+  /// `amina ainia`
+  String get amina {
+    return Intl.message('amina ainia', name: 'amina', desc: '', args: []);
+  }
+
+  /// `alaa helal`
+  String get alaa {
+    return Intl.message('alaa helal', name: 'alaa', desc: '', args: []);
+  }
+
+  /// `sarah sedekah`
+  String get sarah {
+    return Intl.message('sarah sedekah', name: 'sarah', desc: '', args: []);
+  }
+
+  /// `bayan al-kheder`
+  String get kheder {
+    return Intl.message('bayan al-kheder', name: 'kheder', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

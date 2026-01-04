@@ -65,7 +65,7 @@ class _BookingsPageState extends State<BookingsPage> {
                       children: [
                         _buildminuRep(
                           context,
-                          S.of(context).currentbb.toString(),
+                          S.of(context).currentbb,
                           isSelected: selectButton == 'current bookings',
                           onTap: () async {
                             selectButNow('current bookings');

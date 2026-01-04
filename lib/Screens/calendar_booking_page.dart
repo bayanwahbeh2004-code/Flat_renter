@@ -199,7 +199,7 @@ class _calendar_bookState extends State<calendar_book> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Text(
-                S.of(context).calendar_instruction.toString(),
+                S.of(context).calendar_instruction,
                 style: TextStyle(
                   fontSize: 14,
                   color: Theme.of(context).colorScheme.primary,
@@ -219,7 +219,7 @@ class _calendar_bookState extends State<calendar_book> {
                         minimumSize: const Size(300, 60),
                       ),
                       child: Text(
-                        S.of(context).book_now.toString(),
+                        S.of(context).book_now,
                         style: TextStyle(
                           fontSize: 18,
                           color: Theme.of(context).colorScheme.onPrimary,

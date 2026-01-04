@@ -46,10 +46,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "admin_error": MessageLookupByLibrary.simpleMessage(
       "This is an admin account, please create a user account.",
     ),
+    "alaa": MessageLookupByLibrary.simpleMessage("alaa helal"),
     "all_category": MessageLookupByLibrary.simpleMessage("All"),
     "already_have_account": MessageLookupByLibrary.simpleMessage(
       "Already have an account ",
     ),
+    "amina": MessageLookupByLibrary.simpleMessage("amina ainia"),
     "apartment": MessageLookupByLibrary.simpleMessage("Apartment"),
     "apartment_title_hint": MessageLookupByLibrary.simpleMessage(
       "Apartment title..",
@@ -60,6 +62,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "ascending_order": MessageLookupByLibrary.simpleMessage("Ascending order"),
     "bathrooms_hint": MessageLookupByLibrary.simpleMessage("Bathrooms"),
     "bathrooms_label": MessageLookupByLibrary.simpleMessage("Bathrooms:"),
+    "bayan": MessageLookupByLibrary.simpleMessage("bayan wehbeh"),
     "bedrooms_hint": MessageLookupByLibrary.simpleMessage("Bedrooms"),
     "bedrooms_label": MessageLookupByLibrary.simpleMessage("Bedrooms:"),
     "benefit": m0,
@@ -145,6 +148,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "identity_card_label": MessageLookupByLibrary.simpleMessage(
       "Identity card",
     ),
+    "kheder": MessageLookupByLibrary.simpleMessage("bayan al-kheder"),
     "language": MessageLookupByLibrary.simpleMessage("Language"),
     "last_name_hint": MessageLookupByLibrary.simpleMessage(
       "Enter your last name",
@@ -224,6 +228,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Request was successfully rejected.",
     ),
     "room": MessageLookupByLibrary.simpleMessage("Room"),
+    "sarah": MessageLookupByLibrary.simpleMessage("sarah sedekah"),
     "search_button": MessageLookupByLibrary.simpleMessage("Search"),
     "search_hint": MessageLookupByLibrary.simpleMessage("Search..."),
     "select_category": MessageLookupByLibrary.simpleMessage(

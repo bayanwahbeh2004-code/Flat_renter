@@ -323,7 +323,7 @@ class _ProfileInformaState extends State<ProfileInforma> {
                           ),
                           SizedBox(width: 20),
                           Text(
-                            "bayan wehbeh",
+                            S.of(context).bayan,
                             style: TextStyle(
                               color: Theme.of(context).colorScheme.primary,
                             ),
@@ -334,7 +334,7 @@ class _ProfileInformaState extends State<ProfileInforma> {
                       Row(
                         children: [
                           Text(
-                            "amina ainia",
+                            S.of(context).amina,
                             style: TextStyle(
                               color: Theme.of(context).colorScheme.primary,
                             ),
@@ -359,7 +359,7 @@ class _ProfileInformaState extends State<ProfileInforma> {
                           ),
                           SizedBox(width: 20),
                           Text(
-                            "alaa helal",
+                            S.of(context).alaa,
                             style: TextStyle(
                               color: Theme.of(context).colorScheme.primary,
                             ),
@@ -370,7 +370,7 @@ class _ProfileInformaState extends State<ProfileInforma> {
                       Row(
                         children: [
                           Text(
-                            "sarah sedekah",
+                            S.of(context).sarah,
                             style: TextStyle(
                               color: Theme.of(context).colorScheme.primary,
                             ),
@@ -395,7 +395,7 @@ class _ProfileInformaState extends State<ProfileInforma> {
                           ),
                           SizedBox(width: 20),
                           Text(
-                            "bayan al-kheder",
+                            S.of(context).kheder,
                             style: TextStyle(
                               color: Theme.of(context).colorScheme.primary,
                             ),
