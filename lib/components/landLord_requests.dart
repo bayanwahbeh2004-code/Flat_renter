@@ -1,5 +1,6 @@
 import 'package:baytech/Constants.dart';
 import 'package:baytech/Models/book.dart';
+import 'package:baytech/generated/l10n.dart';
 import 'package:baytech/helper/show_to_do_something_dialoge.dart';
 import 'package:baytech/providers/landLordRequestsProvider.dart';
 import 'package:flutter/material.dart';
@@ -56,14 +57,14 @@ class _BookCardState extends State<landLordRequestsCard> {
                     ),
 
                     Text(
-                      "from: ${widget.book.start_date}\nto: ${widget.book.end_date}",
+                      "${S.of(context).from_date(widget.book.start_date!)}\n${S.of(context).to_date(widget.book.end_date!)}",
                       style: TextStyle(
                         color: Theme.of(context).colorScheme.onSurface,
                       ),
                     ),
                     widget.book.price_diff != null
                         ? Text(
-                            "benefit: \$${widget.book.price_diff}",
+                            S.of(context).benefit(widget.book.price_diff!),
                             style: TextStyle(
                               color: Theme.of(context).colorScheme.onSurface,
                             ),
@@ -82,8 +83,7 @@ class _BookCardState extends State<landLordRequestsCard> {
                         showToDoSomeThingDialoge(
                           context,
                           cancel: true,
-                          message:
-                              "you're about to accept this request , are you sure?",
+                          message: S.of(context).confirm_accept,
                           toDo: () async {
                             await widget.accept();
                             requests.setBookings(widget.book.house!, context);
@@ -91,7 +91,7 @@ class _BookCardState extends State<landLordRequestsCard> {
                           },
                         );
                       },
-                      child: Text("accept"),
+                      child: Text(S.of(context).accept),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Theme.of(
                           context,
@@ -107,8 +107,7 @@ class _BookCardState extends State<landLordRequestsCard> {
                         showToDoSomeThingDialoge(
                           context,
                           cancel: true,
-                          message:
-                              "you're about to reject this request , are you sure?",
+                          message: S.of(context).confirm_reject,
                           toDo: () async {
                             await widget.reject();
                             requests.setBookings(widget.book.house!, context);
@@ -116,7 +115,7 @@ class _BookCardState extends State<landLordRequestsCard> {
                           },
                         );
                       },
-                      child: Text("reject"),
+                      child: Text(S.of(context).reject),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color.fromARGB(255, 203, 68, 68),
                       ),

@@ -91,7 +91,7 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                               ),
                               SizedBox(width: 100),
                               Text(
-                                "Profile picture",
+                                S.of(context).profile_picture_label,
                                 style: TextStyle(color: Colors.black),
                               ),
                             ],
@@ -134,7 +134,7 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                       const SizedBox(height: 15),
 
                       CostumButton(
-                        text: "Birth date",
+                        text: S.of(context).birth_date_btn,
                         height: 50,
                         width: 225,
                         buttonColor: Colors.white,
@@ -161,7 +161,7 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                       const SizedBox(height: 15),
 
                       CostumButton(
-                        text: "Next",
+                        text: S.of(context).next_btn,
                         height: 50,
                         width: 225,
                         buttonColor: Colors.black,
@@ -188,7 +188,7 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                             showDialoge(
                               context,
                               child: Text(
-                                "Please upload your identity card",
+                                S.of(context).err_upload_id,
                                 style: TextStyle(color: Colors.black),
                               ),
                             );
@@ -196,7 +196,7 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                             showDialoge(
                               context,
                               child: Text(
-                                "Please upload your profile picture",
+                                S.of(context).err_upload_profile,
                                 style: TextStyle(color: Colors.black),
                               ),
                             );
@@ -204,7 +204,7 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                             showDialoge(
                               context,
                               child: Text(
-                                "Please select your birth date",
+                                S.of(context).err_select_birth,
                                 style: TextStyle(color: Colors.black),
                               ),
                             );
@@ -212,7 +212,7 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                             showDialoge(
                               context,
                               child: Text(
-                                "Something went wrong, check your internet connection.",
+                                S.of(context).error_in,
                                 style: TextStyle(color: Colors.black),
                               ),
                             );
@@ -225,16 +225,16 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Text(
-                            "Already have an account? ",
+                          Text(
+                            S.of(context).already_have_account,
                             style: TextStyle(color: Colors.black),
                           ),
                           GestureDetector(
                             onTap: () {
                               Navigator.pushNamed(context, LoginPage.id);
                             },
-                            child: const Text(
-                              "log in",
+                            child: Text(
+                              S.of(context).login_title,
                               style: TextStyle(color: KPurple, fontSize: 18),
                             ),
                           ),

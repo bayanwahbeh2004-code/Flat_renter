@@ -43,7 +43,13 @@ Future<void> bookHouseRequest({
           show = message;
         else
           message.forEach((key, value) => show = show + value[0].toString());
-        showDialoge(context, child: Text(show));
+        showDialoge(
+          context,
+          child: Text(
+            show,
+            style: TextStyle(color: Theme.of(context).colorScheme.primary),
+          ),
+        );
       }
     } else {
       Navigator.pop(context);

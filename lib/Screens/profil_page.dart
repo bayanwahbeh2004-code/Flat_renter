@@ -2,6 +2,7 @@ import 'package:baytech/Constants.dart';
 import 'package:baytech/Models/User.dart';
 import 'package:baytech/Theme/theme.dart';
 import 'package:baytech/Theme/theme_proider.dart';
+import 'package:baytech/generated/l10n.dart';
 import 'package:baytech/helper/show_dialoge.dart';
 import 'package:baytech/providers/language_provider.dart';
 import 'package:baytech/services/logout.dart';
@@ -39,7 +40,7 @@ class _ProfileInformaState extends State<ProfileInforma> {
           },
         ),
         title: Text(
-          "Settings",
+          S.of(context).settings,
           style: TextStyle(
             color: Theme.of(context).colorScheme.primary,
             fontWeight: FontWeight.bold,
@@ -61,7 +62,7 @@ class _ProfileInformaState extends State<ProfileInforma> {
 
             _buildMenit(
               icon: Icons.person_outline,
-              title: "Profile",
+              title: S.of(context).profile,
               onTap: () {
                 showDialoge(
                   context,
@@ -75,7 +76,7 @@ class _ProfileInformaState extends State<ProfileInforma> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                "User name:",
+                                S.of(context).user_name_label,
                                 style: TextStyle(
                                   fontSize: 16,
                                   color: Theme.of(
@@ -106,7 +107,7 @@ class _ProfileInformaState extends State<ProfileInforma> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                "phone number:",
+                                S.of(context).phone_number_label,
                                 style: TextStyle(
                                   fontSize: 16,
                                   color: Theme.of(
@@ -134,7 +135,7 @@ class _ProfileInformaState extends State<ProfileInforma> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  "Birth date:",
+                                  S.of(context).birth_date_label,
                                   style: TextStyle(
                                     fontSize: 16,
                                     color: Theme.of(
@@ -160,7 +161,7 @@ class _ProfileInformaState extends State<ProfileInforma> {
 
                       SizedBox(height: 30),
                       Text(
-                        "ID card:",
+                        S.of(context).id_card_label,
                         style: TextStyle(
                           color: Theme.of(context).colorScheme.secondary,
                           fontSize: 16,
@@ -183,7 +184,7 @@ class _ProfileInformaState extends State<ProfileInforma> {
             ),
             _buildMenit(
               icon: Icons.light_mode_outlined,
-              title: "App Theme",
+              title: S.of(context).app_theme,
               onTap: () {
                 showDialoge(
                   context,
@@ -193,7 +194,7 @@ class _ProfileInformaState extends State<ProfileInforma> {
                     children: [
                       _buildMenit(
                         icon: Icons.sunny,
-                        title: "light theme",
+                        title: S.of(context).light_theme,
                         onTap: () {
                           Provider.of<ThemeProvider>(
                             context,
@@ -204,7 +205,7 @@ class _ProfileInformaState extends State<ProfileInforma> {
                       ),
                       _buildMenit(
                         icon: Icons.dark_mode,
-                        title: "dark theme",
+                        title: S.of(context).dark_theme,
                         onTap: () {
                           Provider.of<ThemeProvider>(
                             context,
@@ -220,7 +221,7 @@ class _ProfileInformaState extends State<ProfileInforma> {
             ),
             _buildMenit(
               icon: Icons.language,
-              title: "Language",
+              title: S.of(context).language,
               onTap: () {
                 showDialoge(
                   context,
@@ -257,7 +258,7 @@ class _ProfileInformaState extends State<ProfileInforma> {
             ),
             _buildMenit(
               icon: Icons.payments_outlined,
-              title: "Payment",
+              title: S.of(context).payment,
               onTap: () async {
                 User data = await getUser(context: context);
                 showDialoge(
@@ -276,7 +277,7 @@ class _ProfileInformaState extends State<ProfileInforma> {
                           ),
                           SizedBox(height: 50),
                           Text(
-                            " Your balance:",
+                            S.of(context).your_balance,
                             style: TextStyle(
                               color: Theme.of(context).colorScheme.primary,
                             ),
@@ -297,12 +298,12 @@ class _ProfileInformaState extends State<ProfileInforma> {
             ),
             _buildMenit(
               icon: Icons.support_agent_outlined,
-              title: "Support",
+              title: S.of(context).support,
               onTap: () {},
             ),
             _buildMenit(
               icon: Icons.info_outline,
-              title: "about us",
+              title: S.of(context).about_us,
               onTap: () {
                 showDialoge(
                   context,
@@ -322,7 +323,7 @@ class _ProfileInformaState extends State<ProfileInforma> {
                           ),
                           SizedBox(width: 20),
                           Text(
-                            "bayan wehbeh",
+                            S.of(context).bayan,
                             style: TextStyle(
                               color: Theme.of(context).colorScheme.primary,
                             ),
@@ -333,7 +334,7 @@ class _ProfileInformaState extends State<ProfileInforma> {
                       Row(
                         children: [
                           Text(
-                            "amina ainia",
+                            S.of(context).amina,
                             style: TextStyle(
                               color: Theme.of(context).colorScheme.primary,
                             ),
@@ -352,13 +353,13 @@ class _ProfileInformaState extends State<ProfileInforma> {
                         children: [
                           CircleAvatar(
                             backgroundImage: AssetImage(
-                              "assets/images/team/bayan wehbeh.png",
+                              "assets/images/team/alaa_helal.jpg",
                             ),
                             radius: 50,
                           ),
                           SizedBox(width: 20),
                           Text(
-                            "alaa helal",
+                            S.of(context).alaa,
                             style: TextStyle(
                               color: Theme.of(context).colorScheme.primary,
                             ),
@@ -369,7 +370,7 @@ class _ProfileInformaState extends State<ProfileInforma> {
                       Row(
                         children: [
                           Text(
-                            "sarah sedekah",
+                            S.of(context).sarah,
                             style: TextStyle(
                               color: Theme.of(context).colorScheme.primary,
                             ),
@@ -394,7 +395,7 @@ class _ProfileInformaState extends State<ProfileInforma> {
                           ),
                           SizedBox(width: 20),
                           Text(
-                            "bayan al-kheder",
+                            S.of(context).kheder,
                             style: TextStyle(
                               color: Theme.of(context).colorScheme.primary,
                             ),
@@ -411,7 +412,7 @@ class _ProfileInformaState extends State<ProfileInforma> {
 
             _buildActionTile(
               icon: Icons.logout,
-              title: "Log out",
+              title: S.of(context).logout,
               onTap: () async {
                 setState(() {
                   isLoading = true;
@@ -424,7 +425,7 @@ class _ProfileInformaState extends State<ProfileInforma> {
             ),
             _buildActionTile(
               icon: Icons.delete_outline,
-              title: "Delete account",
+              title: S.of(context).delete_account,
               onTap: () async {
                 setState(() {
                   isLoading = true;

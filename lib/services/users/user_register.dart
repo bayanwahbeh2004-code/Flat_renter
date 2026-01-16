@@ -59,7 +59,6 @@ Future<void> UserRegister({
     }
   } catch (e) {
     print(e.toString());
-    //print('this is register');
     showDialoge(
       context,
       child: Text(

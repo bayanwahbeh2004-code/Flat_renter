@@ -1,3 +1,4 @@
+import 'package:baytech/generated/l10n.dart';
 import 'package:baytech/services/users/notifications.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +20,7 @@ class NotificationCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "New notification",
+              S.of(context).new_notification,
               style: TextStyle(
                 fontWeight: FontWeight.w700,
                 fontSize: 16,
@@ -95,7 +96,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
         foregroundColor: Theme.of(context).appBarTheme.foregroundColor,
         title: Center(
           child: Text(
-            'Notifications',
+            S.of(context).notifications_title,
             style: TextStyle(
               color: Theme.of(context).colorScheme.primary,
               fontWeight: FontWeight.w600,
@@ -137,7 +138,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
             ),
             const SizedBox(height: 20),
             Text(
-              'Failed to load notifications',
+              S.of(context).load_failed,
               style: TextStyle(
                 color: Theme.of(context).colorScheme.error,
                 fontSize: 16,
@@ -152,7 +153,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: _refreshNotifications,
-              child: const Text('Try Again'),
+              child: Text(S.of(context).try_again),
             ),
           ],
         ),
@@ -171,7 +172,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
             ),
             const SizedBox(height: 20),
             Text(
-              'No notifications yet',
+              S.of(context).no_notifications,
               style: TextStyle(
                 fontSize: 18,
                 color: Theme.of(context).colorScheme.secondary,
@@ -179,7 +180,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
             ),
             const SizedBox(height: 10),
             Text(
-              'When you get notifications, they\'ll appear here',
+              S.of(context).no_notifications_subtitle,
               style: TextStyle(
                 fontSize: 14,
                 color: Theme.of(context).colorScheme.secondary.withOpacity(0.7),

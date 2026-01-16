@@ -14,7 +14,7 @@ class BookingsPage extends StatefulWidget {
 }
 
 class _BookingsPageState extends State<BookingsPage> {
-  String selectButton = 'current bookings';
+  String selectButton = 'current';
   bool _isInitialLoad = true;
 
   void selectButNow(String category) {
@@ -65,10 +65,10 @@ class _BookingsPageState extends State<BookingsPage> {
                       children: [
                         _buildminuRep(
                           context,
-                          S.of(context).currentbb.toString(),
-                          isSelected: selectButton == 'current bookings',
+                          S.of(context).currentbb,
+                          isSelected: selectButton == 'current',
                           onTap: () async {
-                            selectButNow('current bookings');
+                            selectButNow('current');
                             await _onTabChanged('current');
                           },
                         ),
@@ -76,9 +76,9 @@ class _BookingsPageState extends State<BookingsPage> {
                         _buildminuRep(
                           context,
                           S.of(context).pending,
-                          isSelected: selectButton == 'pending bookings',
+                          isSelected: selectButton == 'pending',
                           onTap: () async {
-                            selectButNow('pending bookings');
+                            selectButNow('pending');
                             await _onTabChanged('pending');
                           },
                         ),
@@ -86,9 +86,9 @@ class _BookingsPageState extends State<BookingsPage> {
                         _buildminuRep(
                           context,
                           S.of(context).cancelled,
-                          isSelected: selectButton == 'cancelled bookings',
+                          isSelected: selectButton == 'cancelled',
                           onTap: () async {
-                            selectButNow('cancelled bookings');
+                            selectButNow('cancelled');
                             await _onTabChanged('cancelled');
                           },
                         ),
@@ -140,7 +140,8 @@ class _BookingsPageState extends State<BookingsPage> {
             height: 130,
             child: BookCard(
               book: bookings.myBookings[index],
-              isCancelled: selectButton == "cancelled bookings",
+              isCancelled: selectButton == "cancelled",
+              type: selectButton,
             ),
           ),
         );

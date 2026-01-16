@@ -13,8 +13,6 @@ import 'package:baytech/services/users/user_active.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:baytech/auth.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 
 Future<void> Login({
   required User account,
@@ -55,12 +53,12 @@ Future<void> Login({
           ),
         );
       }
-      await AuthServiceFirebase().autoCreateFirebaseAccount(
+      /*await AuthServiceFirebase().autoCreateFirebaseAccount(
         laravelUserId: user.id!,
         name: "${user.firstName} ${user.secondName}",
         profilePicture: user.profilePicturePath ?? '',
         phoneNumber: user.phoneNumber!,
-      );
+      );*/
       if (active)
         Navigator.popAndPushNamed(context, HomeScreen.id);
       else

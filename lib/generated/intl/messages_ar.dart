@@ -20,55 +20,84 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'ar';
 
-  static String m0(price) =>
+  static String m0(amount) => "الربح: ${amount}\$";
+
+  static String m1(price) =>
       "تم تقديم طلب الحجز بتكلفة إجمالية قدرها ${price}\$ بنجاح.\nبانتظار موافقة صاحب العقار.";
+
+  static String m2(start) => "من: ${start}";
+
+  static String m3(end) => "إلى: ${end}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "AC": MessageLookupByLibrary.simpleMessage("تم قبول الطلب بنجاح."),
+    "Bookings": MessageLookupByLibrary.simpleMessage("الحجوزات"),
+    "Chats": MessageLookupByLibrary.simpleMessage("المحادثات"),
     "Reviews": MessageLookupByLibrary.simpleMessage("المراجعات"),
+    "Your_estate": MessageLookupByLibrary.simpleMessage("عقاراتي"),
+    "about_us": MessageLookupByLibrary.simpleMessage("حول التطبيق"),
+    "accept": MessageLookupByLibrary.simpleMessage("قبول"),
     "account_deleted_admin": MessageLookupByLibrary.simpleMessage(
       "لقد تم حذف حسابك من قبل المسؤول",
     ),
     "admin_error": MessageLookupByLibrary.simpleMessage(
       "هذا حساب مسؤول، يرجى إنشاء حساب مستخدم.",
     ),
+    "alaa": MessageLookupByLibrary.simpleMessage("آلاء هلال"),
     "all_category": MessageLookupByLibrary.simpleMessage("الكل"),
     "already_have_account": MessageLookupByLibrary.simpleMessage(
       "لديك حساب بالفعل؟ ",
     ),
+    "amina": MessageLookupByLibrary.simpleMessage("أمينة عينية"),
     "apartment": MessageLookupByLibrary.simpleMessage("شقة"),
     "apartment_title_hint": MessageLookupByLibrary.simpleMessage(
       "عنوان الشقة..",
     ),
+    "app_theme": MessageLookupByLibrary.simpleMessage("مظهر التطبيق"),
     "area_hint": MessageLookupByLibrary.simpleMessage("المساحة"),
     "area_label": MessageLookupByLibrary.simpleMessage("المساحة:"),
     "ascending_order": MessageLookupByLibrary.simpleMessage("ترتيب تصاعدي"),
     "bathrooms_hint": MessageLookupByLibrary.simpleMessage("الحمامات"),
     "bathrooms_label": MessageLookupByLibrary.simpleMessage("الحمامات:"),
+    "bayan": MessageLookupByLibrary.simpleMessage("بيان وهبة"),
     "bedrooms_hint": MessageLookupByLibrary.simpleMessage("غرف النوم"),
     "bedrooms_label": MessageLookupByLibrary.simpleMessage("غرف النوم:"),
+    "benefit": m0,
     "birth_date_btn": MessageLookupByLibrary.simpleMessage("تاريخ الميلاد"),
+    "birth_date_label": MessageLookupByLibrary.simpleMessage("تاريخ الميلاد:"),
     "book_now": MessageLookupByLibrary.simpleMessage("احجز الآن"),
-    "booking_success": m0,
+    "booking_success": m1,
     "calendar_instruction": MessageLookupByLibrary.simpleMessage(
       "اضغط مطولاً للحجز ليوم واحد.",
     ),
     "cancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
+    "cancel_booking_msg": MessageLookupByLibrary.simpleMessage(
+      "أنت على وشك إلغاء هذا الحجز، هل أنت متأكد؟",
+    ),
     "cancelled": MessageLookupByLibrary.simpleMessage("حجوزات ملغاة"),
     "category_hint": MessageLookupByLibrary.simpleMessage("الفئة"),
     "chat_hint": MessageLookupByLibrary.simpleMessage("اكتب رسالة..."),
     "clear_filters": MessageLookupByLibrary.simpleMessage("مسح الفلاتر"),
+    "confirm_accept": MessageLookupByLibrary.simpleMessage(
+      "أنت على وشك قبول هذا الطلب، هل أنت متأكد؟",
+    ),
     "confirm_password_hint": MessageLookupByLibrary.simpleMessage(
       "تأكيد كلمة المرور",
     ),
+    "confirm_reject": MessageLookupByLibrary.simpleMessage(
+      "أنت على وشك رفض هذا الطلب، هل أنت متأكد؟",
+    ),
     "contact": MessageLookupByLibrary.simpleMessage("تواصل"),
     "currentbb": MessageLookupByLibrary.simpleMessage("الحجوزات الحالية"),
+    "currenthaf": MessageLookupByLibrary.simpleMessage("الحالية"),
+    "dark_theme": MessageLookupByLibrary.simpleMessage("الوضع الداكن"),
     "default_landlord": MessageLookupByLibrary.simpleMessage("صاحب العقار"),
     "delet_house": MessageLookupByLibrary.simpleMessage(
       "أنت على وشك حذف هذا المنزل، هل أنت متأكد؟",
     ),
     "delete": MessageLookupByLibrary.simpleMessage("حذف"),
+    "delete_account": MessageLookupByLibrary.simpleMessage("حذف الحساب"),
     "descending_order": MessageLookupByLibrary.simpleMessage("ترتيب تنازلي"),
     "description_hint": MessageLookupByLibrary.simpleMessage("الوصف"),
     "dont_have_account": MessageLookupByLibrary.simpleMessage(
@@ -96,26 +125,38 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "error_title": MessageLookupByLibrary.simpleMessage("خطأ"),
     "favourites": MessageLookupByLibrary.simpleMessage("المفضلة"),
+    "field_required": MessageLookupByLibrary.simpleMessage("هذا الحقل مطلوب"),
     "filtered_badge": MessageLookupByLibrary.simpleMessage("مُصفّى"),
     "first_name_hint": MessageLookupByLibrary.simpleMessage("أدخل اسمك الأول"),
+    "from_date": m2,
+    "home": MessageLookupByLibrary.simpleMessage("الرئيسية"),
     "hotel": MessageLookupByLibrary.simpleMessage("فندق"),
     "house": MessageLookupByLibrary.simpleMessage("منزل"),
     "house_booking_requests": MessageLookupByLibrary.simpleMessage(
       "طلبات حجز المنازل",
     ),
     "house_reputation": MessageLookupByLibrary.simpleMessage("سمعة المنزل"),
+    "id_card_label": MessageLookupByLibrary.simpleMessage("بطاقة الهوية:"),
     "identity_card_label": MessageLookupByLibrary.simpleMessage("بطاقة الهوية"),
+    "kheder": MessageLookupByLibrary.simpleMessage("بيان الخضر"),
+    "language": MessageLookupByLibrary.simpleMessage("اللغة"),
     "last_name_hint": MessageLookupByLibrary.simpleMessage("أدخل اسمك الأخير"),
+    "light_theme": MessageLookupByLibrary.simpleMessage("الوضع الفاتح"),
     "living_rooms_hint": MessageLookupByLibrary.simpleMessage("غرف المعيشة"),
     "livingrooms_label": MessageLookupByLibrary.simpleMessage("غرف المعيشة:"),
+    "load_failed": MessageLookupByLibrary.simpleMessage(
+      "فشل في تحميل الإشعارات",
+    ),
     "location": MessageLookupByLibrary.simpleMessage("الموقع"),
     "login_title": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
     "login_to_chat_msg": MessageLookupByLibrary.simpleMessage(
       "يرجى تسجيل الدخول للدردشة",
     ),
+    "logout": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
     "max_hint": MessageLookupByLibrary.simpleMessage("الأقصى"),
     "min_hint": MessageLookupByLibrary.simpleMessage("الأدنى"),
     "my_houses": MessageLookupByLibrary.simpleMessage("منازلي"),
+    "new_notification": MessageLookupByLibrary.simpleMessage("إشعار جديد"),
     "next_btn": MessageLookupByLibrary.simpleMessage("التالي"),
     "no_bookings": MessageLookupByLibrary.simpleMessage("لا توجد حجوزات"),
     "no_chat": MessageLookupByLibrary.simpleMessage("لا توجد محادثات بعد"),
@@ -132,32 +173,44 @@ class MessageLookup extends MessageLookupByLibrary {
     "no_my_houses_found": MessageLookupByLibrary.simpleMessage(
       "لم تقم بإضافة أي منازل بعد",
     ),
+    "no_notifications": MessageLookupByLibrary.simpleMessage(
+      "لا توجد إشعارات بعد",
+    ),
+    "no_notifications_subtitle": MessageLookupByLibrary.simpleMessage(
+      "عندما تتلقى إشعارات، ستظهر هنا",
+    ),
+    "notifications_title": MessageLookupByLibrary.simpleMessage("الإشعارات"),
     "ok": MessageLookupByLibrary.simpleMessage("موافق"),
     "others": MessageLookupByLibrary.simpleMessage("أخرى"),
     "password_hint": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
+    "payment": MessageLookupByLibrary.simpleMessage("المحفظة"),
     "pending": MessageLookupByLibrary.simpleMessage("حجوزات قيد الانتظار"),
     "personal_info_title": MessageLookupByLibrary.simpleMessage(
       "المعلومات الشخصية",
     ),
     "phone_number_hint": MessageLookupByLibrary.simpleMessage("رقم الهاتف"),
+    "phone_number_label": MessageLookupByLibrary.simpleMessage("رقم الهاتف:"),
     "photo_fail": MessageLookupByLibrary.simpleMessage(
       "حقل صور العقار مطلوب، يرجى تحميل صورة واحدة على الأقل",
     ),
     "post_button": MessageLookupByLibrary.simpleMessage("نشر"),
     "price_hint": MessageLookupByLibrary.simpleMessage("السعر لليوم الواحد"),
     "price_label": MessageLookupByLibrary.simpleMessage("السعر:"),
+    "profile": MessageLookupByLibrary.simpleMessage("الملف الشخصي"),
     "profile_picture_label": MessageLookupByLibrary.simpleMessage(
       "الصورة الشخصية",
     ),
     "property_details": MessageLookupByLibrary.simpleMessage("تفاصيل العقار"),
     "property_photos": MessageLookupByLibrary.simpleMessage("صور العقار"),
     "rate": MessageLookupByLibrary.simpleMessage("تقييم هذا العقار"),
+    "reject": MessageLookupByLibrary.simpleMessage("رفض"),
     "reputation_filter_hint": MessageLookupByLibrary.simpleMessage(
       "تصفية بناءً على السمعة",
     ),
     "request": MessageLookupByLibrary.simpleMessage("الطلبات"),
     "request_suc": MessageLookupByLibrary.simpleMessage("تم رفض الطلب بنجاح."),
     "room": MessageLookupByLibrary.simpleMessage("غرفة"),
+    "sarah": MessageLookupByLibrary.simpleMessage("ساره صدّيقه"),
     "search_button": MessageLookupByLibrary.simpleMessage("بحث"),
     "search_hint": MessageLookupByLibrary.simpleMessage("بحث..."),
     "select_category": MessageLookupByLibrary.simpleMessage("يرجى اختيار فئة"),
@@ -170,17 +223,22 @@ class MessageLookup extends MessageLookupByLibrary {
     "session_error": MessageLookupByLibrary.simpleMessage(
       "تم حذف حسابك من قبل المسؤول أو انتهت صلاحية الجلسة.",
     ),
+    "settings": MessageLookupByLibrary.simpleMessage("الإعدادات"),
     "sign_up": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
     "success": MessageLookupByLibrary.simpleMessage(
       "تم التحديث بنجاح. بانتظار موافقة صاحب العقار.",
     ),
     "suite": MessageLookupByLibrary.simpleMessage("جناح"),
+    "support": MessageLookupByLibrary.simpleMessage("الدعم الفني"),
+    "to_date": m3,
+    "try_again": MessageLookupByLibrary.simpleMessage("أعد المحاولة"),
     "type_message_hint": MessageLookupByLibrary.simpleMessage("اكتب رسالة..."),
     "update_booking": MessageLookupByLibrary.simpleMessage("تحديث الحجز"),
     "update_booking_requests": MessageLookupByLibrary.simpleMessage(
       "طلبات تحديث الحجز",
     ),
     "uptd": MessageLookupByLibrary.simpleMessage("تحديث"),
+    "user_name_label": MessageLookupByLibrary.simpleMessage("اسم المستخدم:"),
     "villa": MessageLookupByLibrary.simpleMessage("فيلا"),
     "wait_approval_msg": MessageLookupByLibrary.simpleMessage(
       "يرجى الانتظار حتى\nيتم قبول إنشاء\nحسابك",
@@ -192,6 +250,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "حيث تلتقي الراحة مع التميز",
     ),
     "welcome_title": MessageLookupByLibrary.simpleMessage("مرحباً بك"),
+    "your_balance": MessageLookupByLibrary.simpleMessage("رصيدك الحالي:"),
     "your_estates_title": MessageLookupByLibrary.simpleMessage("عقاراتك"),
   };
 }

@@ -99,11 +99,19 @@ class _calendar_bookState extends State<calendar_book> {
 
   void _ACBooking() async {
     if (_select_day != null) {
-      await bookHouseRequest(
-        context: context,
-        start: _select_day!,
-        end: _select_day!,
-        house: house,
+      showToDoSomeThingDialoge(
+        context,
+        message:
+            "you are going to send a booking request for this house, are you sure?",
+        cancel: true,
+        toDo: () async {
+          await bookHouseRequest(
+            context: context,
+            start: _select_day!,
+            end: _select_day!,
+            house: house,
+          );
+        },
       );
     } else if (_range_StartDay != null && _range_EndDay != null) {
       showToDoSomeThingDialoge(
@@ -121,24 +129,26 @@ class _calendar_bookState extends State<calendar_book> {
         },
       );
     }
-    setState(() {
-      _select_day = null;
-      _range_StartDay = null;
-      _range_EndDay = null;
-      _rangeSelectionMode = RangeSelectionMode.toggledOn;
-    });
   }
 
   void _AC2Booking() async {
     if (_select_day != null) {
-      await (
-        context: context,
-        start: _select_day!,
-        end: _select_day!,
-        house: house,
+      showToDoSomeThingDialoge(
+        context,
+        message:
+            "you are going to send an update request for this house, are you sure?",
+        cancel: true,
+        toDo: () async {
+          await updateBooking(
+            context: context,
+            start: _select_day!,
+            end: _select_day!,
+            book: book,
+          );
+        },
       );
     } else if (_range_StartDay != null && _range_EndDay != null) {
-       showToDoSomeThingDialoge(
+      showToDoSomeThingDialoge(
         context,
         message:
             "you are going to send an update request for this house, are you sure?",
@@ -153,12 +163,6 @@ class _calendar_bookState extends State<calendar_book> {
         },
       );
     }
-    setState(() {
-      _select_day = null;
-      _range_StartDay = null;
-      _range_EndDay = null;
-      _rangeSelectionMode = RangeSelectionMode.toggledOn;
-    });
   }
 
   @override
@@ -216,7 +220,7 @@ class _calendar_bookState extends State<calendar_book> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Text(
-                S.of(context).calendar_instruction.toString(),
+                S.of(context).calendar_instruction,
                 style: TextStyle(
                   fontSize: 14,
                   color: Theme.of(context).colorScheme.primary,
@@ -230,13 +234,13 @@ class _calendar_bookState extends State<calendar_book> {
                 ? Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: ElevatedButton(
-                      onPressed: selectionMode ? _ACBooking : null,
+                      onPressed: selectionMode ? _ACBooking : () {},
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Theme.of(context).colorScheme.primary,
                         minimumSize: const Size(300, 60),
                       ),
                       child: Text(
-                        S.of(context).book_now.toString(),
+                        S.of(context).book_now,
                         style: TextStyle(
                           fontSize: 18,
                           color: Theme.of(context).colorScheme.onPrimary,
@@ -247,7 +251,7 @@ class _calendar_bookState extends State<calendar_book> {
                 : Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: ElevatedButton(
-                      onPressed: selectionMode ? _AC2Booking : null,
+                      onPressed: selectionMode ? _AC2Booking : () {},
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Theme.of(context).colorScheme.primary,
                         minimumSize: const Size(300, 60),

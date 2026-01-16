@@ -60,36 +60,42 @@ void main() async {
 class Baytech extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      localizationsDelegates: const [
-        S.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: S.delegate.supportedLocales,
-      navigatorKey: LocalNotificationService.navigatorKey,
-      debugShowCheckedModeBanner: false,
-      theme: Provider.of<ThemeProvider>(context).themeData,
-      initialRoute: KeyinAnimation.id,
-      routes: {
-        KeyinAnimation.id: (context) => const KeyinAnimation(),
-        WelcomePage.id: (context) => const WelcomePage(),
-        LoginPage.id: (context) => LoginPage(),
-        SignupPage.id: (context) => SignupPage(),
-        WaitingPage.id: (context) => WaitingPage(),
-        AddAppartmentPage.id: (context) => AddAppartmentPage(),
-        EditApartmentPage.id: (context) => EditApartmentPage(),
-        PersonalInfoPage.id: (context) => PersonalInfoPage(),
-        HomeScreen.id: (context) => HomeScreen(),
-        NotificationScreen.id: (context) => NotificationScreen(),
-        BookingsPage.id: (context) => BookingsPage(),
-        YourEstatesPage.id: (context) => YourEstatesPage(),
-        ProfileInforma.id: (context) => ProfileInforma(),
-        Filteringpage.id: (context) => Filteringpage(),
-        ApartmentDetailsPage.id: (context) => ApartmentDetailsPage(),
-        calendar_book.id: (context) => calendar_book(),
-        RequestsPage.id: (context) => RequestsPage(),
+    return Consumer2<LocaleProvider, ThemeProvider>(
+      builder: (context, localeProvider, themeProvider, child) {
+        return MaterialApp(
+          locale: localeProvider.locale,
+          localizationsDelegates: const [
+            S.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: S.delegate.supportedLocales,
+
+          navigatorKey: LocalNotificationService.navigatorKey,
+          debugShowCheckedModeBanner: false,
+          theme: Provider.of<ThemeProvider>(context).themeData,
+          initialRoute: KeyinAnimation.id,
+          routes: {
+            KeyinAnimation.id: (context) => const KeyinAnimation(),
+            WelcomePage.id: (context) => const WelcomePage(),
+            LoginPage.id: (context) => LoginPage(),
+            SignupPage.id: (context) => SignupPage(),
+            WaitingPage.id: (context) => WaitingPage(),
+            AddAppartmentPage.id: (context) => AddAppartmentPage(),
+            EditApartmentPage.id: (context) => EditApartmentPage(),
+            PersonalInfoPage.id: (context) => PersonalInfoPage(),
+            HomeScreen.id: (context) => HomeScreen(),
+            NotificationScreen.id: (context) => NotificationScreen(),
+            BookingsPage.id: (context) => BookingsPage(),
+            YourEstatesPage.id: (context) => YourEstatesPage(),
+            ProfileInforma.id: (context) => ProfileInforma(),
+            Filteringpage.id: (context) => Filteringpage(),
+            ApartmentDetailsPage.id: (context) => ApartmentDetailsPage(),
+            calendar_book.id: (context) => calendar_book(),
+            RequestsPage.id: (context) => RequestsPage(),
+          },
+        );
       },
     );
   }

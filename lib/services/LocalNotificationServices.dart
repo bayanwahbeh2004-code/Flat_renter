@@ -25,11 +25,8 @@ class LocalNotificationService {
   }
 
   static Future<void> init() async {
-    // Initialize Android settings with proper icon
     const AndroidInitializationSettings initializationSettingsAndroid =
         AndroidInitializationSettings('@mipmap/ic_launcher');
-
-    // Initialize iOS settings with request permissions
     const DarwinInitializationSettings initializationSettingsIOS =
         DarwinInitializationSettings(
           requestAlertPermission: true,
@@ -48,8 +45,6 @@ class LocalNotificationService {
       onDidReceiveNotificationResponse: onTap,
       onDidReceiveBackgroundNotificationResponse: onTap,
     );
-
-    // Create notification channel for Android 8.0+
     const AndroidNotificationChannel channel = AndroidNotificationChannel(
       'channel_id',
       'channel_name',
@@ -69,7 +64,6 @@ class LocalNotificationService {
 
   static Future<void> showBasicNotification(RemoteMessage message) async {
     try {
-      // Android notification details
       const AndroidNotificationDetails androidPlatformChannelSpecifics =
           AndroidNotificationDetails(
             'channel_id',
@@ -83,27 +77,19 @@ class LocalNotificationService {
             icon: '@mipmap/ic_launcher',
             largeIcon: DrawableResourceAndroidBitmap('@mipmap/ic_launcher'),
           );
-
-      // iOS notification details
       const DarwinNotificationDetails iOSPlatformChannelSpecifics =
           DarwinNotificationDetails(
             presentAlert: true,
             presentBadge: true,
             presentSound: true,
           );
-
-      // Platform specific notification details
       const NotificationDetails platformChannelSpecifics = NotificationDetails(
         android: androidPlatformChannelSpecifics,
         iOS: iOSPlatformChannelSpecifics,
       );
-
-      // Generate a unique ID for each notification
       int notificationId = DateTime.now().millisecondsSinceEpoch.remainder(
         100000,
       );
-
-      // Show the notification
       await flutterLocalNotificationsPlugin.show(
         notificationId,
         message.notification?.title ?? 'Notification',
@@ -112,7 +98,6 @@ class LocalNotificationService {
         payload: message.data.toString(),
       );
 
-      print('Notification shown: ${message.notification?.title}');
     } catch (e) {
       print('Error showing notification: $e');
     }

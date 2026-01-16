@@ -38,7 +38,7 @@ class Apartment {
     this.price,
     this.city,
     this.governorate,
-    this.user
+    this.user,
   });
   factory Apartment.fromJson(data) {
     return Apartment(
@@ -56,7 +56,7 @@ class Apartment {
       city: data['city'],
       governorate: data['governorate'],
       avg_star: data['avg_star'],
-      user: User.fromjson(data['User'])
+      user: data['User'] != null ? User.fromjson(data['User']) : User(),
     );
   }
 }

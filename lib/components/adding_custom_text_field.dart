@@ -1,3 +1,4 @@
+import 'package:baytech/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
 class AddingCustomTextField extends StatefulWidget {
@@ -35,7 +36,7 @@ class _AddingCustomTextFieldState extends State<AddingCustomTextField> {
           onChanged: widget.onchanged,
           validator: (data) {
             if (data!.isEmpty) {
-              return "Field is required";
+              return S.of(context).field_required;
             }
             return null;
           },

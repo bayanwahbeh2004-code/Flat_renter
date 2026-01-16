@@ -2,6 +2,7 @@ import 'package:baytech/Constants.dart';
 import 'package:baytech/Models/book.dart';
 import 'package:baytech/Screens/calendar_booking_page.dart';
 import 'package:baytech/Screens/viewAppartment.dart';
+import 'package:baytech/generated/l10n.dart';
 import 'package:baytech/helper/show_to_do_something_dialoge.dart';
 import 'package:baytech/providers/myBookingsProvider.dart';
 import 'package:baytech/services/houses/bookings/renter/cancel_booking_user.dart';
@@ -13,9 +14,9 @@ import 'package:provider/provider.dart';
 
 class BookCard extends StatefulWidget {
   Book book;
+  String type;
   bool isCancelled;
-  BookCard({required this.book, required this.isCancelled});
-
+  BookCard({required this.book, required this.type, required this.isCancelled});
   @override
   State<BookCard> createState() => _BookCardState();
 }
@@ -108,7 +109,14 @@ class _BookCardState extends State<BookCard> {
                                     },
                                   );
                                 },
-                                child: Text("update", style: TextStyle(color: Theme.of(context).colorScheme.primary),),
+                                child: Text(
+                                  S.of(context).uptd,
+                                  style: TextStyle(
+                                    color: Theme.of(
+                                      context,
+                                    ).colorScheme.primary,
+                                  ),
+                                ),
                               ),
 
                               ElevatedButton(
@@ -118,15 +126,17 @@ class _BookCardState extends State<BookCard> {
                                   });
                                   showToDoSomeThingDialoge(
                                     context,
-                                    message:
-                                        "You are about to cancel this booking, are you sure?",
+                                    message: S.of(context).cancel_booking_msg,
                                     cancel: true,
                                     toDo: () async {
                                       await cancelBooking(
                                         context: context,
                                         book: widget.book,
                                       );
-                                      bookings.setBookings("current", context);
+                                      bookings.setBookings(
+                                        widget.type,
+                                        context,
+                                      );
                                     },
                                   );
 
@@ -134,7 +144,7 @@ class _BookCardState extends State<BookCard> {
                                     isLoading = false;
                                   });
                                 },
-                                child: Text("Cancel"),
+                                child: Text(S.of(context).cancel),
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.red,
                                 ),
